@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/15 17:33:07 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/02/15 20:45:33 by vkinsfat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LIBFT_H
+# define LIBFT_H
+
+# include <stddef.h>
+
+void		*ft_bzero(void *ptr, size_t size);
+int			ft_isalnum(int c);
+int			ft_isalpha(int c);
+int			ft_isascii(int c);
+int			ft_isdigit(int c);
+int			ft_isprint(int c);
+void		*ft_memchr(const void *str, int n, size_t size);
+void		*ft_memcpy(void *dest, const void *src, size_t n);
+void		*ft_memset(void *ptr, int n, size_t size);
+char		*ft_strchr(char *str, char c);
+size_t		ft_strlcat(char *dest, const char *src, size_t size);
+size_t		ft_strlcpy(char *dest, const char *src, size_t size);
+size_t		ft_strlen(const char *str);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+char		ft_tolower(char c);
+char		ft_toupper(char c);
+
+#endif
