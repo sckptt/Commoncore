@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 18:33:12 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/16 12:55:21 by vkinsfat         ###   ########.fr       */
+/*   Created: 2024/02/16 18:11:47 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/02/16 18:11:48 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,26 @@
 #include <string.h>
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_memcmp(const void *str1, const void *str2, size_t n)
 {
-	while (*s1 - *s2 == 0)
+	unsigned const char	*one;
+	unsigned const char	*two;
+
+	one = str1;
+	two = str2;
+	while (*one - *two == 0)
 	{
-		if (*s1 == '\0' && *s2 == '\0')
+		if (*one == '\0' && *two == '\0')
 		{
 			return (0);
 		}
-		s1++;
-		s2++;
+		one++;
+		two++;
 		n--;
 		if (n == 0)
 			return (0);
 	}
-	return (*s1 - *s2);
+	return (*one - *two);
 }
 
 /*int main(void)
@@ -42,13 +47,13 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	str2 = "Ulamog";
     str3 = "Hello";
     str4 = "Hellz";
-	printf("Reproduced: %d\n", ft_strncmp(str1, str1, 7));
-	printf("Reproduced: %d\n", ft_strncmp(str1, str2, 4));
-	printf("Reproduced: %d\n", ft_strncmp(str3, str4, 4));
-	printf("Reproduced: %d\n", ft_strncmp(str3, str4, 6));
-	printf("Original: %d\n", strncmp(str1, str1, 7));
-	printf("Original: %d\n", strncmp(str1, str2, 4));
-	printf("Original: %d\n", strncmp(str3, str4, 4));
-	printf("Original: %d\n", strncmp(str3, str4, 6));
+	printf("Reproduced: %d\n", ft_memcmp(str1, str1, 7));
+	printf("Reproduced: %d\n", ft_memcmp(str1, str2, 4));
+	printf("Reproduced: %d\n", ft_memcmp(str3, str4, 4));
+	printf("Reproduced: %d\n", ft_memcmp(str3, str4, 6));
+	printf("Original: %d\n", memcmp(str1, str1, 7));
+	printf("Original: %d\n", memcmp(str1, str2, 4));
+	printf("Original: %d\n", memcmp(str3, str4, 4));
+	printf("Original: %d\n", memcmp(str3, str4, 6));
 	return (0);
 }*/

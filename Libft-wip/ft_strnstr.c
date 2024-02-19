@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 18:33:12 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/16 12:55:21 by vkinsfat         ###   ########.fr       */
+/*   Created: 2024/02/16 18:11:58 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/02/16 18:13:41 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,29 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (*s1 - *s2);
 }
 
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
+	
+	i = 0;
+	if (!haystack && !needle)
+		return (NULL);
+	if (!*needle)
+		return ((char *)haystack);
+	while (haystack && len--)
+	{
+		while (haystack[i] == needle )
+	}
+	return (NULL);
+}
+
 /*int main(void)
 {
-	char	*str1;
-	char	*str2;
-	char	*str3;
-	char	*str4;
-
-	str1 = "Emrakul";
-	str2 = "Ulamog";
-    str3 = "Hello";
-    str4 = "Hellz";
-	printf("Reproduced: %d\n", ft_strncmp(str1, str1, 7));
-	printf("Reproduced: %d\n", ft_strncmp(str1, str2, 4));
-	printf("Reproduced: %d\n", ft_strncmp(str3, str4, 4));
-	printf("Reproduced: %d\n", ft_strncmp(str3, str4, 6));
-	printf("Original: %d\n", strncmp(str1, str1, 7));
-	printf("Original: %d\n", strncmp(str1, str2, 4));
-	printf("Original: %d\n", strncmp(str3, str4, 4));
-	printf("Original: %d\n", strncmp(str3, str4, 6));
-	return (0);
+	char *hay = "hello my friend";
+	char *need1 = " my";
+	char *need2 = ""; 
+	printf("%s\n", ft_strnstr(hay, need1, sizeof(hay)));
+	printf("%s\n", ft_strnstr(hay, need2, sizeof(hay)));
+	// printf("%d\n", strnstr(hay, need1, sizeof(hay)));
+	// printf("%d\n", strnstr(hay, need2, sizeof(hay)));
 }*/

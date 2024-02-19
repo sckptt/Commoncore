@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:48:11 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/15 20:16:11 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/16 20:19:45 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	destin = dest;
 	sour = src;
+	if (!dest && !src)
+		return (NULL);
 	while (n)
 	{
 		*destin = *sour;
