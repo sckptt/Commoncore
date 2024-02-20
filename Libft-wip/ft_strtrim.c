@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:04:44 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/19 16:52:33 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:46:36 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char *res;
-	int lenset;
-	int i;
+	char	*res;
+	int		lenset;
+	int		i;
 	
 	lenset = ft_strlen(set);
 	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));

@@ -6,16 +6,16 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:54:52 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/19 19:59:44 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:45:05 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 
-void ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!s || !f)
@@ -27,9 +27,11 @@ void ft_striteri(char *s, void (*f)(unsigned int, char*))
 	}
 }
 
-void add_i(unsigned int i, char *c)
+/*void add_i(unsigned int i, char *c)
 {
-	*c = *c + i;
+	(void)i;
+	if (*c >= 'a' && *c <= 'z')
+		*c = *c - 32;
 }
 
 int main()
@@ -38,4 +40,4 @@ int main()
 	ft_striteri(s, add_i);
 	printf("%s\n", s);
 	return 0;
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:27:05 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/16 19:54:44 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:47:39 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*ft_calloc(size_t noe, size_t esize)
 	void	*ptr;
 
 	ptr = malloc(noe * esize);
-	if(ptr == NULL)
+	if (ptr == NULL)
 		return (NULL);
 	ft_bzero(ptr, noe * esize);
 	return (ptr);

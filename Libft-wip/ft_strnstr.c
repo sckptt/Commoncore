@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:11:58 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/16 18:13:41 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:47:24 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
-	
+
 	i = 0;
 	if (!haystack && !needle)
 		return (NULL);

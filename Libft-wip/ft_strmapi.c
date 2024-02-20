@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 19:35:24 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/19 19:53:40 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/20 16:45:44 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,28 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
+/*char add_i(unsigned int i, char c)
 {
-	char *res;
-	size_t len;
-	unsigned int i;
+	(void)i;
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
+}*/
+
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char			*res;
+	size_t			len;
+	unsigned int	i;
 
 	if (!s || !f)
 		return (NULL);
 	len = ft_strlen(s);
 	res = (char *)malloc(sizeof(char) * (len + 1));
 	if (!res)
-		return(NULL);
+		return (NULL);
 	i = 0;
-	while (*s != '\0')
+	while (s[i] != '\0')
 	{
 		res[i] = f(i, s[i]);
 		i++;
@@ -48,10 +56,10 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	return (res);
 }
 
-int main()
+/*int main()
 {
 	char *s = "Hello";
 	char *res = ft_strmapi(s, add_i);
 	printf("%s\n", res);
 	return 0;
-}
+}*/
