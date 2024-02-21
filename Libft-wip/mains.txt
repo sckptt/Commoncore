@@ -402,7 +402,19 @@ int main()
 	printf("%s\n", strrchr(str, b));
 }*/
 
-28) ft_substr
+28) ft_strtrim
+
+int main(void)
+{
+	char *str = "   Hello World   ";
+	char *set = "~*/";
+	printf("%s\n", ft_strtrim(str, " .!"));
+	printf("%s\n", ft_strtrim("    Hello   world    ", " "));
+	printf("%s\n", ft_strtrim("~*/ Hello world ~*/", set));
+	return (0);
+}
+
+29) ft_substr
 
 /*int main(void)
 {
@@ -414,7 +426,7 @@ int main()
 	return (0);
 }*/
 
-29) ft_tolower
+30) ft_tolower
 
 
 /*int main(void)
@@ -435,7 +447,7 @@ int main()
 	return (0);
 }*/
 
-30) ft_toupper
+31) ft_toupper
 
 /*int main(void)
 {
