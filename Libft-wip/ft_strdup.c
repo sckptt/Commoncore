@@ -6,12 +6,10 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:11:20 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/16 18:11:37 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:52:40 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include "libft.h"
 
@@ -35,13 +33,3 @@ char	*ft_strdup(const char *str)
 	dup[i] = '\0';
 	return (dup);
 }
-
-/*int main(void)
-{
-	char *string;
-
-	string = "I see a red door and I want it painted black";
-	printf("Reproduced: %s\n", ft_strdup(string));
-	printf("Original: %s\n", strdup(string));
-	return (0);
-}*/

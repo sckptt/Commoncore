@@ -6,11 +6,10 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 13:05:34 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/19 13:06:34 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:52:10 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
@@ -24,12 +23,3 @@ void	ft_putstr_fd(char *s, int fd)
 		i++;
 	}
 }
-
-/*int main(void)
-{
-	char *str;
-
-	str = "The age of Shadows has begun";
-	ft_putstr_fd(str, 1);
-	return (0);
-}*/

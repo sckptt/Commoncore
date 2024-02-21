@@ -6,12 +6,10 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:33:12 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/16 12:55:21 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:53:34 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -30,25 +28,3 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	}
 	return (*s1 - *s2);
 }
-
-/*int main(void)
-{
-	char	*str1;
-	char	*str2;
-	char	*str3;
-	char	*str4;
-
-	str1 = "Emrakul";
-	str2 = "Ulamog";
-    str3 = "Hello";
-    str4 = "Hellz";
-	printf("Reproduced: %d\n", ft_strncmp(str1, str1, 7));
-	printf("Reproduced: %d\n", ft_strncmp(str1, str2, 4));
-	printf("Reproduced: %d\n", ft_strncmp(str3, str4, 4));
-	printf("Reproduced: %d\n", ft_strncmp(str3, str4, 6));
-	printf("Original: %d\n", strncmp(str1, str1, 7));
-	printf("Original: %d\n", strncmp(str1, str2, 4));
-	printf("Original: %d\n", strncmp(str3, str4, 4));
-	printf("Original: %d\n", strncmp(str3, str4, 6));
-	return (0);
-}*/

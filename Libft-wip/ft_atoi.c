@@ -6,12 +6,10 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:47:02 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/16 15:49:10 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:49:32 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "libft.h"
 
 int	ft_atoi(char *str)
@@ -40,10 +38,3 @@ int	ft_atoi(char *str)
 	}
 	return (result * one);
 }
-
-/*int	main(void)
-{
-	char *str = "  +5736283";
-	printf("%d\n", ft_atoi(str));
-	printf("%d\n", atoi(str));
-}*/

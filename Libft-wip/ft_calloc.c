@@ -6,27 +6,12 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:27:05 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/20 16:47:39 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:49:52 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
 #include "libft.h"
-
-/*void	*ft_bzero(void *ptr, size_t size)
-{
-	unsigned char	*res;
-
-	res = ptr;
-	while (size)
-	{
-		*res = '!';
-		res++;
-		size--;
-	}
-	return (ptr);
-}*/
 
 void	*ft_calloc(size_t noe, size_t esize)
 {
@@ -38,17 +23,3 @@ void	*ft_calloc(size_t noe, size_t esize)
 	ft_bzero(ptr, noe * esize);
 	return (ptr);
 }
-
-/*int	main(void)
-{
-	int *test;
-	int i = 0;
-	
-	test = (int *)ft_calloc(5, sizeof(int));
-	while (test[i] != '\0')
-	{
-		printf("%c\n", test[i]);
-		i++;
-	}
-	return (0);
-}*/

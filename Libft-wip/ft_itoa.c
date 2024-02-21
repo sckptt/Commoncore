@@ -6,11 +6,10 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:01:18 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/19 15:41:40 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:50:42 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
 
@@ -55,17 +54,3 @@ char	*ft_itoa(int n)
 	res[check_length(n)] = '\0';
 	return (res);
 }
-
-/*int main(void)
-{
-	int n = -1234;
-	int m = 0;
-	int l = -5555555;
-	printf("%s\n", ft_itoa(n));
-	printf("%s\n", ft_itoa(m));
-	printf("%s\n", ft_itoa(l));
-	printf("%d\n", itoa(n));
-	printf("%d\n", itoa(m));
-	printf("%d\n", itoa(l));
-	return (0);
-}*/

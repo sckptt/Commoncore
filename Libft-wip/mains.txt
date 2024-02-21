@@ -1,0 +1,456 @@
+1) ft_atoi
+
+/*int	main(void)
+{
+	char *str = "  +5736283";
+	printf("%d\n", ft_atoi(str));
+	printf("%d\n", atoi(str));
+}*/
+
+2) ft_bzero
+
+/*int main(void)
+{
+	char string[20];
+	char string1[20];
+
+	bzero(string, 5);
+	printf("1. %s\n", string);
+	ft_bzero(string1, 9);	
+	printf("2. %s\n", string1);
+	return (0);
+}*/
+
+3) ft_calloc
+
+/*int	main(void)
+{
+	int *test;
+	int i = 0;
+	
+	test = (int *)ft_calloc(5, sizeof(int));
+	while (test[i] != '\0')
+	{
+		printf("%c\n", test[i]);
+		i++;
+	}
+	return (0);
+}*/
+
+4) ft_isalnum
+
+/*int	main(void)
+{
+    int a = '9';
+    char c = 'b';
+
+	printf("%d\n", isalnum(c));
+	printf("%d\n", isalnum(a));
+	printf("%d\n", isalnum(48));
+	printf("%d\n", ft_isalnum(c));
+	printf("%d\n", ft_isalnum(a));
+	printf("%d\n", ft_isalnum(48));
+	return (0);
+}*/
+
+5) ft_isalpha
+
+/*int	main(void)
+{   char ch = 'S';
+    int a = 88;
+
+	printf("%d\n", isalpha(ch));
+	printf("%d\n", isalpha(a));
+	printf("%d\n", isalpha('='));
+	printf("%d\n", ft_isalpha(ch));
+	printf("%d\n", ft_isalpha(a));
+	printf("%d\n", ft_isalpha('='));
+	return (0);
+}*/
+
+6) ft_isascii
+
+/*int	main(void)
+{
+    int a = '8';
+    char c = '~';
+
+	printf("%d\n", isascii(c));
+	printf("%d\n", isascii(a));
+	printf("%d\n", isascii(130));
+	printf("%d\n", ft_isascii(c));
+	printf("%d\n", ft_isascii(a));
+	printf("%d\n", ft_isascii('\0'));
+	return (0);
+}*/
+
+7) ft_isdigit
+
+/*int	main(void)
+{
+    int a = '8';
+    char c = '1';
+
+	printf("%d\n", isdigit(c));
+	printf("%d\n", isdigit(a));
+	printf("%d\n", isdigit('='));
+	printf("%d\n", ft_isdigit(c));
+	printf("%d\n", ft_isdigit(a));
+	printf("%d\n", ft_isdigit('='));
+	return (0);
+}*/
+
+8) ft_isprint
+
+/*int	main(void)
+{
+    char ch = 'S';
+    int a = 1;
+
+	printf("%d\n", isprint(ch));
+	printf("%d\n", isprint(a));
+	printf("%d\n", isprint('\n'));
+	printf("%d\n", ft_isprint(ch));
+	printf("%d\n", ft_isprint(a));
+	printf("%d\n", ft_isprint('\n'));
+	return (0);
+}*/
+
+9) ft_itoa
+
+/*int main(void)
+{
+	int n = -1234;
+	int m = 0;
+	int l = -5555555;
+	printf("%s\n", ft_itoa(n));
+	printf("%s\n", ft_itoa(m));
+	printf("%s\n", ft_itoa(l));
+	printf("%d\n", itoa(n));
+	printf("%d\n", itoa(m));
+	printf("%d\n", itoa(l));
+	return (0);
+}*/
+
+10) ft_memchr
+
+/*int main(void)
+{
+	char *str = "voracious";
+	char a = 'c';
+	char b = 'l'; 
+	printf("%s\n", (char *)ft_memchr(str, a, sizeof(str)));
+	printf("%s\n", (char *)ft_memchr(str, b, sizeof(str)));
+	printf("%s\n", (char *)memchr(str, a, sizeof(str)));
+	printf("%s\n", (char *)memchr(str, b, sizeof(str)));
+	return (0);
+}*/
+
+11) ft_memcmp
+
+/*int main(void)
+{
+	char	*str1;
+	char	*str2;
+	char	*str3;
+	char	*str4;
+
+	str1 = "Emrakul";
+	str2 = "Ulamog";
+    str3 = "Hello";
+    str4 = "Hellz";
+	printf("Reproduced: %d\n", ft_memcmp(str1, str1, 7));
+	printf("Reproduced: %d\n", ft_memcmp(str1, str2, 4));
+	printf("Reproduced: %d\n", ft_memcmp(str3, str4, 4));
+	printf("Reproduced: %d\n", ft_memcmp(str3, str4, 6));
+	printf("Original: %d\n", memcmp(str1, str1, 7));
+	printf("Original: %d\n", memcmp(str1, str2, 4));
+	printf("Original: %d\n", memcmp(str3, str4, 4));
+	printf("Original: %d\n", memcmp(str3, str4, 6));
+	return (0);
+}*/
+
+12) ft_memcpy
+
+/*int main(void)
+{
+	char source[20] = "I'm source string";
+	char destination1[20] = "I'm dest";
+	char destination2[20] = "I'm dest";
+	
+	printf("Before: %s\n", destination1);
+	memcpy(destination1, source, sizeof(source));
+	printf("After: %s\n", destination1);
+	printf("Re:before: %s\n", destination2);
+	ft_memcpy(destination2, source, sizeof(source));
+	printf("Re:after: %s\n", destination2);
+	return (0);
+}*/
+
+13) ft_memset
+
+/*int	main(void)
+{
+	char	string[20];
+	char	string1[20];
+
+	memset(string, '*', 5);
+	printf("%s\n", string);
+	ft_memset(string1, 'x', 7);	
+	printf("%s\n", string1);
+	return (0);
+}*/
+
+14) ft_putnbr_fd
+
+/*int main(void)
+{
+	int num1;
+	int num2;
+
+	num1 = 12345;
+
+	num2 = -2147483648;
+	ft_putnbr_fd(num2, 1);
+	printf("%c", '\n');
+	ft_putnbr_fd(-785748934, 1);
+	printf("%c", '\n');
+	ft_putnbr_fd(num1, 1);
+	printf("%c", '\n');
+	return (0);
+}*/
+
+15) ft_putstr_fd
+
+/*int main(void)
+{
+	char *str;
+
+	str = "The age of Shadows has begun";
+	ft_putstr_fd(str, 1);
+	return (0);
+}*/
+
+16) ft_split
+
+17) ft_strchr
+
+/*int main(void)
+{
+	char *str = "hello";
+	char a = 'l';
+	char b = '.'; 
+	printf("%s\n", ft_strchr(str, a));
+	printf("%s\n", ft_strchr(str, b));
+	printf("%s\n", strchr(str, a));
+	printf("%s\n", strchr(str, b));
+}*/
+
+18) ft_strdup
+
+/*int main(void)
+{
+	char *string;
+
+	string = "I see a red door and I want it painted black";
+	printf("Reproduced: %s\n", ft_strdup(string));
+	printf("Original: %s\n", strdup(string));
+	return (0);
+}*/
+
+19) ft_striteri
+
+/*void add_i(unsigned int i, char *c)
+{
+	(void)i;
+	if (*c >= 'a' && *c <= 'z')
+		*c = *c - 32;
+}
+
+int main()
+{
+	char s[] = "Oh no its zzz";
+	ft_striteri(s, add_i);
+	printf("%s\n", s);
+	return 0;
+}*/
+
+20) ft_strjoin
+
+/*int main(void)
+{
+	char *s1 = "I'm s1, ";
+	char *s2 = "I'm s2.";
+	char *s3;
+	
+	s3 = ft_strjoin(s1, s2);
+	printf("s3: %s\n", s3);
+	return (0);
+}*/
+
+21) ft_strlcat
+
+/*int main(void)
+{
+	char source[] = "of Eldraine!";
+	char destination[10] = "Wilds ";
+	size_t len;
+	
+	printf("Dest before: %s\n", destination);
+	printf("Length of dest: %lu\n", strlen(destination));
+	len = ft_strlcat(destination, source, sizeof(destination));
+	printf("Dest after: %s\n", destination);
+	printf("Length of dest: %zu\n", len);
+	return (0);
+}*/
+
+22) ft_strlcpy
+
+
+/*int main(void)
+{
+	char source[] = "I'm source string";
+	char destination2[] = "I'm hyperdestinative destination";
+	size_t len;
+	
+	printf("Dest before: %s\n", destination2);
+	printf("Length of dest: %lu\n", strlen(destination2));
+	len = ft_strlcpy(destination2, source, sizeof(source));
+	printf("Dest after: %s\n", destination2);
+	printf("Length of dest: %zu\n", len);
+	return (0);
+}*/
+
+23) ft_strlen
+
+
+/*int main(void)
+{
+	char *string;
+
+	string = "I see a red door and I want it painted black";
+	printf("Reproduced: %zu\n", ft_strlen(string));
+	printf("Original: %lu\n", strlen(string));
+	return (0);
+}*/
+
+24) ft_strmapi
+
+/*char add_i(unsigned int i, char c)
+{
+	(void)i;
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
+}*/
+
+/*int main()
+{
+	char *s = "Hello";
+	char *res = ft_strmapi(s, add_i);
+	printf("%s\n", res);
+	return 0;
+}*/
+
+25) ft_strncmp
+
+/*int main(void)
+{
+	char	*str1;
+	char	*str2;
+	char	*str3;
+	char	*str4;
+
+	str1 = "Emrakul";
+	str2 = "Ulamog";
+    str3 = "Hello";
+    str4 = "Hellz";
+	printf("Reproduced: %d\n", ft_strncmp(str1, str1, 7));
+	printf("Reproduced: %d\n", ft_strncmp(str1, str2, 4));
+	printf("Reproduced: %d\n", ft_strncmp(str3, str4, 4));
+	printf("Reproduced: %d\n", ft_strncmp(str3, str4, 6));
+	printf("Original: %d\n", strncmp(str1, str1, 7));
+	printf("Original: %d\n", strncmp(str1, str2, 4));
+	printf("Original: %d\n", strncmp(str3, str4, 4));
+	printf("Original: %d\n", strncmp(str3, str4, 6));
+	return (0);
+}*/
+
+26) ft_strnstr
+
+/*int main(void)
+{
+	char *hay = "hello my friend";
+	char *need1 = " my";
+	char *need2 = ""; 
+	printf("%s\n", ft_strnstr(hay, need1, sizeof(hay)));
+	printf("%s\n", ft_strnstr(hay, need2, sizeof(hay)));
+	// printf("%d\n", strnstr(hay, need1, sizeof(hay)));
+	// printf("%d\n", strnstr(hay, need2, sizeof(hay)));
+}*/
+
+27) ft_strrchar
+
+/*int main(void)
+{
+	char *str = "religious/desicious";
+	char a = 'l';
+	char b = 'i'; 
+	printf("%s\n", ft_strrchr(str, a));
+	printf("%s\n", ft_strrchr(str, b));
+	printf("%s\n", strrchr(str, a));
+	printf("%s\n", strrchr(str, b));
+}*/
+
+28) ft_substr
+
+/*int main(void)
+{
+	char *s = "Hello World";
+	printf("%s\n", ft_substr(s, 6, 5));
+	printf("%s\n", ft_substr(s, 20, 5));
+	printf("%s\n", ft_substr(s, 6, 0));
+	// printf("%s\n", substr(s, 6, 5));
+	return (0);
+}*/
+
+29) ft_tolower
+
+
+/*int main(void)
+{
+	char a;
+    char b;
+    char c;
+
+    a = 'Z';
+    b = 'y';
+    c = '+';
+    printf("%c\n", ft_tolower(a));
+	printf("%c\n", ft_tolower(b));
+    printf("%c\n", ft_tolower(c));
+    printf("%c\n", tolower(a));
+    printf("%c\n", tolower(b));
+	printf("%c\n", tolower(c));
+	return (0);
+}*/
+
+30) ft_toupper
+
+/*int main(void)
+{
+	char a;
+    char b;
+    char c;
+
+    a = 'A';
+    b = 'b';
+    c = '9';
+    printf("%c\n", ft_toupper(a));
+	printf("%c\n", ft_toupper(b));
+    printf("%c\n", ft_toupper(c));
+    printf("%c\n", toupper(a));
+    printf("%c\n", toupper(b));
+	printf("%c\n", toupper(c));
+	return (0);
+}*/

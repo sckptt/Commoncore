@@ -6,12 +6,10 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 15:11:32 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/15 17:38:21 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/21 16:50:16 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <stdio.h>
 #include "libft.h"
 
 int	ft_isalpha(int c)
@@ -21,16 +19,3 @@ int	ft_isalpha(int c)
 	else
 		return (0);
 }
-
-/*int	main(void)
-{   char ch = 'S';
-    int a = 88;
-
-	printf("%d\n", isalpha(ch));
-	printf("%d\n", isalpha(a));
-	printf("%d\n", isalpha('='));
-	printf("%d\n", ft_isalpha(ch));
-	printf("%d\n", ft_isalpha(a));
-	printf("%d\n", ft_isalpha('='));
-	return (0);
-}*/

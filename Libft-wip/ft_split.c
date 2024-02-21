@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:03:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/20 20:00:30 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/21 14:24:10 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,48 +38,40 @@ int	count_words(char const *str, char s)
 			i++;
 		}
 		else
-			i++;	
+			i++;
 	}
 	return (count);
 }
 
 int	count_letters(char const *str, char s)
 {
-	int	i;
 	int	count;
 
-	i = 0;
 	count = 0;
-	while (str[i] != s && str[i] != '\0')
-	{
+	while (str[count] != s && str[count] != '\0')
 		count++;
-		i++;
-	}
 	return (count);
 }
 
 void	fill_res(char const *str, char s, char **res)
 {
-	int i;
-	int j;
-	int len;
+	int	i;
+	int	j;
 
 	i = 0;
-	len = 0;
 	while (*str != '\0')
 	{
 		if (*str != s)
 		{
-			len = count_letters(str, s);
-			printf("%s\n", str);
-			res[i] = (char *)malloc(sizeof(char) * (len + 1));
-			if (!*res[i])
+			res[i] = (char *)malloc(sizeof(char) * (count_letters(str, s) + 1));
+			if (!res[i])
 			{
 				while (i > 0)
 				{
-					free(res[i]);
 					i--;
+					free(res[i]);
 				}
+				return ;
 			}
 			j = 0;
 			while (*str != s && *str != '\0')
@@ -101,7 +93,7 @@ char	**ft_split(char const *s, char c)
 {
 	int		words;
 	char	**res;
-	
+
 	if (!s)
 		return (NULL);
 	words = count_words(s, c);
@@ -121,18 +113,37 @@ char	**ft_split(char const *s, char c)
 	return (res);
 }
 
-int main()
+/*int main()
 {
-	int i = 0;
 	char *s = " I   see a red door   and I want        to paint it black  ";
-	// int words = count_words(s, ' ');
-	// printf("%d\n", words);
 	char **res = ft_split(s, ' ');
-	while (*res[i])
+	int i = 0;
+	while (res[i])
 	{
-		printf("%d\n", i);
 		printf("%s\n", res[i]);
 		i++;
 	}
+	i = 0;
+	while (res[i])
+	{
+		free(res[i]);
+		i++;
+	}
+	free(res);
+	char *s1 = "Hello world";
+	char **res1 = ft_split(s1, ' ');
+	i = 0;
+	while (res1[i])
+	{
+		printf("%s\n", res1[i]);
+		i++;
+	}
+	i = 0;
+	while (res1[i])
+	{
+		free(res1[i]);
+		i++;
+	}
+	free(res1);
 	return 0;
-}
+}*/
