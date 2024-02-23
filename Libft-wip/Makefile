@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 # set source files and object files
-SRC = $(wildcard *.c)
+SRC = $(shell ls *.c)
 OBJ = $(SRC:.c=.o)
 
 # set library name

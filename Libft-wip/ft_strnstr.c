@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:11:58 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/21 16:47:17 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:39:13 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,29 @@
 #include <string.h>
 #include "libft.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	while (*s1 - *s2 == 0)
-	{
-		if (*s1 == '\0' && *s2 == '\0')
-		{
-			return (0);
-		}
-		s1++;
-		s2++;
-		n--;
-		if (n == 0)
-			return (0);
-	}
-	return (*s1 - *s2);
-}
-
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
+	size_t	j;
 
 	i = 0;
+	j = 0;
 	if (!haystack && !needle)
 		return (NULL);
 	if (!*needle)
 		return ((char *)haystack);
-	while (haystack && len--)
+	while (haystack[i] != '\0' && i < len)
 	{
-		while (haystack[i] == needle )
+		if (haystack[i] == needle[j] && i < len)
+		{
+			while (haystack[i] == needle[i])
+			{
+				if (i == len)
+					return ((char *)haystack);	
+			}
+		}
+		else
+			i++;
 	}
 	return (NULL);
 }

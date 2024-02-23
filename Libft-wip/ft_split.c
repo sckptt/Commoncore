@@ -6,21 +6,13 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:03:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/21 14:24:10 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:27:37 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
-
-int	ft_isalnum(int c)
-{
-	if ((c >= 65 && c <= 90) || (c >= 97 && c <= 122) || (c >= 48 && c <= 57))
-		return (1);
-	else
-		return (0);
-}
 
 int	count_words(char const *str, char s)
 {
@@ -66,20 +58,13 @@ void	fill_res(char const *str, char s, char **res)
 			res[i] = (char *)malloc(sizeof(char) * (count_letters(str, s) + 1));
 			if (!res[i])
 			{
-				while (i > 0)
-				{
-					i--;
+				while (i-- > 0)
 					free(res[i]);
-				}
 				return ;
 			}
 			j = 0;
 			while (*str != s && *str != '\0')
-			{
-				res[i][j] = *str;
-				str++;
-				j++;
-			}
+				res[i][j++] = *str++;
 			res[i][j] = '\0';
 			i++;
 		}
@@ -112,38 +97,3 @@ char	**ft_split(char const *s, char c)
 	fill_res(s, c, res);
 	return (res);
 }
-
-/*int main()
-{
-	char *s = " I   see a red door   and I want        to paint it black  ";
-	char **res = ft_split(s, ' ');
-	int i = 0;
-	while (res[i])
-	{
-		printf("%s\n", res[i]);
-		i++;
-	}
-	i = 0;
-	while (res[i])
-	{
-		free(res[i]);
-		i++;
-	}
-	free(res);
-	char *s1 = "Hello world";
-	char **res1 = ft_split(s1, ' ');
-	i = 0;
-	while (res1[i])
-	{
-		printf("%s\n", res1[i]);
-		i++;
-	}
-	i = 0;
-	while (res1[i])
-	{
-		free(res1[i]);
-		i++;
-	}
-	free(res1);
-	return 0;
-}*/
