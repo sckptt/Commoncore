@@ -6,11 +6,10 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:03:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/23 14:27:37 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:44:01 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include <stdlib.h>
 #include "libft.h"
 

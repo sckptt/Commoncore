@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:04:44 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/21 18:32:28 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:37:09 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		start++;
 	while (end > start && ft_strchr((char *)set, (char)s1[end - 1]))
 		end--;
-	res = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	res = (char *)malloc(sizeof(char) * (end - start + 1));
 	if (!res)
 		return (NULL);
 	while (start < end)

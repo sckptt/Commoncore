@@ -6,15 +6,15 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:15:46 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/23 19:35:23 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:41:18 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strchr(char *str, int c)
-{	
-	char ch;
+{
+	char	ch;
 
 	ch = (char)c;
 	if (ch == '\0')

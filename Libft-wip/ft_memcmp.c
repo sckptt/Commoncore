@@ -6,12 +6,10 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:11:47 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/23 17:17:57 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/26 15:43:25 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <string.h>
 #include "libft.h"
 
 int	ft_memcmp(const void *str1, const void *str2, size_t n)

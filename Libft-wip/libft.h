@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:33:07 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/23 17:29:56 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/26 19:29:40 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stddef.h>
 
-int			ft_atoi(char *str);
+int			ft_atoi(const char *str);
 void		*ft_bzero(void *ptr, size_t size);
 void		*ft_calloc(size_t noe, size_t esize);
 int			ft_isalnum(int c);

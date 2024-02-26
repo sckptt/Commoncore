@@ -2,7 +2,7 @@
 • isdigit +++
 • isalnum +++
 • isascii +++
-• isprint ++
+• isprint +++
 • strlen +++
 • memset +++
 • bzero +++
@@ -17,13 +17,13 @@
 • strncmp +++
 • memchr +++
 • memcmp +++
-• strnstr !!!
-• atoi +
-• calloc !!!
+• strnstr +++
+• atoi +++
+• calloc +++
 • strdup +++
-• ft_substr !!! (2)
-• ft_strjoin !!! (1, 5)
-• ft_strtrim !!! (2, 4, 6)
+• ft_substr +++
+• ft_strjoin +++
+• ft_strtrim +++
 • ft_split +++
 • ft_itoa !!! (3)
 • ft_strmapi +++

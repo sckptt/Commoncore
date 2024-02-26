@@ -6,13 +6,13 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 15:47:02 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/21 16:49:32 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/26 13:32:34 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	i;
 	int	one;
