@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:33:12 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/23 17:01:28 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:53:22 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		if (n == 0)
 			return (0);
 	}
-	return (*s1 - *s2);
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

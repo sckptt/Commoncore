@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 18:11:58 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/26 15:42:14 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:16:46 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	i = 0;
 	if (!haystack && !needle)
 		return (NULL);
-	if (!*needle)
+	if (!(*needle))
 		return ((char *)haystack);
 	while (haystack[i] != '\0' && i < len)
 	{

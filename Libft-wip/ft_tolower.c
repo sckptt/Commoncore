@@ -6,13 +6,13 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 18:16:40 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/21 16:54:00 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/27 12:47:22 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	ft_tolower(char c)
+int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')
 		c = c + 32;

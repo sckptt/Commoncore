@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:33:07 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/26 19:29:40 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:28:55 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stddef.h>
 
 int			ft_atoi(const char *str);
-void		*ft_bzero(void *ptr, size_t size);
+void		ft_bzero(void *ptr, size_t size);
 void		*ft_calloc(size_t noe, size_t esize);
 int			ft_isalnum(int c);
 int			ft_isalpha(int c);
@@ -34,7 +34,7 @@ void		ft_putendl_fd(char *s, int fd);
 void		ft_putnbr_fd(int n, int fd);
 void		ft_putstr_fd(char *s, int fd);
 char		**ft_split(char const *str, char c);
-char		*ft_strchr(char *str, int c);
+char		*ft_strchr(const char *str, int c);
 char		*ft_strdup(const char *str);
 void		ft_striteri(char *s, void (*f)(unsigned int, char*));
 char		*ft_strjoin(char const *s1, char const *s2);
@@ -48,7 +48,7 @@ char		*ft_strrchr(const char *str, int c);
 char		*ft_strtrim(char const *s1, char const *set);
 char		*ft_substr(const char *s, unsigned int start, size_t len);
 char		*ft_strtrim(char const *s1, char const *set);
-char		ft_tolower(char c);
-char		ft_toupper(char c);
+int			ft_tolower(int c);
+int			ft_toupper(int c);
 
 #endif
