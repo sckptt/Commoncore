@@ -6,14 +6,14 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 20:03:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/26 15:44:01 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/29 17:01:52 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-int	count_words(char const *str, char s)
+static int	count_words(char const *str, char s)
 {
 	int	i;
 	int	count;
@@ -34,7 +34,7 @@ int	count_words(char const *str, char s)
 	return (count);
 }
 
-int	count_letters(char const *str, char s)
+static int	count_letters(char const *str, char s)
 {
 	int	count;
 
@@ -44,7 +44,13 @@ int	count_letters(char const *str, char s)
 	return (count);
 }
 
-void	fill_res(char const *str, char s, char **res)
+static void	cleaner(char **res, int i)
+{
+	while (i-- > 0)
+		free(res[i]);
+}
+
+static int	fill_res(char const *str, char s, char **res)
 {
 	int	i;
 	int	j;
@@ -57,9 +63,8 @@ void	fill_res(char const *str, char s, char **res)
 			res[i] = (char *)malloc(sizeof(char) * (count_letters(str, s) + 1));
 			if (!res[i])
 			{
-				while (i-- > 0)
-					free(res[i]);
-				return ;
+				cleaner(res, i);
+				return (0);
 			}
 			j = 0;
 			while (*str != s && *str != '\0')
@@ -71,6 +76,7 @@ void	fill_res(char const *str, char s, char **res)
 			str++;
 	}
 	res[i] = NULL;
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
@@ -84,15 +90,18 @@ char	**ft_split(char const *s, char c)
 	if (!words || !s[0])
 	{
 		res = (char **)malloc(sizeof(char *) * 1);
-		res[0] = NULL;
+		if (!res)
+			return (NULL);
+		res[0] = 0;
 		return (res);
 	}
 	res = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!res)
+		return (NULL);
+	if (!fill_res(s, c, res))
 	{
 		free(res);
-		return (NULL);
+		return (0);
 	}
-	fill_res(s, c, res);
 	return (res);
 }

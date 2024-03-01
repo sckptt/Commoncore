@@ -6,14 +6,14 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 15:01:18 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/26 16:43:29 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:25:58 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-int	check_length(int n)
+static int	check_length(int n)
 {
 	int	length;
 

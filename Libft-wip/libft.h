@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:33:07 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/27 17:28:55 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:43:31 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,7 @@ int			ft_strncmp(const char *s1, const char *s2, size_t n);
 char		*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char		*ft_strrchr(const char *str, int c);
 char		*ft_strtrim(char const *s1, char const *set);
-char		*ft_substr(const char *s, unsigned int start, size_t len);
-char		*ft_strtrim(char const *s1, char const *set);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 int			ft_tolower(int c);
 int			ft_toupper(int c);
 

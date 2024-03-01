@@ -6,14 +6,14 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:02:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/02/26 14:21:15 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/02/29 13:38:16 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
 	char			*res;
