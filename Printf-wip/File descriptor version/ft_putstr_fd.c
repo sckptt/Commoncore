@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/01 15:15:24 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 17:33:15 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2024/03/01 15:10:29 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/03/05 17:32:06 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int n, int *count)
+void	ft_putstr_fd(char *s, int fd)
 {
-	if (n == -2147483648)
+	int	i;
+
+	i = 0;
+	if (!s)
+		ft_putstr_fd(("nill"), fd);
+	while (s[i] != '\0')
 	{
-		ft_putstr("-2147483648", count);
-		return ;
-	}
-	if (n < 0)
-	{
-		ft_putchar('-', count);
-		n = n * -1;
-	}
-	if (n >= 10)
-	{
-		ft_putnbr(n / 10, count);
-		ft_putnbr(n % 10, count);
-	}
-	else
-	{
-		ft_putchar(n + '0', count);
+		ft_putchar_fd(s[i], fd);
+		i++;
 	}
 }

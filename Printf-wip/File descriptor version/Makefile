@@ -4,15 +4,14 @@ CFLAGS = -Wall -Wextra -Werror
 
 # set source files and object files (unfinished)
 SRC = ft_printf.c \
-ft_putchar.c \
-ft_puthexl.c \
-ft_puthexu.c \
-ft_putnbr.c \
-ft_putptr.c \
-ft_putstr.c \
-ft_putuns.c \
-ft_strchr.c \
-ft_strlen.c
+ft_putchar_fd.c \
+ft_puthexl_fd.c \
+ft_puthexu_fd.c \
+ft_putnbr_fd.c \
+ft_putptr_fd.c \
+ft_putstr_fd.c \
+ft_putuns_fd.c \
+ft_strchr.c
 OBJ = $(SRC:.c=.o)
 
 # set library name

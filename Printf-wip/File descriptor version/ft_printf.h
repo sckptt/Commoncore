@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:07:42 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 17:32:40 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/03/05 17:30:59 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,15 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <stddef.h>
-# include <limits.h>
 
 int		ft_printf(const char *str, ...);
-void	ft_putchar(char c, int *count);
-void	ft_puthexl(int n, int *count);
-void	ft_puthexu(int n, int *count);
-void	ft_putnbr(int n, int *count);
-void	ft_putptr(void *ptr, int *count);
-void	ft_putstr(char *s, int *count);
-void	ft_putuns(unsigned int n, int *count);
+void	ft_putchar_fd(char c, int fd);
+void	ft_puthexl_fd(int n, int fd);
+void	ft_puthexu_fd(int n, int fd);
+void	ft_putnbr_fd(int n, int fd);
+void	ft_putptr_fd(void *ptr, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putuns_fd(unsigned long n, int fd);
 char	*ft_strchr(const char *str, int c);
-size_t	ft_strlen(const char *str);
 
 #endif

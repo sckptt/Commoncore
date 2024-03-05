@@ -3,41 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:45:12 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 16:48:58 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:30:50 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	handle_format(va_list args, char format, int *count)
+static void	handle_format(va_list args, char format)
 {
 	void	*ptr;
 
 	if (format == 'c')
-		ft_putchar(va_arg(args, int), count);
+		ft_putchar_fd((char)va_arg(args, int), 1);
 	else if (format == 's')
-		ft_putstr(va_arg(args, char *), count);
+		ft_putstr_fd(va_arg(args, char *), 1);
 	else if (format == 'p')
 	{
 		ptr = va_arg(args, void *);
 		if (ptr)
-			ft_putptr(ptr, count);
+			ft_putptr_fd(ptr, 1);
 		else
-			ft_putstr("nil", count);
+			ft_putstr_fd("0x0", 1);
 	}
 	else if (format == 'd' || format == 'i')
-		ft_putnbr(va_arg(args, int), count);
+		ft_putnbr_fd(va_arg(args, int), 1);
 	else if (format == 'u')
-		ft_putuns(va_arg(args, unsigned int), count);
+		ft_putuns_fd(va_arg(args, unsigned long), 1);
 	else if (format == 'x')
-		ft_puthexl(va_arg(args, int), count);
+		ft_puthexl_fd(va_arg(args, int), 1);
 	else if (format == 'X')
-		ft_puthexu(va_arg(args, int), count);
+		ft_puthexu_fd(va_arg(args, int), 1);
 	else if (format == '%')
-		ft_putchar('%', count);
+		ft_putchar_fd('%', 1);
 }
 
 int	ft_printf(const char *str, ...)
@@ -53,12 +53,14 @@ int	ft_printf(const char *str, ...)
 	{
 		if (str[i] == '%' && ft_strchr("cspdiuxX%", str[i + 1]))
 		{
-			handle_format(args, str[i + 1], &count);
+			handle_format(args, str[i + 1]);
+			count++;
 			i += 2;
 		}
 		else
 		{
-			ft_putchar(str[i], &count);
+			ft_putchar_fd(str[i], 1);
+			count++;
 			i++;
 		}
 	}
@@ -68,8 +70,6 @@ int	ft_printf(const char *str, ...)
 
 // int main(void)
 // {
-// 	int count = ft_printf(" %u %u %u %u %u %u %u\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-// 	ft_printf("%d\n", count);
-// 	int count1 = printf(" %u %u %ld %ld %lu %u %u\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-// 	printf("%d\n", count1);
+// 	ft_printf("%c%c\n", 'a', 'b');
+// 	printf("%c%c\n", 'a', 'b');
 // }
