@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 17:08:56 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 13:35:54 by vkinsfat         ###   ########.fr       */
+/*   Created: 2024/03/05 13:22:43 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/03/05 13:22:44 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *str, int c)
+size_t	ft_strlen(const char *str)
 {
-	char	ch;
+	size_t	i;
 
-	ch = (char)c;
-	if (ch == '\0')
-		return ((char *)str + ft_strlen(str));
-	while (*str)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*str == ch)
-			return ((char *)str);
-		else
-			str++;
+		i++;
 	}
-	return (NULL);
+	return (i);
 }

@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 17:08:56 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 13:35:54 by vkinsfat         ###   ########.fr       */
+/*   Created: 2024/03/01 15:15:24 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/03/05 15:08:10 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *str, int c)
+void	ft_putnbr(int n, int *count)
 {
-	char	ch;
-
-	ch = (char)c;
-	if (ch == '\0')
-		return ((char *)str + ft_strlen(str));
-	while (*str)
+	if (n == -2147483648)
 	{
-		if (*str == ch)
-			return ((char *)str);
-		else
-			str++;
+		ft_putstr("-2147483648", count);
+		return ;
 	}
-	return (NULL);
+	if (n < 0)
+	{
+		ft_putchar('-', count);
+		n = n * -1;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr(n / 10, count);
+		ft_putnbr(n % 10, count);
+	}
+	else
+	{
+		ft_putchar(n + '0', count);
+	}
 }

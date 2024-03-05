@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 17:08:56 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 13:35:54 by vkinsfat         ###   ########.fr       */
+/*   Created: 2024/03/04 14:18:20 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/03/05 16:14:19 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *str, int c)
+static void	ft_puthex(unsigned long n, int *count)
 {
-	char	ch;
+	char	*hex;
 
-	ch = (char)c;
-	if (ch == '\0')
-		return ((char *)str + ft_strlen(str));
-	while (*str)
+	hex = "0123456789abcdef";
+	if (n == 0)
 	{
-		if (*str == ch)
-			return ((char *)str);
-		else
-			str++;
+		ft_putchar('0', count);
+		return ;
 	}
-	return (NULL);
+	if (n < 16)
+		ft_putchar(hex[n], count);
+	else
+	{
+		ft_puthex(n / 16, count);
+		ft_putchar(hex[n % 16], count);
+	}
+}
+
+void	ft_putptr(void *ptr, int *count)
+{
+	ft_putchar('0', count);
+	ft_putchar('x', count);
+	ft_puthex((unsigned long)ptr, count);
 }

@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_putuns.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 17:08:56 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 13:35:54 by vkinsfat         ###   ########.fr       */
+/*   Created: 2024/03/04 15:43:33 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/03/05 16:39:37 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-char	*ft_strchr(const char *str, int c)
+void	ft_putuns(unsigned int n, int *count)
 {
-	char	ch;
-
-	ch = (char)c;
-	if (ch == '\0')
-		return ((char *)str + ft_strlen(str));
-	while (*str)
+	if (n >= 10)
 	{
-		if (*str == ch)
-			return ((char *)str);
-		else
-			str++;
+		ft_putuns(n / 10, count);
+		ft_putchar((n % 10) + '0', count);
 	}
-	return (NULL);
+	else
+		ft_putchar(n + '0', count);
 }
