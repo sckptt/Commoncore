@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 15:10:29 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 16:00:14 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:22:01 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_putstr(char *s, int *count)
 	i = 0;
 	if (s == NULL)
 	{
-		ft_putstr("NULL", count);
+		ft_putstr("(null)", count);
 		return ;
 	}
 	while (s[i] != '\0')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 16:45:12 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/05 16:48:58 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:33:05 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	handle_format(va_list args, char format, int *count)
 		if (ptr)
 			ft_putptr(ptr, count);
 		else
-			ft_putstr("nil", count);
+			ft_putstr("(nil)", count);
 	}
 	else if (format == 'd' || format == 'i')
 		ft_putnbr(va_arg(args, int), count);
@@ -68,8 +68,10 @@ int	ft_printf(const char *str, ...)
 
 // int main(void)
 // {
-// 	int count = ft_printf(" %u %u %u %u %u %u %u\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+// 	int count = ft_printf("  \001\002\007\v\010\f\r\n");
 // 	ft_printf("%d\n", count);
-// 	int count1 = printf(" %u %u %ld %ld %lu %u %u\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+// 	int count1 = printf("  \001\002\007\v\010\f\r\n");
 // 	printf("%d\n", count1);
+// 	// int count1 = printf(" %u %u %ld %ld %lu %u %u\n", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+// 	// printf("%d\n", count1);
 // }
