@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:31:31 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/18 20:40:35 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/03/19 21:32:24 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	else
 		res[0] = '\0';
 	ft_strlcat(res, s2, lens1 + lens2 + 1);
+	// free((char *)s2);
 	return (res);
 }

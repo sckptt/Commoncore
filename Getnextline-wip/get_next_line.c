@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:26:48 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/18 20:40:22 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/03/19 23:11:56 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ static char	*fill_buffer(char *buffer, int fd)
 			return (NULL);
 		}
 		new_buffer[bytes_read] = '\0';
+		if (bytes_read == 0)
+			break ;
 		buffer = ft_strjoin(buffer, new_buffer);
 	}
 	free(new_buffer);
@@ -73,19 +75,23 @@ static char	*read_one_line(char *str)
 	i = 0;
 	if (!str || str[i] == '\0')
 		return (NULL);
-	while (str[i] != '\n' && str[i] != '\0')
+	while (str[i] != '\n' && str[i])
 		i++;
 	one_line = (char *)malloc(i + 2);
 	if (!one_line)
 		return (NULL);
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	while (str[i] != '\n' && str[i])
 	{
 		one_line[i] = str[i];
 		i++;
 	}
-	one_line[i] = '\n';
-	one_line[i + 1] = '\0';
+	if (str[i] == '\n')
+	{
+		one_line[i] = '\n';
+		i++;
+	}
+	one_line[i] = '\0';
 	return (one_line);
 }
 
@@ -97,35 +103,53 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = fill_buffer(buffer, fd);
-	if (!buffer)
-		return (NULL);
+	// if (!buffer)
+	// 	return (NULL);
 	line = read_one_line(buffer);
+	if (!line)
+		return (NULL);
 	buffer = renew_buffer(buffer);
 	return (line);
 }
 
-int	main(void)
-{
-	int		fd;
-	char	*line;
+// int	main(void)
+// {
+// 	int		fd;
+// 	char	*line;
 
-	fd = open("burn_in_hell.txt", O_RDONLY);
-	if (fd == -1)
+// 	fd = open("burn_in_hell.txt", O_RDONLY);
+// 	if (fd == -1)
+// 	{
+// 		printf("Error\n");
+// 		return (1);
+// 	}
+// 	//while ((line = get_next_line(fd)) != NULL)
+// 	line = get_next_line(fd);
+// 	while (line)
+// 	{
+// 		if (*line == '\0')
+// 			break;
+// 		printf("%s", line);
+// 		free(line);
+// 		line = get_next_line(fd);
+// 	}
+// 	free(line);
+// 	close(fd);
+// 	return (0);
+// }
+
+int main(void)
+{
+	int fd = open("only_nl.txt", O_RDONLY);
+
+	char *s = get_next_line(fd);
+
+	for (int i = 0; i < 5; i++)
 	{
-		printf("Error\n");
-		return (1);
+		printf("%s\n", s);
+		free(s);
+		s = get_next_line(fd);
 	}
-	//while ((line = get_next_line(fd)) != NULL)
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (*line == '\0')
-			break;
-		printf("%s", line);
-		free(line);
-		line = get_next_line(fd);
-	}
-	free(line);
-	close(fd);
+	free(s);
 	return (0);
 }
