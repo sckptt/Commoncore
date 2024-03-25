@@ -6,40 +6,11 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:26:48 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/03/19 23:11:56 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/03/23 14:59:50 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-static char	*renew_buffer(char *buffer)
-{
-	char	*new_buffer;
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (buffer[i] != '\n' && buffer[i] != '\0')
-		i++;
-	if (buffer[i] == '\0')
-	{
-		free(buffer);
-		return (NULL);
-	}
-	new_buffer = (char *)malloc(ft_strlen(buffer) - i + 1);
-	if (!new_buffer)
-	{
-		free(buffer);
-		return (NULL);
-	}
-	i++;
-	while (buffer[i])
-		new_buffer[j++] = buffer[i++];
-	new_buffer[j] = '\0';
-	free(buffer);
-	return (new_buffer);
-}
 
 static char	*fill_buffer(char *buffer, int fd)
 {
@@ -56,6 +27,7 @@ static char	*fill_buffer(char *buffer, int fd)
 		if (bytes_read == -1)
 		{
 			free(new_buffer);
+			new_buffer = NULL;
 			return (NULL);
 		}
 		new_buffer[bytes_read] = '\0';
@@ -95,6 +67,35 @@ static char	*read_one_line(char *str)
 	return (one_line);
 }
 
+static char	*renew_buffer(char *buffer)
+{
+	char	*new_buffer;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (buffer[i] != '\n' && buffer[i] != '\0')
+		i++;
+	if (buffer[i] == '\0')
+	{
+		free(buffer);
+		return (NULL);
+	}
+	new_buffer = (char *)malloc(ft_strlen(buffer) - i + 1);
+	if (!new_buffer)
+	{
+		free(buffer);
+		return (NULL);
+	}
+	i++;
+	while (buffer[i])
+		new_buffer[j++] = buffer[i++];
+	new_buffer[j] = '\0';
+	free(buffer);
+	return (new_buffer);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
@@ -103,11 +104,12 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = fill_buffer(buffer, fd);
-	// if (!buffer)
-	// 	return (NULL);
 	line = read_one_line(buffer);
 	if (!line)
+	{
+		free(buffer);
 		return (NULL);
+	}
 	buffer = renew_buffer(buffer);
 	return (line);
 }
@@ -117,13 +119,13 @@ char	*get_next_line(int fd)
 // 	int		fd;
 // 	char	*line;
 
-// 	fd = open("burn_in_hell.txt", O_RDONLY);
+// 	//fd = 0;
+// 	fd = open("test.txt", O_RDONLY);
 // 	if (fd == -1)
 // 	{
 // 		printf("Error\n");
 // 		return (1);
 // 	}
-// 	//while ((line = get_next_line(fd)) != NULL)
 // 	line = get_next_line(fd);
 // 	while (line)
 // 	{
@@ -137,19 +139,3 @@ char	*get_next_line(int fd)
 // 	close(fd);
 // 	return (0);
 // }
-
-int main(void)
-{
-	int fd = open("only_nl.txt", O_RDONLY);
-
-	char *s = get_next_line(fd);
-
-	for (int i = 0; i < 5; i++)
-	{
-		printf("%s\n", s);
-		free(s);
-		s = get_next_line(fd);
-	}
-	free(s);
-	return (0);
-}
