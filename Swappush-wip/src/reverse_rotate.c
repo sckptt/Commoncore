@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:59:34 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/19 19:50:22 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/19 20:43:00 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	reverse_rotate_a(t_stack **a)
 {
-	t_stack *temp;
-	t_stack *prev;
-	
+	t_stack	*temp;
+	t_stack	*prev;
+
 	if (!*a || (*a)->next == NULL)
 	{
 		printf("Not enough elements to reverse rotate!");
@@ -28,16 +28,53 @@ void	reverse_rotate_a(t_stack **a)
 		prev = prev->next;
 	prev->next->next = temp;
 	*a = prev->next;
-	temp->next = NULL;
+	prev->next = NULL;
 	write(1, "rra\n", 4);
 }
 
-// void	reverse_rotate_b(t_stack **b)
-// {
-// 	write(1, "rrb\n", 4);
-// }
+void	reverse_rotate_b(t_stack **b)
+{
+	t_stack	*temp;
+	t_stack	*prev;
 
-// void	reverse_rotate_r(t_stack **a, t_stack **b)
-// {
-// 	write(1, "rrr\n", 4);
-// }
+	if (!*b || (*b)->next == NULL)
+	{
+		printf("Not enough elements to reverse rotate!");
+		exit(0);
+	}
+	temp = *b;
+	prev = *b;
+	while (prev->next->next != NULL)
+		prev = prev->next;
+	prev->next->next = temp;
+	*b = prev->next;
+	prev->next = NULL;
+	write(1, "rrb\n", 4);
+}
+
+void	reverse_rotate_r(t_stack **a, t_stack **b)
+{
+	t_stack	*temp;
+	t_stack	*prev;
+
+	if (!*a || (*a)->next == NULL)
+	{
+		printf("Not enough elements to reverse rotate!");
+		exit(0);
+	}
+	temp = *a;
+	prev = *a;
+	while (prev->next->next != NULL)
+		prev = prev->next;
+	prev->next->next = temp;
+	*a = prev->next;
+	prev->next = NULL;
+	temp = *b;
+	prev = *b;
+	while (prev->next->next != NULL)
+		prev = prev->next;
+	prev->next->next = temp;
+	*b = prev->next;
+	prev->next = NULL;
+	write(1, "rrr\n", 4);
+}

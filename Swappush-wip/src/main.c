@@ -6,18 +6,18 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:12:23 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/19 19:51:19 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/19 20:51:21 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	create_nodes(t_stack **a, int x)
+void	create_nodes(t_stack **stack, int x)
 {
 	t_stack	*node;
 	t_stack	*last;
 
-	last = *a;
+	last = *stack;
 	node = malloc(sizeof(t_stack));
 	if (!node)
 	{
@@ -26,9 +26,9 @@ void	create_nodes(t_stack **a, int x)
 	}
 	node->num = x;
 	node->next = NULL;
-	if (!*a)
+	if (!*stack)
 	{
-		*a = node;
+		*stack = node;
 		return ;
 	}
 	while (last->next != NULL)
@@ -38,7 +38,7 @@ void	create_nodes(t_stack **a, int x)
 
 int	push_demo(void)
 {
-	int		arguments[3] = {3, 1, 2};
+	int		arguments[5] = {4, 3, 1, 2, 5};
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	t_stack	*temp_stack_a;
@@ -50,7 +50,7 @@ int	push_demo(void)
 	stack_a = NULL;
 	stack_b = NULL;
 	i = 0;
-	while (i < 3)
+	while (i < 5)
 	{
 		create_nodes(&stack_a, arguments[i]);
 		i++;
@@ -92,9 +92,9 @@ int	push_demo(void)
 
 int	swap_demo(void)
 {
-	int		arguments[3] = {3, 1, 2};
+	int		arguments[5] = {4, 3, 1, 2, 5};
 	t_stack	*stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_b;
 	t_stack	*temp_stack_a;
 	t_stack	*temp_stack_b;
 	int		i;
@@ -102,7 +102,7 @@ int	swap_demo(void)
 	stack_a = NULL;
 	stack_b = NULL;
 	i = 0;
-	while (i < 3)
+	while (i < 5)
 	{
 		create_nodes(&stack_a, arguments[i]);
 		create_nodes(&stack_b, arguments[i]);
@@ -131,9 +131,9 @@ int	rotate_demo(void)
 {
 	int		arguments[5] = {4, 3, 1, 2, 5};
 	t_stack	*stack_a;
-	t_stack *stack_b;
+	t_stack	*stack_b;
 	t_stack	*temp_stack_a;
-	t_stack *temp_stack_b;
+	t_stack	*temp_stack_b;
 	int		i;
 
 	stack_a = NULL;
@@ -168,42 +168,42 @@ int reverse_rotate_demo(void)
 {
 	int		arguments[5] = {4, 3, 1, 2, 5};
 	t_stack	*stack_a;
-	// t_stack *stack_b;
+	t_stack *stack_b;
 	t_stack	*temp_stack_a;
-	// t_stack *temp_stack_b;
+	t_stack *temp_stack_b;
 	int		i;
 
 	stack_a = NULL;
-	// stack_b = NULL;
+	stack_b = NULL;
 	i = 0;
 	while (i < 5)
 	{
 		create_nodes(&stack_a, arguments[i]);
-		// create_nodes(&stack_b, arguments[i]);
+		create_nodes(&stack_b, arguments[i]);
 		i++;
 	}
 	printf("Now we reverse rotate A!\n\n");
-	reverse_rotate_a(&stack_a);
+	reverse_rotate_r(&stack_a, &stack_b);
 	temp_stack_a = stack_a;
-	//temp_stack_b = stack_b;
+	temp_stack_b = stack_b;
 	printf("\nA:\n");
 	while (temp_stack_a)
 	{
 		printf("%d\n", temp_stack_a->num);
 		temp_stack_a = temp_stack_a->next;
 	}
-	// printf("\nB:\n");
-	// while (temp_stack_b)
-	// {
-	// 	printf("%d\n", temp_stack_b->num);
-	// 	temp_stack_b = temp_stack_b->next;
-	// }
+	printf("\nB:\n");
+	while (temp_stack_b)
+	{
+		printf("%d\n", temp_stack_b->num);
+		temp_stack_b = temp_stack_b->next;
+	}
 	return (0);
-	
 }
 
 int	main(void)
 {
+	printf("Original sequence is 4, 3, 1, 2, 5\n");
 	push_demo();
 	printf("\n");
 	swap_demo();
