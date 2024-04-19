@@ -3,21 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:14:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/18 19:45:06 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/04/19 18:39:28 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-void push_a(t_stack **a, t_stack **b)
+void	push_a(t_stack **a, t_stack **b)
 {
+	t_stack	*temp;
+
+	if (!*b)
+	{
+		printf("%s", "Stack b is empty!");
+		exit(0);
+	}
+	temp = *b;
+	*b = (*b)->next;
+	temp->next = *a;
+	*a = temp;
 	write(1, "pa\n", 3);
 }
 
-void push_b(t_stack **b, t_stack **a)
+void	push_b(t_stack **a, t_stack **b)
 {
+	t_stack	*temp;
+
+	if (!*a)
+	{
+		printf("%s", "Stack a is empty!");
+		exit(0);
+	}
+	temp = *a;
+	*a = (*a)->next;
+	temp->next = *b;
+	*b = temp;
 	write(1, "pb\n", 3);
 }
