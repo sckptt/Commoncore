@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   demonstration.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:12:23 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/23 13:42:31 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/23 16:18:15 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@
 // 		printf("%d\n", temp_stack_b1->num);
 // 		temp_stack_b1 = temp_stack_b1->next;
 // 	}
+// 	free_stack(&stack_a);
+// 	free_stack(&stack_b);
 // 	return (0);
 // }
 
@@ -100,6 +102,8 @@
 // 		printf("%d\n", temp_stack_b->num);
 // 		temp_stack_b = temp_stack_b->next;
 // 	}
+// 	free_stack(&stack_a);
+// 	free_stack(&stack_b);
 // 	return (0);
 // }
 
@@ -137,6 +141,8 @@
 // 		printf("%d\n", temp_stack_b->num);
 // 		temp_stack_b = temp_stack_b->next;
 // 	}
+// 	free_stack(&stack_a);
+// 	free_stack(&stack_b);
 // 	return (0);
 // }
 
@@ -174,6 +180,8 @@
 // 		printf("%d\n", temp_stack_b->num);
 // 		temp_stack_b = temp_stack_b->next;
 // 	}
+// 	free_stack(&stack_a);
+// 	free_stack(&stack_b);
 // 	return (0);
 // }
 

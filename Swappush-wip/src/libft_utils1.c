@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_utils1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:59 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/23 15:46:42 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/23 18:37:22 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	ft_atoi(const char *str)
 	}
 	while (*str >= 48 && *str <= 57)
 	{
-		if (result > (INT_MAX - (*str - '0')) / 10)
+		if (one > 0 && result > (INT_MAX - (*str - '0')) / 10)
 		{
-			printf("Too big error\n");
+			printf("Error\n");
 			exit(1);
 		}
 		result = result * 10 + (*str - '0');
@@ -49,4 +49,12 @@ t_stack	*ft_lstlast(t_stack *lst)
 		lst = lst->next;
 	}
 	return (lst);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:14:09 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/23 15:55:38 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/23 17:54:50 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_stack(t_stack **stack)
 	stack = NULL;
 }
 
-void	is_valid(char *num)
+static void	is_valid(char *num)
 {
 	int	i;
 
@@ -43,7 +43,7 @@ void	is_valid(char *num)
 	}
 	while (num[i])
 	{
-		if (!(num[i] >= 48 && num[i] <= 57))
+		if (!ft_isdigit(num[i]))
 		{
 			printf("Error\n");
 			exit(1);
@@ -52,22 +52,21 @@ void	is_valid(char *num)
 	}
 }
 
-void	is_not_sorted(t_stack *stack)
+static void	is_not_sorted(int argc, char **argv)
 {
-	t_stack	*temp;
+	int	i;
 
-	temp = stack;
-	while (temp->next)
+	i = 0;
+	while (i + 1 < argc)
 	{
-		if (temp->num > temp->next->num)
+		if (ft_atoi(argv[i]) > ft_atoi(argv[i + 1]))
 			return ;
-		temp = temp->next;
+		i++;
 	}
-	free_stack(&stack);
 	exit(0);
 }
 
-void	has_no_duplicates(int ac, char **av)
+static void	has_no_duplicates(int ac, char **av)
 {
 	int	i;
 	int	j;
@@ -75,16 +74,38 @@ void	has_no_duplicates(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
+		j = i + 1;
 		while (j < ac)
 		{
 			if (ft_atoi(av[i]) == ft_atoi(av[j]))
 			{
-				printf("Duplication error\n");
+				printf("Error\n");
 				exit(1);
 			}
 			j++;
 		}
 		i++;
-		j = i + 1;
 	}
+}
+
+int	error_check(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	if (ac < 2)
+		exit(0);
+	if (ac == 2)
+	{
+		printf("Not enough args error\n");
+		exit(1);
+	}
+	has_no_duplicates(ac, av);
+	while (i < ac)
+	{
+		is_valid(av[i]);
+		i++;
+	}
+	is_not_sorted(ac, av);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 00:24:37 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/23 15:39:18 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/23 17:51:48 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,13 @@ int	main(int argc, char **argv)
 	stack_a = NULL;
 	//stack_b = NULL;
 	i = 1;
-	if (argc == 2)
-	{
-		printf("Not enough args error\n");
-		return (1);
-	}
-	has_no_duplicates(argc, argv);
+	error_check(argc, argv);
 	while (i < argc)
 	{
-		is_valid(argv[i]);
 		create_node(&stack_a, ft_atoi(argv[i]));
 		i++;
 	}
-	is_not_sorted(stack_a);
+	
 	temp_stack_a = stack_a;
 	printf("\nA:\n");
 	while (temp_stack_a)
@@ -66,5 +60,6 @@ int	main(int argc, char **argv)
 		printf("%d\n", temp_stack_a->num);
 		temp_stack_a = temp_stack_a->next;
 	}
+	free_stack(&stack_a);
 	return (0);
 }

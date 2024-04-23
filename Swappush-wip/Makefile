@@ -5,7 +5,14 @@ CFLAGS = -Wall -Wextra -Werror
 # path to source and object files, source and object files
 SRC_PATH = src/
 OBJ_PATH = obj/
-SRC = main.c
+SRC = error_check.c \
+libft_utils1.c \
+libft_utils2.c \
+parse_input.c \
+push.c \
+reverse_rotate.c \
+rotate.c \
+swap.c
 OBJ = $(SRC:.c=.o)
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))

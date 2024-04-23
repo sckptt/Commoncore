@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:13:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/23 15:54:49 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/23 17:40:56 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@ typedef struct s_stack
 
 char	**ft_split(char const *s, char c);
 
+int		error_check(int ac, char **av);
 int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
 
 t_stack	*ft_lstlast(t_stack *lst);
 
 void	create_node(t_stack **stack, int x);
 void	free_stack(t_stack **stack);
-void	has_no_duplicates(int ac, char **av);
-void	is_not_sorted(t_stack *stack);
-void	is_valid(char *num);
 void	push_a(t_stack **a, t_stack **b);
 void	push_b(t_stack **a, t_stack **b);
 void	reverse_rotate_a(t_stack **a);
