@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils.c                                      :+:      :+:    :+:   */
+/*   libft_utils1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:23:59 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/19 20:35:13 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/23 15:46:42 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,28 @@
 
 int	ft_atoi(const char *str)
 {
-	int	i;
 	int	one;
 	int	result;
 
-	i = 0;
 	one = 1;
 	result = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
-		i++;
-	if (str[i] == 45 || str[i] == 43)
+	while (*str == 32 || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == 45 || *str == 43)
 	{
-		if (str[i] == 45)
-		{
+		if (*str == 45)
 			one = -1;
-		}
-		i++;
+		str++;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
+	while (*str >= 48 && *str <= 57)
 	{
-		result = result * 10 + (str[i] - '0');
-		i++;
+		if (result > (INT_MAX - (*str - '0')) / 10)
+		{
+			printf("Too big error\n");
+			exit(1);
+		}
+		result = result * 10 + (*str - '0');
+		str++;
 	}
 	return (result * one);
 }

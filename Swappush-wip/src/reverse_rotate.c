@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:59:34 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/19 20:43:00 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/23 13:52:50 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	reverse_rotate_a(t_stack **a)
 	if (!*a || (*a)->next == NULL)
 	{
 		printf("Not enough elements to reverse rotate!");
-		exit(0);
+		return ;
 	}
 	temp = *a;
 	prev = *a;
@@ -40,7 +40,7 @@ void	reverse_rotate_b(t_stack **b)
 	if (!*b || (*b)->next == NULL)
 	{
 		printf("Not enough elements to reverse rotate!");
-		exit(0);
+		return ;
 	}
 	temp = *b;
 	prev = *b;
@@ -60,7 +60,7 @@ void	reverse_rotate_r(t_stack **a, t_stack **b)
 	if (!*a || (*a)->next == NULL)
 	{
 		printf("Not enough elements to reverse rotate!");
-		exit(0);
+		return ;
 	}
 	temp = *a;
 	prev = *a;
