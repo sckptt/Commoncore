@@ -10,9 +10,9 @@ parse_input.c \
 push.c \
 reverse_rotate.c \
 rotate.c \
-swap.c
+swap.c \
 utils1.c \
-utils2.c \
+utils2.c
 OBJ = $(SRC:.c=.o)
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
@@ -34,18 +34,16 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c includes/push_swap.h | $(OBJ_PATH)
 $(NAME): $(OBJS)
 	@make -C $(PRINTF_DIR)
 	@cp $(PRINTF_DIR)/libftprintf.a .
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libftprintf.a
 	@echo "\n$(GREEN)$(NAME) is created!$(NC)"
 
 clean:
-	make clean -C $(PRINTF_DIR)
 	rm -rf $(OBJ_PATH)
 	@echo "\n$(YELLOW)All the object files are removed.$(NC)"
 
 fclean: clean
 	make fclean -C $(PRINTF_DIR)
-	rm -f libftprintf.a
-	rm -f $(NAME)
+	rm -f $(NAME) libftprintf.a
 	@echo "\n$(RED)$(NAME) is removed.$(NC)"
 
 re: fclean all
