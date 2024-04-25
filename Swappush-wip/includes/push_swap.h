@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:13:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/23 17:40:56 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/04/25 20:48:18 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	**ft_split(char const *s, char c);
 int		error_check(int ac, char **av);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+int		argv_len(char **argv);
 
 t_stack	*ft_lstlast(t_stack *lst);
 

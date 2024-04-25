@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 15:58:25 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/25 15:58:28 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/25 20:49:36 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,30 @@ int	ft_isdigit(int c)
 		return (1);
 	else
 		return (0);
+}
+
+int	argv_len(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (*argv)
+	{
+		argv++;
+		i++;
+	}
+	return (i);
+}
+
+int	stack_len(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
 }
