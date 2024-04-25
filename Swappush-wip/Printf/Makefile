@@ -1,59 +1,56 @@
-# set a compiler and flags
+# set compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-# path to source and object files, source and object files
+# set source files and object files (unfinished)
 SRC_PATH = src/
 OBJ_PATH = obj/
-SRC = error_check.c \
-parse_input.c \
-push.c \
-reverse_rotate.c \
-rotate.c \
-swap.c
-utils1.c \
-utils2.c \
+SRC = ft_printf.c \
+ft_putchar.c \
+ft_puthexl.c \
+ft_puthexu.c \
+ft_putnbr.c \
+ft_putptr.c \
+ft_putstr.c \
+ft_putuns.c \
+ft_strchr.c \
+ft_strlen.c
 OBJ = $(SRC:.c=.o)
 SRCS = $(addprefix $(SRC_PATH), $(SRC))
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 INCLUDE = -I ./includes/
 
-# set the name
-NAME = push_swap
-PRINTF_DIR = Printf/
+# set library name
+NAME = libftprintf.a
 
-# rules
+# to build the library
 all: $(NAME)
 
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c includes/push_swap.h | $(OBJ_PATH)
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c includes/ft_printf.h | $(OBJ_PATH)
 	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDE)
 
 $(NAME): $(OBJS)
-	@make -C $(PRINTF_DIR)
-	@cp $(PRINTF_DIR)/libftprintf.a .
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	ar rcs $(NAME) $(OBJS) 
 	@echo "\n$(GREEN)$(NAME) is created!$(NC)"
 
 clean:
-	make clean -C $(PRINTF_DIR)
 	rm -rf $(OBJ_PATH)
 	@echo "\n$(YELLOW)All the object files are removed.$(NC)"
 
 fclean: clean
-	make fclean -C $(PRINTF_DIR)
-	rm -f libftprintf.a
 	rm -f $(NAME)
 	@echo "\n$(RED)$(NAME) is removed.$(NC)"
 
 re: fclean all
-
-.PHONY: all clean fclean re
 
 # set colors
 RED			= \033[0;31m
 GREEN		= \033[0;32m
 YELLOW		= \033[0;33m
 NC			= \033[0m
+
+# phony targets
+.PHONY: all clean fclean re

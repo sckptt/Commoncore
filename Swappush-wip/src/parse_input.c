@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 00:24:37 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/23 17:51:48 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:29:17 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include "../Printf/includes/ft_printf.h"
 
 void	create_node(t_stack **stack, int x)
 {
@@ -21,7 +22,7 @@ void	create_node(t_stack **stack, int x)
 	node = malloc(sizeof(t_stack));
 	if (!node)
 	{
-		printf("%s", "Mistakes were made!");
+		ft_printf("%s", "Mistakes were made!");
 		exit(1);
 	}
 	node->num = x;
@@ -52,12 +53,11 @@ int	main(int argc, char **argv)
 		create_node(&stack_a, ft_atoi(argv[i]));
 		i++;
 	}
-	
 	temp_stack_a = stack_a;
-	printf("\nA:\n");
+	ft_printf("\nA:\n");
 	while (temp_stack_a)
 	{
-		printf("%d\n", temp_stack_a->num);
+		ft_printf("%d\n", temp_stack_a->num);
 		temp_stack_a = temp_stack_a->next;
 	}
 	free_stack(&stack_a);

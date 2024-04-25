@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:14:55 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/23 13:53:35 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/23 20:07:39 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ void	rotate_a(t_stack **a)
 	t_stack	*last;
 
 	if (!*a || (*a)->next == NULL)
-	{
-		printf("Not enough elements to rotate");
 		return ;
-	}
 	temp = *a;
 	*a = (*a)->next;
 	last = ft_lstlast(temp);
@@ -36,10 +33,7 @@ void	rotate_b(t_stack **b)
 	t_stack	*last;
 
 	if (!*b || (*b)->next == NULL)
-	{
-		printf("Not enough elements to rotate!");
 		return ;
-	}
 	temp = *b;
 	(*b) = (*b)->next;
 	last = ft_lstlast(temp);
@@ -54,10 +48,7 @@ void	rotate_r(t_stack **a, t_stack **b)
 	t_stack	*last;
 
 	if (!*a || !*b || (*a)->next == NULL || (*b)->next == NULL)
-	{
-		printf("Not enough elements to rotate");
 		return ;
-	}
 	temp = *a;
 	*a = (*a)->next;
 	last = ft_lstlast(temp);

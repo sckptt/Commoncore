@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:14:09 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/23 17:54:50 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/04/24 18:29:53 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include "../Printf/includes/ft_printf.h"
 
 void	free_stack(t_stack **stack)
 {
@@ -36,7 +37,7 @@ static void	is_valid(char *num)
 	{
 		if (num[1] == '\0')
 		{
-			printf("Error\n");
+			ft_printf("Error\n");
 			exit(1);
 		}
 		i++;
@@ -45,7 +46,7 @@ static void	is_valid(char *num)
 	{
 		if (!ft_isdigit(num[i]))
 		{
-			printf("Error\n");
+			ft_printf("Error\n");
 			exit(1);
 		}
 		i++;
@@ -79,7 +80,7 @@ static void	has_no_duplicates(int ac, char **av)
 		{
 			if (ft_atoi(av[i]) == ft_atoi(av[j]))
 			{
-				printf("Error\n");
+				ft_printf("Error\n");
 				exit(1);
 			}
 			j++;
@@ -97,7 +98,7 @@ int	error_check(int ac, char **av)
 		exit(0);
 	if (ac == 2)
 	{
-		printf("Not enough args error\n");
+		ft_printf("Error\n");
 		exit(1);
 	}
 	has_no_duplicates(ac, av);

@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 17:14:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/23 20:07:21 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2024/03/04 17:08:56 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/04/23 19:37:17 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "ft_printf.h"
 
-void	push_a(t_stack **a, t_stack **b)
+char	*ft_strchr(const char *str, int c)
 {
-	t_stack	*temp;
+	char	ch;
 
-	if (!*b)
-		return ;
-	temp = *b;
-	*b = (*b)->next;
-	temp->next = *a;
-	*a = temp;
-	write(1, "pa\n", 3);
-}
-
-void	push_b(t_stack **a, t_stack **b)
-{
-	t_stack	*temp;
-
-	if (!*a)
-		return ;
-	temp = *a;
-	*a = (*a)->next;
-	temp->next = *b;
-	*b = temp;
-	write(1, "pb\n", 3);
+	ch = (char)c;
+	if (ch == '\0')
+		return ((char *)str + ft_strlen(str));
+	while (*str)
+	{
+		if (*str == ch)
+			return ((char *)str);
+		else
+			str++;
+	}
+	return (NULL);
 }

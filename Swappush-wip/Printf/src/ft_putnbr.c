@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 17:14:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/23 20:07:21 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2024/03/01 15:15:24 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/04/23 19:29:27 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "ft_printf.h"
 
-void	push_a(t_stack **a, t_stack **b)
+void	ft_putnbr(int n, int *count)
 {
-	t_stack	*temp;
-
-	if (!*b)
+	if (n == -2147483648)
+	{
+		ft_putstr("-2147483648", count);
 		return ;
-	temp = *b;
-	*b = (*b)->next;
-	temp->next = *a;
-	*a = temp;
-	write(1, "pa\n", 3);
-}
-
-void	push_b(t_stack **a, t_stack **b)
-{
-	t_stack	*temp;
-
-	if (!*a)
-		return ;
-	temp = *a;
-	*a = (*a)->next;
-	temp->next = *b;
-	*b = temp;
-	write(1, "pb\n", 3);
+	}
+	if (n < 0)
+	{
+		ft_putchar('-', count);
+		n = n * -1;
+	}
+	if (n >= 10)
+	{
+		ft_putnbr(n / 10, count);
+		ft_putnbr(n % 10, count);
+	}
+	else
+	{
+		ft_putchar(n + '0', count);
+	}
 }

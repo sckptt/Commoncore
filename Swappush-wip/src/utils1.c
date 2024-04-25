@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft_utils1.c                                     :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/19 16:23:59 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/23 18:37:22 by vkinsfat         ###   ########.fr       */
+/*   Created: 2024/04/25 15:58:25 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2024/04/25 15:58:28 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+#include "../Printf/includes/ft_printf.h"
 
 int	ft_atoi(const char *str)
 {
@@ -31,7 +32,7 @@ int	ft_atoi(const char *str)
 	{
 		if (one > 0 && result > (INT_MAX - (*str - '0')) / 10)
 		{
-			printf("Error\n");
+			ft_printf("Error\n");
 			exit(1);
 		}
 		result = result * 10 + (*str - '0');

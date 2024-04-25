@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/18 17:14:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/23 20:07:21 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2024/03/01 15:10:29 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/03/08 14:22:01 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "ft_printf.h"
 
-void	push_a(t_stack **a, t_stack **b)
+void	ft_putstr(char *s, int *count)
 {
-	t_stack	*temp;
+	int	i;
 
-	if (!*b)
+	i = 0;
+	if (s == NULL)
+	{
+		ft_putstr("(null)", count);
 		return ;
-	temp = *b;
-	*b = (*b)->next;
-	temp->next = *a;
-	*a = temp;
-	write(1, "pa\n", 3);
-}
-
-void	push_b(t_stack **a, t_stack **b)
-{
-	t_stack	*temp;
-
-	if (!*a)
-		return ;
-	temp = *a;
-	*a = (*a)->next;
-	temp->next = *b;
-	*b = temp;
-	write(1, "pb\n", 3);
+	}
+	while (s[i] != '\0')
+	{
+		ft_putchar(s[i], count);
+		i++;
+	}
 }
