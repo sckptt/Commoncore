@@ -6,27 +6,12 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:14:09 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/25 20:14:21 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/26 17:07:59 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../Printf/includes/ft_printf.h"
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*temp;
-
-	if (!*stack)
-		return ;
-	while (*stack)
-	{
-		temp = *stack;
-		*stack = (*stack)->next;
-		free(temp);
-	}
-	stack = NULL;
-}
 
 static void	is_valid(char *num)
 {
