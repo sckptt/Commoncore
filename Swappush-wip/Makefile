@@ -6,11 +6,14 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_PATH = src/
 OBJ_PATH = obj/
 SRC = error_check.c \
-parse_input.c \
+push_swap.c \
 push.c \
 reverse_rotate.c \
 rotate.c \
 swap.c \
+small_sort.c \
+sort_utils.c \
+stack_stuff.c \
 utils1.c \
 utils2.c
 OBJ = $(SRC:.c=.o)

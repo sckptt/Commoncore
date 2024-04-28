@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:13:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/26 21:44:23 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/28 16:05:25 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ char	**ft_split(char const *s, char c);
 
 int		argv_len(char **argv);
 int		error_check(int ac, char **av);
+int		find_min(t_stack *stack);
+int		find_index(t_stack *stack, int min);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+int		sorted_already(t_stack *stack);
 int		stack_init(t_data *data);
 
 t_stack	*ft_lstlast(t_stack *lst);
