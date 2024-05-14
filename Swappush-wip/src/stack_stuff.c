@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:05:11 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/26 21:45:47 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/13 19:06:01 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ void	print_stack(t_stack *stack)
 	}
 }
 
+void	print_index(t_stack *stack)
+{
+	ft_printf("Stack index:\n");
+	while (stack)
+	{
+		ft_printf("%d\n", stack->index);
+		stack = stack->next;
+	}
+}
+
 void	create_node(t_stack **stack, int x)
 {
 	t_stack	*node;
@@ -51,6 +61,7 @@ void	create_node(t_stack **stack, int x)
 		exit(1);
 	}
 	node->num = x;
+	node->index = 0;
 	node->next = NULL;
 	if (!*stack)
 	{
@@ -74,8 +85,22 @@ void	create_data(t_data **data)
 	}
 	node->stack_a = NULL;
 	node->stack_b = NULL;
-	node->len = 0;
+	node->len_a = 0;
+	node->len_b = 0;
 	node->ac = 0;
 	node->av = NULL;
 	*data = node;
+}
+
+void	stack_init(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (data->av[i])
+	{
+		create_node(&data->stack_a, ft_atoi(data->av[i]));
+		data->len_a++;
+		i++;
+	}
 }

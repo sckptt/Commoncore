@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 14:14:09 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/26 17:07:59 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/30 16:15:02 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,15 @@ int	error_check(int ac, char **av)
 		ft_printf("Error1\n");
 		exit(1);
 	}
-	printf("Before is_valid\n");
+	//printf("Before is_valid\n");
 	while (i < ac)
 	{
 		is_valid(av[i]);
 		i++;
 	}
-	printf("Before has_no_duplicates\n");
+	//printf("Before has_no_duplicates\n");
 	has_no_duplicates(ac, av);
-	printf("Before is_not_sorted\n");
+	//printf("Before is_not_sorted\n");
 	is_not_sorted(ac, av);
 	return (0);
 }

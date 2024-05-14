@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:43:24 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/28 16:09:29 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/30 16:30:40 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sort_two(t_data **data)
 		swap_a(&(*data)->stack_a);
 }
 
-void	sort_three(t_data **data)
+void	last_command(t_data **data)
 {
 	if ((*data)->stack_a->num < (*data)->stack_a->next->num
 		&& (*data)->stack_a->next->num > (*data)->stack_a->next->next->num
@@ -28,25 +28,31 @@ void	sort_three(t_data **data)
 		reverse_rotate_a(&(*data)->stack_a);
 		swap_a(&(*data)->stack_a);
 	}
+}
+
+void	sort_three(t_data **data)
+{
 	if ((*data)->stack_a->num > (*data)->stack_a->next->num
 		&& (*data)->stack_a->next->num < (*data)->stack_a->next->next->num
 		&& (*data)->stack_a->num < (*data)->stack_a->next->next->num)
 		swap_a(&(*data)->stack_a);
-	if ((*data)->stack_a->num < (*data)->stack_a->next->num
+	else if ((*data)->stack_a->num < (*data)->stack_a->next->num
 		&& (*data)->stack_a->next->num > (*data)->stack_a->next->next->num
 		&& (*data)->stack_a->num > (*data)->stack_a->next->next->num)
 		rotate_a(&(*data)->stack_a);
-	if ((*data)->stack_a->num > (*data)->stack_a->next->num
+	else if ((*data)->stack_a->num > (*data)->stack_a->next->num
 		&& (*data)->stack_a->next->num > (*data)->stack_a->next->next->num
 		&& (*data)->stack_a->num > (*data)->stack_a->next->next->num)
 	{
 		rotate_a(&(*data)->stack_a);
 		swap_a(&(*data)->stack_a);
 	}
-	if ((*data)->stack_a->num > (*data)->stack_a->next->num
+	else if ((*data)->stack_a->num > (*data)->stack_a->next->num
 		&& (*data)->stack_a->next->num < (*data)->stack_a->next->next->num
 		&& (*data)->stack_a->num > (*data)->stack_a->next->next->num)
 		rotate_a(&(*data)->stack_a);
+	else
+		last_command(data);
 }
 
 void	sort_more(t_data **data)
@@ -54,34 +60,30 @@ void	sort_more(t_data **data)
 	int	min;
 	int	index;
 
-	if ((*data)->len > 2 && (*data)->len <= 10)
+	while ((*data)->len_a > 3)
 	{
-		while (!(sorted_already((*data)->stack_a)))
+		min = find_min((*data)->stack_a);
+		index = find_index((*data)->stack_a, min);
+		while ((*data)->stack_a->num != min)
 		{
-			min = find_min((*data)->stack_a);
-			index = find_index((*data)->stack_a, min);
-			while ((*data)->stack_a->num != min)
-			{
-				if (index < (*data)->len / 2)
-					rotate_a(&(*data)->stack_a);
-				else if (index >= (*data)->len / 2)
-					reverse_rotate_a(&(*data)->stack_a);
-			}
-			if (sorted_already((*data)->stack_a))
-				break ;
-			push_b(&(*data)->stack_a, &(*data)->stack_b);
+			if (index < (*data)->ac / 2)
+				rotate_a(&(*data)->stack_a);
+			else if (index >= (*data)->ac / 2)
+				reverse_rotate_a(&(*data)->stack_a);
 		}
-		while ((*data)->stack_b)
-			push_a(&(*data)->stack_a, &(*data)->stack_b);
+		push_b(data);
 	}
+	sort_three(data);
+	while ((*data)->stack_b)
+		push_a(data);
 }
 
 void	small_sort(t_data **data)
 {
-	if ((*data)->len == 2)
+	if ((*data)->ac == 2)
 		sort_two(data);
-	if ((*data)->len == 3)
+	if ((*data)->ac == 3)
 		sort_three(data);
-	if ((*data)->len > 3 && (*data)->len <= 10)
+	if ((*data)->ac > 3 && (*data)->ac <= 10)
 		sort_more(data);
 }

@@ -6,66 +6,42 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 19:12:23 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/04/23 20:04:26 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/04/30 15:59:37 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../includes/push_swap.h"
-// #include "../Printf/includes/ft_printf.h"
+#include "../includes/push_swap.h"
+#include "../Printf/includes/ft_printf.h"
 
 // int	push_demo(void)
 // {
 // 	int		arguments[5] = {4, 3, 1, 2, 5};
-// 	t_stack	*stack_a;
-// 	t_stack	*stack_b;
-// 	t_stack	*temp_stack_a;
-// 	t_stack	*temp_stack_b;
-// 	t_stack	*temp_stack_a1;
-// 	t_stack	*temp_stack_b1;
+//     t_data	*data;
 // 	int		i;
 
-// 	stack_a = NULL;
-// 	stack_b = NULL;
+//     data = NULL;
 // 	i = 0;
-// 	while (i < 5)
+//     create_data(&data);
+//     while (i < 5)
 // 	{
-// 		create_node(&stack_a, arguments[i]);
+// 		create_node(&data->stack_a, arguments[i]);
+// 		data->len_a++;
 // 		i++;
 // 	}
 // 	printf("Now we push to b!\n");
-// 	push_b(&stack_a, &stack_b);
-// 	temp_stack_a = stack_a;
-// 	temp_stack_b = stack_b;
-// 	printf("\nA:\n");
-// 	while (temp_stack_a)
-// 	{
-// 		printf("%d\n", temp_stack_a->num);
-// 		temp_stack_a = temp_stack_a->next;
-// 	}
-// 	printf("\nB:\n");
-// 	while (temp_stack_b)
-// 	{
-// 		printf("%d\n", temp_stack_b->num);
-// 		temp_stack_b = temp_stack_b->next;
-// 	}
+// 	push_b(&data);
+//     print_stack(data->stack_a);
+//     print_stack(data->stack_b);
+//     printf("len_a: %d\n", data->len_a);
+//     printf("len_b: %d\n", data->len_b);
 // 	printf("\nNow we push back to a!\n");
-// 	push_a(&stack_a, &stack_b);
-// 	temp_stack_a1 = stack_a;
-// 	temp_stack_b1 = stack_b;
-// 	printf("\nA:\n");
-// 	while (temp_stack_a1)
-// 	{
-// 		printf("%d\n", temp_stack_a1->num);
-// 		temp_stack_a1 = temp_stack_a1->next;
-// 	}
-// 	printf("\nB:\n");
-// 	while (temp_stack_b1)
-// 	{
-// 		printf("%d\n", temp_stack_b1->num);
-// 		temp_stack_b1 = temp_stack_b1->next;
-// 	}
-// 	free_stack(&stack_a);
-// 	free_stack(&stack_b);
+// 	push_a(&data);
+// 	print_stack(data->stack_a);
+//     print_stack(data->stack_b);
+//     printf("len_a: %d\n", data->len_a);
+//     printf("len_b: %d\n", data->len_b);
+// 	free_stack(&data->stack_a);
+// 	free_stack(&data->stack_b);
 // 	return (0);
 // }
 

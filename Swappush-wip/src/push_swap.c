@@ -6,32 +6,27 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 00:24:37 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/04/26 21:44:48 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/14 18:40:08 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../Printf/includes/ft_printf.h"
 
-int	stack_init(t_data *data)
+void	push_swap(t_data *data)
 {
-	int		i;
-
-	i = 0;
-	while (data->av[i])
-	{
-		create_node(&data->stack_a, ft_atoi(data->av[i]));
-		data->len++;
-		i++;
-	}
-	if (data->len <= 10)
+	stack_init(data);
+	if (data->ac <= 10)
 		small_sort(&data);
-	print_stack(data->stack_a);
-	print_stack(data->stack_b);
+	if (data-> ac > 10 && data->ac <= 100)
+		hundred_sort(&data);
+	// if (data->ac <= 500)
+	// 	five_hundred_sort(&data);
+	//print_stack(data->stack_a);
+	//print_stack(data->stack_b);
 	free_stack(&data->stack_a);
 	free_stack(&data->stack_b);
 	free(data);
-	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -53,6 +48,6 @@ int	main(int argc, char **argv)
 			data->ac = argc - 1;
 	}
 	error_check(data->ac, data->av);
-	stack_init(data);
+	push_swap(data);
 	return (0);
 }
