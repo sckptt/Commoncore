@@ -6,6 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_PATH = src/
 OBJ_PATH = obj/
 SRC = error_check.c \
+hundred_sort.c \
 push_swap.c \
 push.c \
 reverse_rotate.c \
@@ -13,6 +14,7 @@ rotate.c \
 swap.c \
 small_sort.c \
 sort_utils.c \
+sort_utils2.c \
 stack_stuff.c \
 utils1.c \
 utils2.c

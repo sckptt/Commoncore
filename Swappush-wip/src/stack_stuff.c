@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:05:11 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/13 19:06:01 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/16 14:55:30 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void	create_data(t_data **data)
 	}
 	node->stack_a = NULL;
 	node->stack_b = NULL;
+	node->allocation = 0;
 	node->len_a = 0;
 	node->len_b = 0;
 	node->ac = 0;

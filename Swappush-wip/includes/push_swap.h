@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:13:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/05/14 18:10:34 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/16 15:44:57 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_data
 {
 	int				len_a;
 	int				len_b;
+	int				allocation;
 	int				ac;
 	char			**av;
 	struct s_stack	*stack_a;
@@ -39,10 +40,12 @@ char	**ft_split(char const *s, char c);
 
 int		argv_len(char **argv);
 int		error_check(int ac, char **av);
+int		find_position(t_stack *stack, int min);
 int		find_min(t_stack *stack);
-int		find_index(t_stack *stack, int min);
+int		find_max(t_stack *stack);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
+int		get_value(t_data **data);
 int		sorted_already(t_stack *stack);
 
 t_stack	*copy_stack(t_stack *stack);
