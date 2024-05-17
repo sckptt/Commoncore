@@ -6,30 +6,69 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 00:24:37 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/16 17:27:00 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/17 14:13:12 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../Printf/includes/ft_printf.h"
 
-void free_things(t_data *data)
+void	create_node(t_stack **stack, int x)
 {
-	int i;
-	
-	free_stack(&data->stack_a);
-	free_stack(&data->stack_b);
-	if (data->av != NULL && data->allocation == 1) 
+	t_stack	*node;
+	t_stack	*last;
+
+	last = *stack;
+	node = malloc(sizeof(t_stack));
+	if (!node)
 	{
-		i = 0;
-		while (data->av[i])
-		{
-			free(data->av[i]);
-			i++;
-		}
-		free(data->av);
+		ft_printf("%s", "Error");
+		exit(1);
 	}
-	free(data);
+	node->num = x;
+	node->index = 0;
+	node->next = NULL;
+	if (!*stack)
+	{
+		*stack = node;
+		return ;
+	}
+	while (last->next != NULL)
+		last = last->next;
+	last->next = node;
+}
+
+void	stack_init(t_data *data)
+{
+	int		i;
+
+	i = 0;
+	while (data->av[i])
+	{
+		create_node(&data->stack_a, ft_atoi(data->av[i]));
+		data->len_a++;
+		i++;
+	}
+}
+
+void	create_data(t_data **data)
+{
+	t_data	*node;
+
+	node = malloc(sizeof(t_data));
+	if (!node)
+	{
+		ft_printf("%s", "Error");
+		exit(1);
+	}
+	node->stack_a = NULL;
+	node->stack_b = NULL;
+	node->allocation = 0;
+	node->len_a = 0;
+	node->len_b = 0;
+	node->ac = 0;
+	node->av = NULL;
+	*data = node;
 }
 
 void	push_swap(t_data *data)
@@ -37,13 +76,9 @@ void	push_swap(t_data *data)
 	stack_init(data);
 	if (data->ac <= 10)
 		small_sort(&data);
-	if (data->ac > 10 && data->ac <= 100)
-		hundred_sort(&data);
-	// if (data->ac <= 500)
-	// 	five_hundred_sort(&data);
-	//print_stack(data->stack_a);
-	//print_stack(data->stack_b);
-	free_things(data);
+	if (data->ac > 10 && data->ac <= 500)
+		big_sort(&data);
+	free_data(data);
 }
 
 int	main(int argc, char **argv)

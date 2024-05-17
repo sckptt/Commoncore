@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:13:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/05/16 15:44:57 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/17 14:18:53 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,13 @@ int		sorted_already(t_stack *stack);
 t_stack	*copy_stack(t_stack *stack);
 t_stack	*ft_lstlast(t_stack *lst);
 
+void    big_sort(t_data **data);
 void	create_data(t_data **data);
 void	create_node(t_stack **stack, int x);
 void	delete_node(t_stack **stack, int num);
+void	free_data(t_data *data);
 void	free_stack(t_stack **stack);
 void	get_index(t_data **data);
-void	hundred_sort(t_data **data);
 void	index_init(int counter, t_stack **stack);
 void	print_stack(t_stack *stack);
 void	print_index(t_stack *stack);

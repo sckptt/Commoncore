@@ -1,17 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_utils2.c                                      :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 12:54:08 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/14 13:06:18 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2024/04/26 17:05:11 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2024/05/17 14:17:26 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../Printf/includes/ft_printf.h"
+
+void	free_stack(t_stack **stack)
+{
+	t_stack	*temp;
+
+	if (!*stack)
+		return ;
+	while (*stack)
+	{
+		temp = *stack;
+		*stack = (*stack)->next;
+		free(temp);
+	}
+	stack = NULL;
+}
+
+void	free_data(t_data *data)
+{
+	int	i;
+
+	free_stack(&data->stack_a);
+	free_stack(&data->stack_b);
+	if (data->av != NULL && data->allocation == 1)
+	{
+		i = 0;
+		while (data->av[i])
+		{
+			free(data->av[i]);
+			i++;
+		}
+		free(data->av);
+	}
+	free(data);
+}
 
 t_stack	*copy_stack(t_stack *stack)
 {
@@ -68,38 +102,22 @@ void	delete_node(t_stack **stack, int num)
 	temp = NULL;
 }
 
-void	index_init(int counter, t_stack **stack)
+void	print_stack(t_stack *stack)
 {
-	t_stack	*temp;
-	t_stack	*copy;
-	int		small;
-	int		index;
-
-	index = 0;
-	copy = copy_stack(*stack);
-	while (counter)
+	ft_printf("Stack:\n");
+	while (stack)
 	{
-		temp = *stack;
-		small = find_min(copy);
-		while (temp)
-		{
-			if (temp->num == small)
-			{
-				temp->index = index;
-				delete_node(&copy, small);
-				index++;
-				counter--;
-				break ;
-			}
-			temp = temp->next;
-		}
+		ft_printf("%d\n", stack->num);
+		stack = stack->next;
 	}
 }
 
-void	get_index(t_data **data)
+void	print_index(t_stack *stack)
 {
-	int	counter;
-
-	counter = (*data)->ac;
-	index_init(counter, &(*data)->stack_a);
+	ft_printf("Stack index:\n");
+	while (stack)
+	{
+		ft_printf("%d\n", stack->index);
+		stack = stack->next;
+	}
 }

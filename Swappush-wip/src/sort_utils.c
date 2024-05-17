@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 16:03:28 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/16 19:31:34 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/17 14:12:11 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,57 @@ int	sorted_already(t_stack *stack)
 	return (1);
 }
 
-int	find_max(t_stack *stack)
+void	index_init(int counter, t_stack **stack)
 {
 	t_stack	*temp;
-	int		max;
+	t_stack	*copy;
+	int		small;
+	int		index;
 
-	max = stack->num;
-	temp = stack;
-	while (temp)
+	index = 0;
+	copy = copy_stack(*stack);
+	while (counter)
 	{
-		if (temp->num > max)
-			max = temp->num;
-		temp = temp->next;
+		temp = *stack;
+		small = find_min(copy);
+		while (temp)
+		{
+			if (temp->num == small)
+			{
+				temp->index = index;
+				delete_node(&copy, small);
+				index++;
+				counter--;
+				break ;
+			}
+			temp = temp->next;
+		}
 	}
-	return (max);
 }
+
+void	get_index(t_data **data)
+{
+	int	counter;
+
+	counter = (*data)->ac;
+	index_init(counter, &(*data)->stack_a);
+}
+
+// int	find_max(t_stack *stack)
+// {
+// 	t_stack	*temp;
+// 	int		max;
+
+// 	max = stack->num;
+// 	temp = stack;
+// 	while (temp)
+// 	{
+// 		if (temp->num > max)
+// 			max = temp->num;
+// 		temp = temp->next;
+// 	}
+// 	return (max);
+// }
 
 // int	get_value(t_data **data)
 // {

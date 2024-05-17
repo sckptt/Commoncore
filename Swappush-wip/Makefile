@@ -5,8 +5,8 @@ CFLAGS = -Wall -Wextra -Werror
 # path to source and object files, source and object files
 SRC_PATH = src/
 OBJ_PATH = obj/
-SRC = error_check.c \
-hundred_sort.c \
+SRC = big_sort.c \
+error_check.c \
 push_swap.c \
 push.c \
 reverse_rotate.c \
@@ -14,8 +14,7 @@ rotate.c \
 swap.c \
 small_sort.c \
 sort_utils.c \
-sort_utils2.c \
-stack_stuff.c \
+stack_utils.c \
 utils1.c \
 utils2.c
 OBJ = $(SRC:.c=.o)
