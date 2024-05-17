@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:13:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/05/17 14:18:53 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/17 18:55:47 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,17 @@ int		argv_len(char **argv);
 int		error_check(int ac, char **av);
 int		find_position(t_stack *stack, int min);
 int		find_min(t_stack *stack);
-int		find_max(t_stack *stack);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
-int		get_value(t_data **data);
 int		sorted_already(t_stack *stack);
 
 t_stack	*copy_stack(t_stack *stack);
 t_stack	*ft_lstlast(t_stack *lst);
 
-void    big_sort(t_data **data);
-void	create_data(t_data **data);
-void	create_node(t_stack **stack, int x);
+void	big_sort(t_data **data);
 void	delete_node(t_stack **stack, int num);
 void	free_data(t_data *data);
-void	free_stack(t_stack **stack);
 void	get_index(t_data **data);
-void	index_init(int counter, t_stack **stack);
-void	print_stack(t_stack *stack);
-void	print_index(t_stack *stack);
 void	push_a(t_data **data);
 void	push_b(t_data **data);
 void	reverse_rotate_a(t_stack **a);
@@ -73,7 +65,5 @@ void	swap_a(t_stack **a);
 void	swap_b(t_stack **b);
 void	swap_s(t_stack **a, t_stack **b);
 void	small_sort(t_data **data);
-void	sort_three(t_data **data);
-void	stack_init(t_data *data);
 
 #endif

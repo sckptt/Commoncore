@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 16:03:28 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/17 14:12:11 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/17 18:47:37 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,14 +58,12 @@ int	sorted_already(t_stack *stack)
 	return (1);
 }
 
-void	index_init(int counter, t_stack **stack)
+static void	index_init(int counter, t_stack **stack)
 {
 	t_stack	*temp;
 	t_stack	*copy;
 	int		small;
-	int		index;
 
-	index = 0;
 	copy = copy_stack(*stack);
 	while (counter)
 	{
@@ -75,9 +73,8 @@ void	index_init(int counter, t_stack **stack)
 		{
 			if (temp->num == small)
 			{
-				temp->index = index;
+				temp->index = counter;
 				delete_node(&copy, small);
-				index++;
 				counter--;
 				break ;
 			}
@@ -93,44 +90,3 @@ void	get_index(t_data **data)
 	counter = (*data)->ac;
 	index_init(counter, &(*data)->stack_a);
 }
-
-// int	find_max(t_stack *stack)
-// {
-// 	t_stack	*temp;
-// 	int		max;
-
-// 	max = stack->num;
-// 	temp = stack;
-// 	while (temp)
-// 	{
-// 		if (temp->num > max)
-// 			max = temp->num;
-// 		temp = temp->next;
-// 	}
-// 	return (max);
-// }
-
-// int	get_value(t_data **data)
-// {
-// 	int	value;
-
-// 	if ((*data)->ac <= 20)
-// 	{
-// 		value = (*data)->ac / 2;
-// 		if ((float)(*data)->ac / 2 - value > 0.5)
-// 			value++;
-// 	}
-// 	if ((*data)->ac > 20 && (*data)->ac <= 100)
-// 	{
-// 		value = (*data)->ac / 4;
-// 		if ((float)(*data)->ac / 4 - value > 0.5)
-// 			value++;
-// 	}
-// 	if ((*data)->ac > 100 && (*data)->ac <= 500)
-// 	{
-// 		value = (*data)->ac / 8;
-// 		if ((float)(*data)->ac / 8 - value > 0.5)
-// 			value++;
-// 	}
-// 	return (value);
-// }

@@ -6,14 +6,14 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 00:24:37 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/17 14:13:12 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/17 18:55:27 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../Printf/includes/ft_printf.h"
 
-void	create_node(t_stack **stack, int x)
+static void	create_node(t_stack **stack, int x)
 {
 	t_stack	*node;
 	t_stack	*last;
@@ -22,7 +22,7 @@ void	create_node(t_stack **stack, int x)
 	node = malloc(sizeof(t_stack));
 	if (!node)
 	{
-		ft_printf("%s", "Error");
+		ft_printf("%s", "Error\n");
 		exit(1);
 	}
 	node->num = x;
@@ -38,7 +38,7 @@ void	create_node(t_stack **stack, int x)
 	last->next = node;
 }
 
-void	stack_init(t_data *data)
+static void	stack_init(t_data *data)
 {
 	int		i;
 
@@ -51,14 +51,14 @@ void	stack_init(t_data *data)
 	}
 }
 
-void	create_data(t_data **data)
+static void	create_data(t_data **data)
 {
 	t_data	*node;
 
 	node = malloc(sizeof(t_data));
 	if (!node)
 	{
-		ft_printf("%s", "Error");
+		ft_printf("%s", "Error\n");
 		exit(1);
 	}
 	node->stack_a = NULL;
@@ -71,7 +71,7 @@ void	create_data(t_data **data)
 	*data = node;
 }
 
-void	push_swap(t_data *data)
+static void	push_swap(t_data *data)
 {
 	stack_init(data);
 	if (data->ac <= 10)

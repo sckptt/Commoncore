@@ -6,20 +6,20 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 16:43:24 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/16 17:52:42 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/17 18:51:06 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../Printf/includes/ft_printf.h"
 
-void	sort_two(t_data **data)
+static void	sort_two(t_data **data)
 {
 	if ((*data)->stack_a->num > (*data)->stack_a->next->num)
 		swap_a(&(*data)->stack_a);
 }
 
-void	last_command(t_data **data)
+static void	last_command(t_data **data)
 {
 	if ((*data)->stack_a->num < (*data)->stack_a->next->num
 		&& (*data)->stack_a->next->num > (*data)->stack_a->next->next->num
@@ -30,7 +30,7 @@ void	last_command(t_data **data)
 	}
 }
 
-void	sort_three(t_data **data)
+static void	sort_three(t_data **data)
 {
 	if ((*data)->stack_a->num > (*data)->stack_a->next->num
 		&& (*data)->stack_a->next->num < (*data)->stack_a->next->next->num
@@ -55,7 +55,7 @@ void	sort_three(t_data **data)
 		last_command(data);
 }
 
-void	sort_more(t_data **data)
+static void	sort_more(t_data **data)
 {
 	int	min;
 	int	position;
@@ -86,5 +86,4 @@ void	small_sort(t_data **data)
 		sort_three(data);
 	if ((*data)->ac > 3 && (*data)->ac <= 10)
 		sort_more(data);
-	print_stack((*data)->stack_a);
 }
