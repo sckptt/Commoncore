@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 16:03:28 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/17 18:47:37 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/18 15:34:41 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ static void	index_init(int counter, t_stack **stack)
 			temp = temp->next;
 		}
 	}
+	free_stack(&copy);
 }
 
 void	get_index(t_data **data)

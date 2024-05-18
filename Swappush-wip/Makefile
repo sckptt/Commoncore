@@ -7,6 +7,7 @@ SRC_PATH = src/
 OBJ_PATH = obj/
 SRC = big_sort.c \
 error_check.c \
+free_and_go_home.c \
 push_swap.c \
 push.c \
 reverse_rotate.c \

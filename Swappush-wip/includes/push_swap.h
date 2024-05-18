@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:13:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/05/17 18:55:47 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/18 15:40:45 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_stack	*ft_lstlast(t_stack *lst);
 void	big_sort(t_data **data);
 void	delete_node(t_stack **stack, int num);
 void	free_data(t_data *data);
+void	free_stack(t_stack **stack);
 void	get_index(t_data **data);
 void	push_a(t_data **data);
 void	push_b(t_data **data);
