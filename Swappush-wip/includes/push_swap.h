@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 17:13:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/05/18 15:40:45 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/05/18 19:21:41 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,14 @@ typedef struct s_data
 char	**ft_split(char const *s, char c);
 
 int		argv_len(char **argv);
-int		error_check(int ac, char **av);
+int		error_check(t_data *data);
 int		find_position(t_stack *stack, int min);
 int		find_min(t_stack *stack);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		sorted_already(t_stack *stack);
+
+long	ft_atoi_long(const char *str);
 
 t_stack	*copy_stack(t_stack *stack);
 t_stack	*ft_lstlast(t_stack *lst);

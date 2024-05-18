@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 00:24:37 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/17 18:55:27 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/18 19:21:24 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	create_node(t_stack **stack, int x)
 	node = malloc(sizeof(t_stack));
 	if (!node)
 	{
-		ft_printf("%s", "Error\n");
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	node->num = x;
@@ -58,7 +58,7 @@ static void	create_data(t_data **data)
 	node = malloc(sizeof(t_data));
 	if (!node)
 	{
-		ft_printf("%s", "Error\n");
+		write(2, "Error\n", 6);
 		exit(1);
 	}
 	node->stack_a = NULL;
@@ -100,7 +100,7 @@ int	main(int argc, char **argv)
 		else
 			data->ac = argc - 1;
 	}
-	error_check(data->ac, data->av);
+	error_check(data);
 	push_swap(data);
 	return (0);
 }
