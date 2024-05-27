@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 00:24:37 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/18 19:21:24 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/05/27 16:03:50 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ int	main(int argc, char **argv)
 
 	create_data(&data);
 	if (argc < 2)
+	{
+		free_data(data);
 		exit(0);
+	}
 	if (argc > 1)
 	{
 		data->av = argv + 1;
