@@ -6,11 +6,37 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:50:06 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/28 19:46:28 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/31 20:33:42 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+#include "../Libft/includes/libft.h"
+
+void fill_node(t_long_data *node)
+{
+	node->map_height = 0;
+	node->map_width = 0;
+	node->player_position_x = 0;
+	node->player_position_y = 0;
+	node->player = 0;
+	node->exit = 0;
+	node->exit_x = 0;
+	node->exit_y = 0;
+	node->collectible = 0;
+	node->steps = 0;
+	node->game_over = 0;
+	node->map = NULL;
+	node->textures.collectible = NULL;
+	node->textures.exit = NULL;
+	node->textures.floor = NULL;
+	node->textures.player = NULL;
+	node->textures.player_down = NULL;
+	node->textures.player_left = NULL;
+	node->textures.player_right = NULL;
+	node->textures.player_up = NULL;
+	node->textures.wall = NULL;
+}
 
 void	create_data(t_long_data **data)
 {
@@ -22,30 +48,8 @@ void	create_data(t_long_data **data)
 		write(2, "Error\n", 6);
 		exit(1);
 	}
-	node->map_height = 0;
-	node->map_width = 0;
-	node->player_position_x = 0;
-	node->player_position_y = 0;
-	node->player = 0;
-	node->exit = 0;
-	node->collectible = 0;
-	node->steps = 0;
-	node->map = NULL;
+	fill_node(node);
 	*data = node;
-}
-
-void	free_data(t_long_data **data)
-{
-	int	i;
-
-	i = 0;
-	while ((*data)->map[i])
-	{
-		free((*data)->map[i]);
-		i++;
-	}
-	free((*data)->map);
-	free(*data);
 }
 
 int	count_lines(char **av)
@@ -106,7 +110,7 @@ int	main(int ac, char **av)
 	t_long_data	*data;
 	int			i;
 
-	if (ac != 2)
+	if (ac != 2 || !(ft_strnstr(av[1], ".ber", ft_strlen(av[1]))))
 	{
 		write(2, "Error\n", 6);
 		exit(1);
@@ -120,5 +124,6 @@ int	main(int ac, char **av)
 		i++;
 	}
 	error_handling(&data);
+	map_drawing(&data);
 	return (0);
 }

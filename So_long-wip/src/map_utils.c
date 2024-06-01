@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:14:39 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/28 19:46:12 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/05/31 20:34:21 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ void	map_analysis(t_long_data **data)
 				(*data)->player_position_y = j;
 			}
 			else if ((*data)->map[i][j] == 'E')
+			{
 				(*data)->exit++;
+				(*data)->exit_x = i;
+				(*data)->exit_y = j;
+			}	
 			else if ((*data)->map[i][j] == 'C')
 				(*data)->collectible++;
 			j++;
@@ -51,11 +55,11 @@ void	map_analysis(t_long_data **data)
 		i++;
 		(*data)->map_height++;
 	}
-	printf("\nData:\n");
-	printf("height is: %d\n", (*data)->map_height);
-	printf("width is: %d\n", (*data)->map_width);
-	printf("number of exits is: %d\n", (*data)->exit);
-	printf("number of players is: %d\n", (*data)->player);
-	printf("number of collectible is: %d\n", (*data)->collectible);
-	printf("player position is: x = %d, y = %d\n", (*data)->player_position_x, (*data)->player_position_y);
+	// printf("\nData:\n");
+	// printf("height is: %d\n", (*data)->map_height);
+	// printf("width is: %d\n", (*data)->map_width);
+	// printf("number of exits is: %d\n", (*data)->exit);
+	// printf("number of players is: %d\n", (*data)->player);
+	// printf("number of collectible is: %d\n", (*data)->collectible);
+	// printf("player position is: x = %d, y = %d\n", (*data)->player_position_x, (*data)->player_position_y);
 }
