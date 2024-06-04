@@ -3,101 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   game_start.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 17:20:55 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/05/31 01:03:18 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/06/04 22:05:49 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include "../Libft/includes/libft.h"
 
-static void	mlx_data_init(t_long_data **data, t_mlx_data **mlx_data)
+static void	error_exit(t_long_data *data)
+{
+	write(2, "Error\n", 6);
+	free_data(data);
+	exit(1);
+}
+
+static t_mlx_data	*mlx_data_init(t_long_data *data)
 {
 	t_mlx_data	*node;
 
 	node = malloc(sizeof(t_mlx_data));
 	if (!node)
-	{
-		write(2, "Error\n", 6);
-		free_data(data);
-		exit(1);
-	}
+		error_exit(data);
 	node->mlx = mlx_init();
-	node->window = mlx_new_window(node->mlx, (*data)->map_width * 100, (*data)->map_height * 100, "so_long");
-	if (!node->mlx || !node->window)
+	if (!node->mlx)
 	{
-		write(2, "Error\n", 6);
-		if (node->mlx)
-			mlx_destroy_display(node->mlx);
 		free(node);
-		free_data(data);
-		exit(1);
+		error_exit(data);
 	}
-	*mlx_data = node;
+	node->window = mlx_new_window(node->mlx,
+			data->map_width * 100, data->map_height * 100, "so_long");
+	if (!node->window)
+	{
+		mlx_destroy_display(node->mlx);
+		free(node);
+		error_exit(data);
+	}
+	return (node);
 }
 
-static void	get_textures(t_long_data **data, t_mlx_data **mlx_data)
+static void	get_textures(t_long_data *data, t_mlx_data *mlx_data)
 {
 	int	width;
 	int	height;
 
-	(*data)->textures.collectible = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/collectible.xpm", &width, &height);
-	(*data)->textures.exit = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/exit.xpm", &width, &height);
-	(*data)->textures.floor = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/floor.xpm", &width, &height);
-	(*data)->textures.player = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/player.xpm", &width, &height);
-	(*data)->textures.player_down = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/player_down.xpm", &width, &height);
-	(*data)->textures.player_left = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/player_left.xpm", &width, &height);
-	(*data)->textures.player_right = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/player_right.xpm", &width, &height);
-	(*data)->textures.player_up = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/player_up.xpm", &width, &height);
-	(*data)->textures.wall = mlx_xpm_file_to_image((*mlx_data)->mlx, "textures/wall.xpm", &width, &height);
-	if (!(*data)->textures.collectible || !(*data)->textures.exit
-	|| !(*data)->textures.floor || !(*data)->textures.player
-	|| !(*data)->textures.wall || !(*data)->textures.player_down 
-	|| !(*data)->textures.player_left || !(*data)->textures.player_right 
-	|| !(*data)->textures.player_up)
+	width = 0;
+	height = 0;
+	get_image(data, mlx_data, width, height);
+	if (!data->textures.collectible || !data->textures.exit
+		|| !data->textures.floor || !data->textures.player
+		|| !data->textures.wall || !data->textures.player_down
+		|| !data->textures.player_left || !data->textures.player_right
+		|| !data->textures.player_up)
 	{
 		write(2, "Error\n", 6);
-		free_data(data);
+		free_mlx_and_data(data, mlx_data);
 		exit(1);
 	}
 }
 
-static void	draw_the_map(t_long_data **data, t_mlx_data **mlx_data)
+void	draw_the_map(t_long_data *data, t_mlx_data *mlx_data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
-	while ((*data)->map[x])
+	while (data->map[x])
 	{
 		y = 0;
-		while ((*data)->map[x][y])
+		while (data->map[x][y])
 		{
-			if ((*data)->map[x][y] == '1')
-				mlx_put_image_to_window((*mlx_data)->mlx, (*mlx_data)->window, (*data)->textures.wall, x * 100, y * 100);
-			else if ((*data)->map[x][y] == '0')
-				mlx_put_image_to_window((*mlx_data)->mlx, (*mlx_data)->window, (*data)->textures.floor, x * 100, y * 100);
-			else if ((*data)->map[x][y] == 'P')
-				mlx_put_image_to_window((*mlx_data)->mlx, (*mlx_data)->window, (*data)->textures.player, x * 100, y * 100);
-			else if ((*data)->map[x][y] == 'E')
-				mlx_put_image_to_window((*mlx_data)->mlx, (*mlx_data)->window, (*data)->textures.exit, x * 100, y * 100);
-			else if ((*data)->map[x][y] == 'C')
-				mlx_put_image_to_window((*mlx_data)->mlx, (*mlx_data)->window, (*data)->textures.collectible, x * 100, y * 100);
+			draw_picture(data, mlx_data, x, y);
 			y++;
 		}
 		x++;
 	}
 }
 
-void	map_drawing(t_long_data **data)
+void	map_drawing(t_long_data *data)
 {
 	t_mlx_data	*mlx_data;
 
-	mlx_data_init(data, &mlx_data);
-	get_textures(data, &mlx_data);
-	draw_the_map(data, &mlx_data);
-	hook_events(data, &mlx_data);
-	mlx_loop(mlx_data->mlx);
+	mlx_data = mlx_data_init(data);
+	get_textures(data, mlx_data);
+	draw_the_map(data, mlx_data);
+	hook_events(data, mlx_data);
 }

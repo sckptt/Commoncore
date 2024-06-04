@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:14:39 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/31 20:34:21 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/06/03 22:34:53 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,42 +24,41 @@ size_t	long_strlen(const char *str)
 	return (i);
 }
 
-void	map_analysis(t_long_data **data)
+static void	if_p(t_long_data *data, int i, int j)
+{
+	data->player++;
+	data->player_position_x = i;
+	data->player_position_y = j;
+}
+
+static void	if_e(t_long_data *data, int i, int j)
+{
+	data->exit++;
+	data->exit_x = i;
+	data->exit_y = j;
+}
+
+void	map_analysis(t_long_data *data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	(*data)->map_width = long_strlen((*data)->map[0]);
-	while ((*data)->map[i])
+	data->map_width = long_strlen(data->map[0]);
+	while (data->map[i])
 	{
 		j = 0;
-		while ((*data)->map[i][j])
+		while (data->map[i][j])
 		{
-			if ((*data)->map[i][j] == 'P')
-			{
-				(*data)->player++;
-				(*data)->player_position_x = i;
-				(*data)->player_position_y = j;
-			}
-			else if ((*data)->map[i][j] == 'E')
-			{
-				(*data)->exit++;
-				(*data)->exit_x = i;
-				(*data)->exit_y = j;
-			}	
-			else if ((*data)->map[i][j] == 'C')
-				(*data)->collectible++;
+			if (data->map[i][j] == 'P')
+				if_p(data, i, j);
+			else if (data->map[i][j] == 'E')
+				if_e(data, i, j);
+			else if (data->map[i][j] == 'C')
+				data->collectible++;
 			j++;
 		}
 		i++;
-		(*data)->map_height++;
+		data->map_height++;
 	}
-	// printf("\nData:\n");
-	// printf("height is: %d\n", (*data)->map_height);
-	// printf("width is: %d\n", (*data)->map_width);
-	// printf("number of exits is: %d\n", (*data)->exit);
-	// printf("number of players is: %d\n", (*data)->player);
-	// printf("number of collectible is: %d\n", (*data)->collectible);
-	// printf("player position is: x = %d, y = %d\n", (*data)->player_position_x, (*data)->player_position_y);
 }

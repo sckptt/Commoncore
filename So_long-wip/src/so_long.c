@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 20:50:06 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/05/31 20:33:42 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/06/04 22:12:06 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 #include "../Libft/includes/libft.h"
 
-void fill_node(t_long_data *node)
+void	fill_node(t_long_data *node)
 {
 	node->map_height = 0;
 	node->map_width = 0;
@@ -36,6 +36,7 @@ void fill_node(t_long_data *node)
 	node->textures.player_right = NULL;
 	node->textures.player_up = NULL;
 	node->textures.wall = NULL;
+	node->textures.current = NULL;
 }
 
 void	create_data(t_long_data **data)
@@ -62,20 +63,19 @@ int	count_lines(char **av)
 	line = NULL;
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-	{
-		write(1, "Error\n", 6);
-		exit(1);
-	}
-	while ((line = get_next_line(fd)) != NULL)
+		error_msg();
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		counter++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (counter);
 }
 
-int	get_map(t_long_data **data, char **av)
+int	get_map(t_long_data *data, char **av)
 {
 	int		lines;
 	int		fd;
@@ -83,24 +83,18 @@ int	get_map(t_long_data **data, char **av)
 
 	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
-	{
-		write(1, "Error\n", 6);
-		exit(1);
-	}
+		error_msg();
 	lines = count_lines(av);
-	(*data)->map = (char **)malloc(sizeof(char *) * (lines + 1));
-	if (!(*data)->map)
-	{
-		write(1, "Error\n", 6);
-		exit(1);
-	}
+	data->map = (char **)malloc(sizeof(char *) * (lines + 1));
+	if (!data->map)
+		error_msg();
 	i = 0;
 	while (i < lines)
 	{
-		(*data)->map[i] = get_next_line(fd);
+		data->map[i] = get_next_line(fd);
 		i++;
 	}
-	(*data)->map[i] = NULL;
+	data->map[i] = NULL;
 	close(fd);
 	return (0);
 }
@@ -108,22 +102,12 @@ int	get_map(t_long_data **data, char **av)
 int	main(int ac, char **av)
 {
 	t_long_data	*data;
-	int			i;
 
 	if (ac != 2 || !(ft_strnstr(av[1], ".ber", ft_strlen(av[1]))))
-	{
-		write(2, "Error\n", 6);
-		exit(1);
-	}
+		error_msg();
 	create_data(&data);
-	get_map(&data, av);
-	i = 0;
-	while (data->map[i])
-	{
-		printf("%s\n", data->map[i]);
-		i++;
-	}
-	error_handling(&data);
-	map_drawing(&data);
+	get_map(data, av);
+	error_handling(data);
+	map_drawing(data);
 	return (0);
 }

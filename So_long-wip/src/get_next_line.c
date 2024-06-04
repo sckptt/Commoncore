@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:26:48 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/05/28 20:02:41 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/06/04 22:08:41 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,6 @@ static char	*read_one_line(char *str)
 		one_line[i] = str[i];
 		i++;
 	}
-	// if (str[i] == '\n')
-	// {
-	// 	one_line[i] = '\n';
-	// 	i++;
-	// }
 	one_line[i] = '\0';
 	return (one_line);
 }
