@@ -1,6 +1,7 @@
 # set a compiler and flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
+MLX42 = MLX42/build/libmlx42.a -I include -ldl -lglfw -pthread -lm
 
 # path to source and object files, source and object files
 SRC_PATH = src/
@@ -11,8 +12,8 @@ free_and_go_home.c \
 game_start.c \
 get_next_line.c \
 get_next_line_utils.c \
-graphic_utils.c \
 hook_events.c \
+map_starting.c \
 map_utils.c \
 moves.c \
 so_long.c
@@ -24,8 +25,6 @@ INCLUDE = -I ./includes/
 # set the name
 NAME = so_long
 LIBFT_DIR = Libft/
-LIBMLX = minilibx-linux/libmlx.a
-LIBMLX_LDLIBS = $(LIBMLX) -lXext -lX11 -lm
 
 # rules
 all: $(NAME)
@@ -39,7 +38,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c includes/so_long.h | $(OBJ_PATH)
 $(NAME): $(OBJS)
 	@make -C $(LIBFT_DIR)
 	@cp $(LIBFT_DIR)/libft.a .
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft.a $(LIBMLX_LDLIBS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft.a $(LIBMLX_FLAG) $(MLX42)
 	@echo "\n$(GREEN)$(NAME) is created!$(NC)"
 
 clean:
@@ -48,7 +47,7 @@ clean:
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)
-	rm -f $(NAME) libft.a
+	rm -f $(NAME) libft.a libmlx.a
 	@echo "\n$(RED)$(NAME) is removed.$(NC)"
 
 re: fclean all

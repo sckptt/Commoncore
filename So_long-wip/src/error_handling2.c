@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 18:10:48 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/06/04 21:59:57 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:44:24 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	valid_check(t_long_data *data, char **copy)
 		{
 			if (copy[i][j] == 'C' || copy[i][j] == 'E')
 			{
-				write(2, "Error\n", 6);
+				ft_putstr_fd(NO_VALID_EXIT_OR_COLLECTIBLE_MSG, 2);
 				free_copy(copy);
 				free_data(data);
 				exit(1);
@@ -98,11 +98,11 @@ void	valid_exit_collectible(t_long_data *data)
 	copy = copy_array(data->map, data->map_width, data->map_height);
 	if (!copy)
 	{
-		write(2, "Error\n", 6);
+		ft_putstr_fd(COPY_ERROR, 2);
 		free_data(data);
 		exit(1);
 	}
-	flood_fill(copy, data->player_position_y, data->player_position_x, data);
+	flood_fill(copy, data->player_y, data->player_x, data);
 	valid_check(data, copy);
 	free_copy(copy);
 }

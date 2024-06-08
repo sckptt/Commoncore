@@ -6,16 +6,23 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:29:31 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/06/04 22:12:26 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/06/08 16:04:58 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+#include "../Libft/includes/libft.h"
 
-void	error_msg(void)
+int	check_filename(const char *arg)
 {
-	write(2, "Error\n", 6);
-	exit(1);
+	int	i;
+
+	i = ft_strlen(arg) - 1;
+	if (arg[i] != 'r' || arg[i - 1] != 'e'
+		|| arg[i - 2] != 'b'
+		|| arg[i - 3] != '.')
+		return (0);
+	return (1);
 }
 
 static void	valid_symbols(t_long_data *data)
@@ -33,7 +40,7 @@ static void	valid_symbols(t_long_data *data)
 			&& data->map[i][j] != 'C' && data->map[i][j] != '0'
 			&& data->map[i][j] != '1')
 			{
-				write(2, "Error\n", 6);
+				ft_putstr_fd(EXTRA_SYMBOLS_MSG, 2);
 				free_data(data);
 				exit(1);
 			}
@@ -55,7 +62,7 @@ static void	rectangle(t_long_data *data)
 		len = long_strlen(data->map[i]);
 		if (len != data->map_width)
 		{
-			write(2, "Error\n", 6);
+			ft_putstr_fd(NO_RECTANGLE_MSG, 2);
 			free_data(data);
 			exit(1);
 		}
@@ -78,7 +85,7 @@ static void	surrounded(t_long_data *data)
 			|| data->map[data->map_height - 1][j] != '1'
 			|| data->map[i][data->map_width - 1] != '1')
 			{
-				write(2, "Error\n", 6);
+				ft_putstr_fd(NO_WALL_MSG, 2);
 				free_data(data);
 				exit(1);
 			}
@@ -92,9 +99,21 @@ static void	surrounded(t_long_data *data)
 void	error_handling(t_long_data *data)
 {
 	map_analysis(data);
-	if (data->exit != 1 || data->player != 1 || data->collectible < 1)
+	if (data->num_exit != 1)
 	{
-		write(2, "Error\n", 6);
+		ft_putstr_fd(WRONG_EXIT_MSG, 2);
+		free_data(data);
+		exit(1);
+	}
+	if (data->num_player != 1)
+	{
+		ft_putstr_fd(WRONG_PLAYER_MSG, 2);
+		free_data(data);
+		exit(1);
+	}
+	if (data->num_collectible < 1)
+	{
+		ft_putstr_fd(NO_COLLECTIBLES_MSG, 2);
 		free_data(data);
 		exit(1);
 	}

@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:14:39 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/06/03 22:34:53 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/06/08 17:45:05 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ size_t	long_strlen(const char *str)
 
 static void	if_p(t_long_data *data, int i, int j)
 {
-	data->player++;
-	data->player_position_x = i;
-	data->player_position_y = j;
+	data->num_player++;
+	data->player_x = i;
+	data->player_y = j;
 }
 
 static void	if_e(t_long_data *data, int i, int j)
 {
-	data->exit++;
+	data->num_exit++;
 	data->exit_x = i;
 	data->exit_y = j;
 }
@@ -55,7 +55,7 @@ void	map_analysis(t_long_data *data)
 			else if (data->map[i][j] == 'E')
 				if_e(data, i, j);
 			else if (data->map[i][j] == 'C')
-				data->collectible++;
+				data->num_collectible++;
 			j++;
 		}
 		i++;
