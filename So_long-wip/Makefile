@@ -27,7 +27,7 @@ NAME = so_long
 LIBFT_DIR = Libft/
 
 # rules
-all: $(NAME)
+all: $(OBJ_PATH) $(NAME)
 
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)

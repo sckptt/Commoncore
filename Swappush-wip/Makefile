@@ -28,7 +28,7 @@ NAME = push_swap
 PRINTF_DIR = Printf/
 
 # rules
-all: $(NAME)
+all: $(OBJ_PATH) $(NAME)
 
 $(OBJ_PATH):
 	mkdir -p $(OBJ_PATH)
