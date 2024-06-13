@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 00:25:12 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/06/12 19:13:35 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/06/13 17:26:29 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ char	*find_paths(char **envp)
 
 char	*make_command(t_pipe_data pipex, char **cmd)
 {
-	char *temp;
-	char *command;
-	int i;
+	char	*temp;
+	char	*command;
+	int		i;
 
 	i = 0;
 	while (pipex.paths[i])
@@ -48,41 +48,39 @@ char	*make_command(t_pipe_data pipex, char **cmd)
 
 int	open_files(char **av, int is_in)
 {
-	int res;
+	int	res;
 
 	res = 0;
 	if (is_in == 1)
-	{
 		res = open(av[1], O_RDONLY);
-		if (res < 0)
-		{
-			perror("Error");
-			exit(1);
-		}
-	}
 	else if (is_in == 0)
-	{
 		res = open(av[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
-		if (res < 0)
-		{
-			perror("Error");
-			exit(1);
-		}
-	}
 	return (res);
 }
 
-// char	**parse_command(char *cmd)
-// {
-// 	char	**cmd_split;
+void	free_array(char **array)
+{
+	int	i;
 
-// 	cmd_split = ft_split(cmd, ' ');
-// 	if (access(cmd_split[0], F_OK) == 0)
-// 		return (cmd_split);
-// 	else if (access(cmd_split[0], F_OK) == -1)
-// 	{
-// 		cmd_split[0] = ft_strjoin("/", cmd_split[0]);
-// 		return (cmd_split);
-// 	}
-// 	return (NULL);
-// }
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+void	end_programm(t_pipe_data pipex)
+{
+	if (pipex.cmd1)
+		free_array(pipex.cmd1);
+	if (pipex.cmd2)
+		free_array(pipex.cmd2);
+	if (pipex.paths)
+		free_array(pipex.paths);
+	if (pipex.infile)
+		close(pipex.infile);
+	if (pipex.outfile)
+		close(pipex.outfile);
+}
