@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 00:25:12 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/06/13 17:26:29 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/06/17 16:26:07 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,22 @@ void	end_programm(t_pipe_data pipex)
 		free_array(pipex.cmd2);
 	if (pipex.paths)
 		free_array(pipex.paths);
-	if (pipex.infile)
+	if (pipex.infile >= 0)
 		close(pipex.infile);
-	if (pipex.outfile)
+	if (pipex.outfile >= 0)
 		close(pipex.outfile);
+	if (pipex.fd[0] != -1)
+	{
+		printf("pipe[0] = %d\n", pipex.fd[0]);
+		if (close(pipex.fd[0]) == -1)
+			perror("Error closing fd[0]");
+		pipex.fd[0] = -1;
+	}
+	if (pipex.fd[1] != -1)
+	{
+		printf("pipe[1] = %d\n", pipex.fd[1]);
+		if (close(pipex.fd[1]) == -1)
+			perror("Error closing fd[1]");
+		pipex.fd[1] = -1;
+	}
 }
