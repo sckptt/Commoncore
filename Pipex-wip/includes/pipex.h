@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:23:49 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/06/17 15:58:07 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:23:21 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_pipe_data
 
 char	**parse_command(char *cmd);
 char	*find_paths(char **envp);
+void	error_rising(t_pipe_data pipex);
 char	*make_command(t_pipe_data pipex, char **cmd);
 int		open_files(char **av, int is_in);
 void	end_programm(t_pipe_data pipex);
