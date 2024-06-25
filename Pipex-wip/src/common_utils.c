@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 00:25:12 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/06/18 17:39:13 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/06/25 19:05:21 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,9 @@ int	open_files(char **av, int is_in)
 
 	res = 0;
 	if (is_in == 1)
-	{
 		res = open(av[1], O_RDONLY);
-		if (res == -1)
-		{
-			perror("Error");
-			exit(1);
-		}
-	}
 	else if (is_in == 0)
-	{
 		res = open(av[4], O_RDWR | O_CREAT | O_TRUNC, 0644);
-		if (res == -1)
-		{
-			perror("Error");
-			exit(1);
-		}
-	}
 	return (res);
 }
 
@@ -74,5 +60,29 @@ void	end_programm(t_pipe_data pipex)
 		close(pipex.fd[0]);
 	if (pipex.fd[1] != -1)
 		close(pipex.fd[1]);
-	exit(0);
+}
+
+void	check_args(int ac, char **av)
+{
+	if (ac != 5)
+	{
+		ft_putstr_fd("Error: wrong number of arguments\n", 2);
+		exit(1);
+	}
+	if (av[2][0] == '\0' || av[3][0] == '\0')
+	{
+		if (av[2][0] == '\0')
+		{
+			ft_putstr_fd("Error: command not found: ", 2);
+			ft_putstr_fd(av[2], 2);
+			ft_putstr_fd("\n", 2);
+		}
+		if (av[3][0] == '\0')
+		{
+			ft_putstr_fd("Error: command not found: ", 2);
+			ft_putstr_fd(av[3], 2);
+			ft_putstr_fd("\n", 2);
+		}
+		exit(127);
+	}
 }
