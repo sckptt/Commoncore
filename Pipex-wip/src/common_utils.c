@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 00:25:12 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/06/25 19:05:21 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/06/27 17:20:22 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	open_files(char **av, int is_in)
 	return (res);
 }
 
-void	free_array(char **array)
+static void	free_array(char **array)
 {
 	int	i;
 
@@ -66,23 +66,15 @@ void	check_args(int ac, char **av)
 {
 	if (ac != 5)
 	{
-		ft_putstr_fd("Error: wrong number of arguments\n", 2);
+		ft_putstr_fd("Error: Wrong number of arguments\n", 2);
 		exit(1);
 	}
 	if (av[2][0] == '\0' || av[3][0] == '\0')
 	{
 		if (av[2][0] == '\0')
-		{
-			ft_putstr_fd("Error: command not found: ", 2);
-			ft_putstr_fd(av[2], 2);
-			ft_putstr_fd("\n", 2);
-		}
+			ft_putstr_fd("Error: Command '' not found\n", 2);
 		if (av[3][0] == '\0')
-		{
-			ft_putstr_fd("Error: command not found: ", 2);
-			ft_putstr_fd(av[3], 2);
-			ft_putstr_fd("\n", 2);
-		}
+			ft_putstr_fd("Error: Command '' not found\n", 2);
 		exit(127);
 	}
 }

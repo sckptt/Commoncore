@@ -6,13 +6,13 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 17:30:23 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/06/25 19:05:06 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/06/27 19:23:53 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void	close_fds(t_pipe_data pipex, int child)
+static void	close_fds(t_pipe_data pipex, int child)
 {
 	if (child == 1)
 	{
@@ -28,7 +28,7 @@ void	close_fds(t_pipe_data pipex, int child)
 	}
 }
 
-void	first_child(t_pipe_data pipex, char **av, char **envp)
+static void	first_child(t_pipe_data pipex, char **av, char **envp)
 {
 	char	*path;
 
@@ -44,9 +44,8 @@ void	first_child(t_pipe_data pipex, char **av, char **envp)
 	path = make_command(pipex, pipex.cmd1);
 	if (!path)
 	{
-		ft_putstr_fd("Error: command not found: ", 2);
 		ft_putstr_fd(pipex.cmd1[0], 2);
-		ft_putstr_fd("\n", 2);
+		ft_putstr_fd(": command not found\n", 2);
 		end_programm(pipex);
 		exit(127);
 	}
@@ -57,7 +56,7 @@ void	first_child(t_pipe_data pipex, char **av, char **envp)
 	}
 }
 
-void	second_child(t_pipe_data pipex, char **av, char **envp)
+static void	second_child(t_pipe_data pipex, char **av, char **envp)
 {
 	char	*path;
 
@@ -73,9 +72,8 @@ void	second_child(t_pipe_data pipex, char **av, char **envp)
 	path = make_command(pipex, pipex.cmd2);
 	if (!path)
 	{
-		ft_putstr_fd("Error: command not found: ", 2);
 		ft_putstr_fd(pipex.cmd2[0], 2);
-		ft_putstr_fd("\n", 2);
+		ft_putstr_fd(": command not found\n", 2);
 		end_programm(pipex);
 		exit(127);
 	}
