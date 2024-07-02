@@ -6,7 +6,9 @@ NAME = philo
 # path to source and object files, source and object files
 SRC_PATH = src/
 OBJ_PATH = obj/
-SRC = philo_utils.c \
+SRC = error_handling.c \
+init.c \
+philo_utils.c \
 philo.c
 OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))

@@ -6,13 +6,13 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:48:25 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/01 21:35:24 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/02 16:54:41 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
 	int	i;
 	int	one;
@@ -49,4 +49,12 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i], 1);
 		i++;
 	}
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
 }

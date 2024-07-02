@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:38:38 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/01 21:36:30 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/02 17:11:50 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,16 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	int				when_ate;
 	int				time_to_die;
 	pthread_t		id;
-	pthread_mutex_t *left_fork;
-	pthread_mutex_t *right_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 }	t_philo;
 
-typedef struct	s_common_info
+typedef struct s_common_info
 {
 	int				number_of_philo;
 	int				time_to_die;
@@ -39,8 +39,13 @@ typedef struct	s_common_info
 	pthread_mutex_t	mutex;
 }	t_common_info;
 
-int		ft_atoi(const char *str);
+// utils for philosophers
+int				ft_atoi(char *str);
+void			ft_putstr_fd(char *s, int fd);
+int				ft_isdigit(int c);
 
-void	ft_putstr_fd(char *s, int fd);
+t_common_info	*struct_start(int ac, char **av);
+
+int				check_args(char **av);
 
 #endif
