@@ -6,13 +6,13 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:35:57 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/02 17:10:21 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/02 20:07:43 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	check_optional_arg(char *str)
+static int	check_optional_arg(char *str)
 {
 	if (ft_atoi(str) < 0)
 	{
@@ -22,7 +22,7 @@ int	check_optional_arg(char *str)
 	return (0);
 }
 
-int	digits_only(char **av)
+static int	digits_only(char **av)
 {
 	int	i;
 	int	j;
@@ -46,7 +46,7 @@ int	digits_only(char **av)
 	return (0);
 }
 
-int	check_limits(char **av)
+static int	check_limits(char **av)
 {
 	int	i;
 
