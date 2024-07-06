@@ -7,6 +7,7 @@ NAME = philo
 SRC_PATH = src/
 OBJ_PATH = obj/
 SRC = error_handling.c \
+existing.c \
 init.c \
 philo_utils.c \
 philo.c
