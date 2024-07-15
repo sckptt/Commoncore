@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:48:25 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/02 16:54:41 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/15 15:53:00 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,32 @@ int	ft_atoi(char *str)
 	if (str[i] == 45 || str[i] == 43)
 	{
 		if (str[i] == 45)
-		{
 			one = -1;
-		}
+		i++;
+	}
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * one);
+}
+
+long	ft_atol(char *str)
+{
+	int		i;
+	long	one;
+	long	result;
+
+	i = 0;
+	one = 1;
+	result = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == 45 || str[i] == 43)
+	{
+		if (str[i] == 45)
+			one = -1;
 		i++;
 	}
 	while (str[i] >= 48 && str[i] <= 57)
@@ -57,4 +80,15 @@ int	ft_isdigit(int c)
 		return (1);
 	else
 		return (0);
+}
+
+void	mutex_destroy(t_common_info *ph_data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < ph_data->number)
+		pthread_mutex_destroy(&ph_data->forks[i]);
+	free(ph_data->forks);
+	ph_data->forks = NULL;
 }

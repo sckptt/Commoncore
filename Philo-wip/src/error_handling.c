@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:35:57 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/02 20:07:43 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/15 15:50:01 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 static int	check_optional_arg(char *str)
 {
-	if (ft_atoi(str) < 0)
+	long	arg;
+
+	arg = ft_atol(str);
+	if (arg < 0 || arg > INT_MAX)
 	{
-		ft_putstr_fd("Error! Last argument is less than 0!\n", 2);
+		ft_putstr_fd("Error! Last argument is out of range!\n", 2);
 		return (1);
 	}
 	return (0);
@@ -31,36 +34,38 @@ static int	digits_only(char **av)
 	while (av[i])
 	{
 		j = 0;
+		if (av[i][j] == '-' || av[i][j] == '+')
+			j++;
 		while (av[i][j])
 		{
-			if (ft_isdigit(av[i][j]) || av[i][j] == '-' || av[i][j] == '+')
-				j++;
-			else
+			if (!ft_isdigit(av[i][j]))
 			{
-				ft_putstr_fd("Error! An argument is not numeric!\n", 2);
+				ft_putstr_fd("Error! Argument ", 2);
+				ft_putstr_fd(av[i], 2);
+				ft_putstr_fd(" is not numeric!\n", 2);
 				return (1);
 			}
+			j++;
 		}
 		i++;
 	}
 	return (0);
 }
 
-static int	check_limits(char **av)
+static int	check_limits(int ac, char **av)
 {
-	int	i;
+	int		i;
+	long	arg;
 
 	i = 1;
-	if (ft_atoi(av[1]) > 200)
+	while (i < ac)
 	{
-		ft_putstr_fd("Error! First argument is more than 200!\n", 2);
-		return (1);
-	}
-	while (i < 5)
-	{
-		if (ft_atoi(av[i]) < 1)
+		arg = ft_atol(av[i]);
+		if (arg < 1 || arg > INT_MAX)
 		{
-			ft_putstr_fd("Error! One of the arguments is less than 1!\n", 2);
+			ft_putstr_fd("Error! Argument ", 2);
+			ft_putstr_fd(av[i], 2);
+			ft_putstr_fd(" is out of range!\n", 2);
 			return (1);
 		}
 		i++;
@@ -68,13 +73,18 @@ static int	check_limits(char **av)
 	return (0);
 }
 
-int	check_args(char **av)
+int	check_args(int ac, char **av)
 {
+	if (ac != 5 && ac != 6)
+	{
+		ft_putstr_fd("Error! Wrong number of arguments!\n", 2);
+		return (1);
+	}
 	if (digits_only(av) != 0)
 		return (1);
-	if (check_limits(av) != 0)
+	if (check_limits(ac, av) != 0)
 		return (1);
-	if (av[5])
+	if (ac == 6)
 	{
 		if (check_optional_arg(av[5]) != 0)
 			return (1);

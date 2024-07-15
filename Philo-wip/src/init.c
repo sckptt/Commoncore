@@ -6,43 +6,43 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:34:05 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/05 18:47:35 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/15 15:52:28 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-t_common_info	*struct_start(int ac, char **av)
+int	struct_start(t_common_info *ph_data, int ac, char **av)
 {
-	t_common_info	*ph_data;
 	struct timeval	tv;
 
-	ph_data = malloc(sizeof(t_common_info));
-	if (!ph_data)
-		return (NULL);
 	ph_data->number = ft_atoi(av[1]);
-	ph_data->time_to_die = (useconds_t)ft_atoi(av[2]) * 1000;
-	ph_data->time_to_eat = (useconds_t)ft_atoi(av[3]) * 1000;
-	ph_data->time_to_sleep = (useconds_t)ft_atoi(av[4]) * 1000;
-	if (gettimeofday(&tv, NULL) == 0)
-		ph_data->program_start = (unsigned long long)tv.tv_sec * 1000000 + tv.tv_usec;
+	ph_data->time_to_die = (uint64_t)ft_atoi(av[2]) * 1000;
+	ph_data->time_to_eat = (uint64_t)ft_atoi(av[3]) * 1000;
+	ph_data->time_to_sleep = (uint64_t)ft_atoi(av[4]) * 1000;
+	if (gettimeofday(&tv, NULL) != 0)
+	{
+		free(ph_data);
+		return (1);
+	}
+	ph_data->start = (unsigned long long)tv.tv_sec * 1000000 + tv.tv_usec;
 	ph_data->forks = NULL;
 	ph_data->philos = NULL;
 	if (ac == 6)
 		ph_data->meals_num = ft_atoi(av[5]);
 	else if (ac == 5)
 		ph_data->meals_num = -1;
-	return (ph_data);
+	return (0);
 }
 
-void	create_philos(t_common_info *ph_data)
+static int	create_philos(t_common_info *ph_data)
 {
 	int	i;
 
 	i = -1;
-	ph_data->philos = malloc(sizeof(t_philo) * ph_data->number);
+	ph_data->philos = (t_philo *)malloc(sizeof(t_philo) * ph_data->number);
 	if (!ph_data->philos)
-		return ;
+		return (1);
 	while (++i < ph_data->number)
 	{
 		ph_data->philos[i].number = i + 1;
@@ -53,11 +53,11 @@ void	create_philos(t_common_info *ph_data)
 		ph_data->philos[i].when_ate = 0;
 		ph_data->philos[i].left_fork = NULL;
 		ph_data->philos[i].right_fork = NULL;
-		ph_data->philos[i].id = NULL;
 	}
+	return (0);
 }
 
-void	give_forks(t_common_info *ph_data)
+static void	give_forks(t_common_info *ph_data)
 {
 	int	i;
 
@@ -73,16 +73,16 @@ void	give_forks(t_common_info *ph_data)
 	}
 }
 
-void	create_forks(t_common_info *ph_data)
+static int	create_forks(t_common_info *ph_data)
 {
 	int	i;
-	int error_num;
+	int	error_num;
 
 	i = -1;
 	error_num = 0;
-	ph_data->forks = malloc(sizeof(pthread_mutex_t) * ph_data->number);
+	ph_data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * ph_data->number);
 	if (!ph_data->forks)
-		return ;
+		return (1);
 	while (++i < ph_data->number)
 	{
 		error_num = pthread_mutex_init(&ph_data->forks[i], NULL);
@@ -91,8 +91,30 @@ void	create_forks(t_common_info *ph_data)
 			while (--i >= 0)
 				pthread_mutex_destroy(&ph_data->forks[i]);
 			free(ph_data->forks);
-			return ;
+			return (1);
 		}
 	}
+	return (0);
+}
+
+int	fill_the_structs(t_common_info *ph_data, int ac, char **av)
+{
+	if (struct_start(ph_data, ac, av) != 0)
+	{
+		free(ph_data);
+		return (1);
+	}
+	if (create_philos(ph_data) != 0)
+	{
+		free(ph_data);
+		return (1);
+	}
+	if (create_forks(ph_data) != 0)
+	{
+		free(ph_data->philos);
+		free(ph_data);
+		return (1);
+	}
 	give_forks(ph_data);
+	return (0);
 }
