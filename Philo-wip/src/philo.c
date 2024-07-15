@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:45:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/15 15:52:44 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/15 19:09:17 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ int	main(int ac, char **av)
 	if (!ph_data)
 		return (1);
 	if (check_args(ac, av) != 0)
+	{
+		free(ph_data);
 		return (1);
+	}
 	if (fill_the_structs(ph_data, ac, av) != 0)
+	{
+		free(ph_data);
 		return (1);
+	}
 	start_the_routine(ph_data);
 	mutex_destroy(ph_data);
 	free(ph_data);

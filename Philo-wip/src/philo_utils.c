@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:48:25 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/15 15:53:00 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/15 16:16:35 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void	mutex_destroy(t_common_info *ph_data)
 	i = -1;
 	while (++i < ph_data->number)
 		pthread_mutex_destroy(&ph_data->forks[i]);
+	pthread_mutex_destroy(&ph_data->print);
 	free(ph_data->forks);
 	ph_data->forks = NULL;
 }

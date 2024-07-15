@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:38:38 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/15 15:51:23 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/15 16:58:33 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@
 
 typedef struct s_philo
 {
-	int				number;
-	int				meals_num;
-	uint64_t		when_ate;
-	uint64_t		time_to_die;
-	uint64_t		time_to_eat;
-	uint64_t		time_to_sleep;
-	pthread_t		id;
-	pthread_mutex_t	*left_fork;
-	pthread_mutex_t	*right_fork;
+	int					number;
+	int					meals_num;
+	unsigned long long	start;
+	uint64_t			when_ate;
+	uint64_t			time_to_die;
+	uint64_t			time_to_eat;
+	uint64_t			time_to_sleep;
+	pthread_t			id;
+	pthread_mutex_t		*left_fork;
+	pthread_mutex_t		*right_fork;
+	pthread_mutex_t		print;
 }	t_philo;
 
 typedef struct s_common_info
@@ -46,6 +48,7 @@ typedef struct s_common_info
 	uint64_t			time_to_sleep;
 	t_philo				*philos;
 	pthread_mutex_t		*forks;
+	pthread_mutex_t		print;
 }	t_common_info;
 
 // utils for philosophers
@@ -62,6 +65,7 @@ int		struct_start(t_common_info *ph_data, int ac, char **av);
 int		check_args(int ac, char **av);
 
 //philosophers routine
+unsigned long long	get_current_time(t_philo *philo);
 void	*existing(void *param);
 void	mutex_destroy(t_common_info *ph_data);
 

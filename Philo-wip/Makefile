@@ -10,7 +10,8 @@ SRC = error_handling.c \
 existing.c \
 init.c \
 philo_utils.c \
-philo.c
+philo.c \
+timey_wimey_stuff.c
 OBJ = $(SRC:.c=.o)
 OBJS = $(addprefix $(OBJ_PATH), $(OBJ))
 INCLUDE = -I ./includes/
