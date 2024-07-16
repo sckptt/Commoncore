@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:34:05 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/15 16:38:34 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/16 20:21:45 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@ int	struct_start(t_common_info *ph_data, int ac, char **av)
 	ph_data->time_to_sleep = (uint64_t)ft_atoi(av[4]) * 1000;
 	if (gettimeofday(&tv, NULL) != 0)
 		return (1);
-	ph_data->start = (unsigned long long)tv.tv_sec * 1000000 + tv.tv_usec;
+	ph_data->start = (uint64_t)tv.tv_sec * 1000000 + tv.tv_usec;
 	ph_data->forks = NULL;
 	ph_data->philos = NULL;
 	pthread_mutex_init(&ph_data->print, NULL);
+	//pthread_mutex_init(&ph_data->dead_lock, NULL);
 	if (ac == 6)
 		ph_data->meals_num = ft_atoi(av[5]);
 	else if (ac == 5)
@@ -43,16 +44,18 @@ static int	create_philos(t_common_info *ph_data)
 		return (1);
 	while (++i < ph_data->number)
 	{
+		ph_data->philos[i].amount = ph_data->number;
 		ph_data->philos[i].number = i + 1;
 		ph_data->philos[i].time_to_eat = ph_data->time_to_eat;
 		ph_data->philos[i].time_to_sleep = ph_data->time_to_sleep;
 		ph_data->philos[i].time_to_die = ph_data->time_to_die;
 		ph_data->philos[i].meals_num = ph_data->meals_num;
-		ph_data->philos[i].when_ate = 0;
+		ph_data->philos[i].last_meal = 0;
 		ph_data->philos[i].start = ph_data->start;
 		ph_data->philos[i].left_fork = NULL;
 		ph_data->philos[i].right_fork = NULL;
 		ph_data->philos[i].print = ph_data->print;
+		//ph_data->philos[i].dead_lock = ph_data->dead_lock;
 	}
 	return (0);
 }
