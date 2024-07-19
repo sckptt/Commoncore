@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:38:38 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/19 17:02:08 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/19 18:30:03 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@
 # define WRONG_NUMBER_OF_ARGS_ERROR_MSG "Error! Wrong number of arguments!\n"
 # define OUT_OF_RANGE_ERROR_MSG "Error! Argument is out of range!\n"
 # define NON_NUMERIC_ERROR_MSG "Error! Argument is not numeric!\n"
-# define MUTEX_INIT_ERROR "Error! The program failed to initiate a mutex!\n"
+# define THREAD_CREATION_ERROR_MSG "Error! The program failed to create a thread!\n"
+# define THREAD_JOIN_ERROR_MSG "Error! The program failed to join a thread!\n"
+# define MUTEX_INIT_ERROR_MSG "Error! The program failed to initiate a mutex!\n"
 # define SLEEPING_MSG "is sleeping"
 # define FORK_MSG "has taken a fork"
 # define EATING_MSG "is eating"
@@ -66,7 +68,7 @@ typedef struct s_common_info
 
 //data initialization
 int			fill_the_structs(t_common_info *ph_data, int ac, char **av);
-int			struct_start(t_common_info *ph_data, int ac, char **av);
+int			struct_start(t_common_info *ph_data, char **av);
 
 //error handling
 int			check_args(int ac, char **av);
@@ -81,6 +83,7 @@ int			ft_isdigit(int c);
 long		ft_atol(char *str);
 uint64_t	get_current_time(t_philo *philo);
 uint64_t	update_time(t_philo *philo);
+void		end_programm(t_common_info *ph_data);
 void		ft_putstr_fd(char *s, int fd);
 void		mutex_destroy(t_common_info *ph_data);
 void		print_state(t_philo *philo, char *message);

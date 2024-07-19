@@ -6,26 +6,54 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:45:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/19 17:04:56 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/19 18:16:49 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	start_the_routine(t_common_info *ph_data)
+static int join_threads(t_common_info *ph_data, pthread_t observer)
+{
+	int i;
+
+	i = -1;
+	if (pthread_join(observer, NULL) != 0)
+	{
+		ft_putstr_fd(THREAD_JOIN_ERROR_MSG, 2);
+		return (1);
+	}
+	while (++i < ph_data->amount)
+	{
+		if (pthread_join(ph_data->philos[i].id, NULL) != 0)
+		{
+			ft_putstr_fd(THREAD_JOIN_ERROR_MSG, 2);
+			return (1);
+		}
+	}
+	return (0);
+}
+
+static int	start_the_routine(t_common_info *ph_data)
 {
 	int			i;
 	pthread_t	observer;
 
 	i = -1;
+	if (pthread_create(&observer, NULL, &observe, ph_data->philos) != 0)
+	{
+		ft_putstr_fd(THREAD_CREATION_ERROR_MSG, 2);
+		return (1);
+	}
 	while (++i < ph_data->amount)
-		pthread_create(&ph_data->philos[i].id, NULL,
-			&existing, &ph_data->philos[i]);
-	pthread_create(&observer, NULL, &observe, ph_data->philos);
-	i = -1;
-	while (++i < ph_data->amount)
-		pthread_join(ph_data->philos[i].id, NULL);
-	pthread_join(observer, NULL);
+		if (pthread_create(&ph_data->philos[i].id, NULL,
+			&existing, &ph_data->philos[i]) != 0)
+		{
+			ft_putstr_fd(THREAD_CREATION_ERROR_MSG, 2);
+			return (1);
+		}
+	if (join_threads(ph_data, observer) == 1)
+		return (1);
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -48,8 +76,11 @@ int	main(int ac, char **av)
 		free(ph_data);
 		return (1);
 	}
-	start_the_routine(ph_data);
-	mutex_destroy(ph_data);
-	free(ph_data);
+	if (start_the_routine(ph_data) != 0)
+	{
+		end_programm(ph_data);
+		return (1);
+	}
+	end_programm(ph_data);
 	return (0);
 }

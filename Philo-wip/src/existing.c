@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:07:03 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/19 17:00:33 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/19 18:34:33 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	*existing(void *param)
 		infinite_loop(philo);
 	else
 	{
-		while (philo->food_times < philo->meals_num && philo->if_dead)
+		while (philo->food_times < philo->meals_num && !philo->if_dead)
 		{
 			thinking(philo);
 			eating(philo);
