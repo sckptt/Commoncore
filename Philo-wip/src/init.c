@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:34:05 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/16 20:21:45 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/19 17:04:00 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,48 +14,63 @@
 
 int	struct_start(t_common_info *ph_data, int ac, char **av)
 {
+	int				error_num;
 	struct timeval	tv;
 
-	ph_data->number = ft_atoi(av[1]);
-	ph_data->time_to_die = (uint64_t)ft_atoi(av[2]) * 1000;
-	ph_data->time_to_eat = (uint64_t)ft_atoi(av[3]) * 1000;
-	ph_data->time_to_sleep = (uint64_t)ft_atoi(av[4]) * 1000;
+	ph_data->amount = ft_atoi(av[1]);
 	if (gettimeofday(&tv, NULL) != 0)
+	{
+		ft_putstr_fd(TIME_ERROR_MSG, 2);
 		return (1);
+	}
 	ph_data->start = (uint64_t)tv.tv_sec * 1000000 + tv.tv_usec;
 	ph_data->forks = NULL;
 	ph_data->philos = NULL;
-	pthread_mutex_init(&ph_data->print, NULL);
-	//pthread_mutex_init(&ph_data->dead_lock, NULL);
-	if (ac == 6)
-		ph_data->meals_num = ft_atoi(av[5]);
-	else if (ac == 5)
-		ph_data->meals_num = -1;
+	error_num = pthread_mutex_init(&ph_data->print_lock, NULL);
+	if (error_num != 0)
+	{
+		ft_putstr_fd(MUTEX_INIT_ERROR, 2);
+		return (1);
+	}
+	error_num = pthread_mutex_init(&ph_data->dead_lock, NULL);
+	if (error_num != 0)
+	{
+		ft_putstr_fd(MUTEX_INIT_ERROR, 2);
+		return (1);
+	}
 	return (0);
 }
 
-static int	create_philos(t_common_info *ph_data)
+static int	create_philos(t_common_info *ph_data, int ac, char **av)
 {
 	int	i;
 
 	i = -1;
-	ph_data->philos = (t_philo *)malloc(sizeof(t_philo) * ph_data->number);
+	ph_data->philos = (t_philo *)malloc(sizeof(t_philo) * ph_data->amount);
 	if (!ph_data->philos)
-		return (1);
-	while (++i < ph_data->number)
 	{
-		ph_data->philos[i].amount = ph_data->number;
+		ft_putstr_fd(ALLOCATION_ERROR_MSG, 2);
+		return (1);
+	}
+	while (++i < ph_data->amount)
+	{
+		ph_data->philos[i].amount = ph_data->amount;
 		ph_data->philos[i].number = i + 1;
-		ph_data->philos[i].time_to_eat = ph_data->time_to_eat;
-		ph_data->philos[i].time_to_sleep = ph_data->time_to_sleep;
-		ph_data->philos[i].time_to_die = ph_data->time_to_die;
-		ph_data->philos[i].meals_num = ph_data->meals_num;
+		ph_data->philos[i].if_dead = 0;
+		ph_data->philos[i].food_times = 0;
+		ph_data->philos[i].time_to_eat = (uint64_t)ft_atoi(av[3]) * 1000;
+		ph_data->philos[i].time_to_sleep = (uint64_t)ft_atoi(av[4]) * 1000;
+		ph_data->philos[i].time_to_die = (uint64_t)ft_atoi(av[2]) * 1000;
+		if (ac == 6)
+			ph_data->philos[i].meals_num = ft_atoi(av[5]);
+		else if (ac == 5)
+			ph_data->philos[i].meals_num = -1;
 		ph_data->philos[i].last_meal = 0;
 		ph_data->philos[i].start = ph_data->start;
 		ph_data->philos[i].left_fork = NULL;
 		ph_data->philos[i].right_fork = NULL;
-		ph_data->philos[i].print = ph_data->print;
-		//ph_data->philos[i].dead_lock = ph_data->dead_lock;
+		ph_data->philos[i].print_lock = ph_data->print_lock;
+		ph_data->philos[i].dead_lock = ph_data->dead_lock;
 	}
 	return (0);
 }
@@ -66,9 +81,9 @@ static void	give_forks(t_common_info *ph_data)
 
 	i = 0;
 	ph_data->philos[i].left_fork = &ph_data->forks[i];
-	ph_data->philos[i].right_fork = &ph_data->forks[ph_data->number - 1];
+	ph_data->philos[i].right_fork = &ph_data->forks[ph_data->amount - 1];
 	i++;
-	while (i < ph_data->number)
+	while (i < ph_data->amount)
 	{
 		ph_data->philos[i].left_fork = &ph_data->forks[i];
 		ph_data->philos[i].right_fork = &ph_data->forks[i - 1];
@@ -83,14 +98,18 @@ static int	create_forks(t_common_info *ph_data)
 
 	i = -1;
 	error_num = 0;
-	ph_data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * ph_data->number);
+	ph_data->forks = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * ph_data->amount);
 	if (!ph_data->forks)
+	{
+		ft_putstr_fd(ALLOCATION_ERROR_MSG, 2);
 		return (1);
-	while (++i < ph_data->number)
+	}
+	while (++i < ph_data->amount)
 	{
 		error_num = pthread_mutex_init(&ph_data->forks[i], NULL);
 		if (error_num != 0)
 		{
+			ft_putstr_fd(MUTEX_INIT_ERROR, 2);
 			while (--i >= 0)
 				pthread_mutex_destroy(&ph_data->forks[i]);
 			free(ph_data->forks);
@@ -104,7 +123,7 @@ int	fill_the_structs(t_common_info *ph_data, int ac, char **av)
 {
 	if (struct_start(ph_data, ac, av) != 0)
 		return (1);
-	if (create_philos(ph_data) != 0)
+	if (create_philos(ph_data, ac, av) != 0)
 		return (1);
 	if (create_forks(ph_data) != 0)
 	{

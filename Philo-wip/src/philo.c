@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:45:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/16 20:26:09 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/19 17:04:56 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	start_the_routine(t_common_info *ph_data)
 {
-	int	i;
-	//pthread_t observer;
+	int			i;
+	pthread_t	observer;
 
 	i = -1;
-	while (++i < ph_data->number)
+	while (++i < ph_data->amount)
 		pthread_create(&ph_data->philos[i].id, NULL,
 			&existing, &ph_data->philos[i]);
-	// pthread_create(&observer, NULL, &observe, ph_data->philos);
+	pthread_create(&observer, NULL, &observe, ph_data->philos);
 	i = -1;
-	while (++i < ph_data->number)
+	while (++i < ph_data->amount)
 		pthread_join(ph_data->philos[i].id, NULL);
-	// pthread_join(observer, NULL);
+	pthread_join(observer, NULL);
 }
 
 int	main(int ac, char **av)
@@ -34,7 +34,10 @@ int	main(int ac, char **av)
 
 	ph_data = malloc(sizeof(t_common_info));
 	if (!ph_data)
+	{
+		ft_putstr_fd(ALLOCATION_ERROR_MSG, 2);
 		return (1);
+	}
 	if (check_args(ac, av) != 0)
 	{
 		free(ph_data);

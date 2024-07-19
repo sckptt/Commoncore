@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:38:38 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/16 20:29:30 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/19 17:02:08 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,24 @@
 # include <inttypes.h>
 
 # define ALLOCATION_ERROR_MSG "Error! The program failed to allocate memory!\n"
+# define TIME_ERROR_MSG "Error! The program failed to get time of day!\n"
+# define WRONG_NUMBER_OF_ARGS_ERROR_MSG "Error! Wrong number of arguments!\n"
+# define OUT_OF_RANGE_ERROR_MSG "Error! Argument is out of range!\n"
+# define NON_NUMERIC_ERROR_MSG "Error! Argument is not numeric!\n"
+# define MUTEX_INIT_ERROR "Error! The program failed to initiate a mutex!\n"
+# define SLEEPING_MSG "is sleeping"
+# define FORK_MSG "has taken a fork"
+# define EATING_MSG "is eating"
+# define THINKING_MSG "is thinking"
+# define DEATH_MSG "died"
 
 typedef struct s_philo
 {
 	int				amount;
 	int				number;
 	int				meals_num;
+	int				if_dead;
+	int				food_times;
 	uint64_t		start;
 	uint64_t		last_meal;
 	uint64_t		time_to_die;
@@ -38,22 +50,18 @@ typedef struct s_philo
 	pthread_t		id;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	print;
-	pthread_mutex_t dead_lock;
+	pthread_mutex_t	print_lock;
+	pthread_mutex_t	dead_lock;
 }	t_philo;
 
 typedef struct s_common_info
 {
-	int				number;
-	int				meals_num;
+	int				amount;
 	uint64_t		start;
-	uint64_t		time_to_die;
-	uint64_t		time_to_eat;
-	uint64_t		time_to_sleep;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	print;
-	pthread_mutex_t dead_lock;
+	pthread_mutex_t	print_lock;
+	pthread_mutex_t	dead_lock;
 }	t_common_info;
 
 //data initialization
@@ -65,6 +73,7 @@ int			check_args(int ac, char **av);
 
 //philosophers routine
 void		*existing(void *param);
+void		*observe(void *params);
 
 // utils for philosophers
 int			ft_atoi(char *str);
@@ -74,6 +83,6 @@ uint64_t	get_current_time(t_philo *philo);
 uint64_t	update_time(t_philo *philo);
 void		ft_putstr_fd(char *s, int fd);
 void		mutex_destroy(t_common_info *ph_data);
-void		print_state(uint64_t time, t_philo *philo, char *message);
+void		print_state(t_philo *philo, char *message);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:08:19 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/16 20:20:07 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/19 17:05:29 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,24 @@ uint64_t	get_current_time(t_philo *philo)
 	struct timeval	tv;
 
 	if (gettimeofday(&tv, NULL) != 0)
+	{
+		ft_putstr_fd(TIME_ERROR_MSG, 2);
 		return (1);
+	}
 	time = (tv.tv_sec * 1000000) + tv.tv_usec - philo->start;
 	return (time);
 }
 
-void print_state(uint64_t time, t_philo *philo, char *message)
+void	print_state(t_philo *philo, char *message)
 {
-	pthread_mutex_lock(&philo->print);
-	printf("%llu %d %s\n", time, philo->number, message);
-	pthread_mutex_unlock(&philo->print);
+	uint64_t	time;
+
+	time = get_current_time(philo);
+	if (time == 1)
+		return ;
+	pthread_mutex_lock(&philo->print_lock);
+	printf("%llu %d %s\n", time / 1000, philo->number, message);
+	pthread_mutex_unlock(&philo->print_lock);
 }
 
 void	mutex_destroy(t_common_info *ph_data)
@@ -35,10 +43,10 @@ void	mutex_destroy(t_common_info *ph_data)
 	int	i;
 
 	i = -1;
-	while (++i < ph_data->number)
+	while (++i < ph_data->amount)
 		pthread_mutex_destroy(&ph_data->forks[i]);
-	pthread_mutex_destroy(&ph_data->print);
-	//pthread_mutex_destroy(&ph_data->dead_lock);
+	pthread_mutex_destroy(&ph_data->print_lock);
+	pthread_mutex_destroy(&ph_data->dead_lock);
 	free(ph_data->forks);
 	ph_data->forks = NULL;
 }
