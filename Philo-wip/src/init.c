@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:34:05 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/19 18:29:15 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/25 15:32:49 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	struct_start(t_common_info *ph_data, char **av)
 	struct timeval	tv;
 
 	ph_data->amount = ft_atoi(av[1]);
+	ph_data->if_dead = 0;
 	if (gettimeofday(&tv, NULL) != 0)
 	{
 		ft_putstr_fd(TIME_ERROR_MSG, 2);
@@ -53,7 +54,7 @@ static int	create_philos(t_common_info *ph_data, int ac, char **av)
 	{
 		ph_data->philos[i].amount = ph_data->amount;
 		ph_data->philos[i].number = i + 1;
-		ph_data->philos[i].if_dead = 0;
+		ph_data->philos[i].if_dead = &ph_data->if_dead;
 		ph_data->philos[i].food_times = 0;
 		ph_data->philos[i].time_to_eat = (uint64_t)ft_atoi(av[3]) * 1000;
 		ph_data->philos[i].time_to_sleep = (uint64_t)ft_atoi(av[4]) * 1000;
@@ -62,7 +63,7 @@ static int	create_philos(t_common_info *ph_data, int ac, char **av)
 			ph_data->philos[i].meals_num = ft_atoi(av[5]);
 		else if (ac == 5)
 			ph_data->philos[i].meals_num = -1;
-		ph_data->philos[i].last_meal = 0;
+		ph_data->philos[i].last_meal = ph_data->start;
 		ph_data->philos[i].start = ph_data->start;
 		ph_data->philos[i].left_fork = NULL;
 		ph_data->philos[i].right_fork = NULL;

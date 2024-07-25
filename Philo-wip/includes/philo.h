@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:38:38 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/19 18:30:03 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/25 15:32:39 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_philo
 	int				amount;
 	int				number;
 	int				meals_num;
-	int				if_dead;
+	int				*if_dead;
 	int				food_times;
 	uint64_t		start;
 	uint64_t		last_meal;
@@ -59,6 +59,7 @@ typedef struct s_philo
 typedef struct s_common_info
 {
 	int				amount;
+	int				if_dead;
 	uint64_t		start;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;

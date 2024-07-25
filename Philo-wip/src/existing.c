@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   existing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:07:03 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/19 18:34:33 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/25 21:19:33 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	eating(t_philo *philo)
 
 static void	infinite_loop(t_philo *philo)
 {
-	while (1)
+	while (*philo->if_dead != 1)
 	{
 		thinking(philo);
 		eating(philo);
@@ -54,12 +54,13 @@ void	*existing(void *param)
 
 	philo = (t_philo *)param;
 	if (philo->number % 2 == 0)
-		usleep(1000);
+		usleep(philo->time_to_eat / 5);
 	if (philo->meals_num == -1)
 		infinite_loop(philo);
 	else
 	{
-		while (philo->food_times < philo->meals_num && !philo->if_dead)
+		printf("%d\n", *philo->if_dead);
+		while (*philo->if_dead != 1 && philo->food_times < philo->meals_num)
 		{
 			thinking(philo);
 			eating(philo);
