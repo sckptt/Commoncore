@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:38:38 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/29 16:49:56 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/29 17:56:29 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_philo
 	int				meals_num;
 	int				*if_dead;
 	int				food_times;
+	int				is_eating;
 	uint64_t		start;
 	uint64_t		last_meal;
 	uint64_t		time_to_die;
@@ -53,7 +54,7 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	print_lock;
-	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	death_lock;
 }	t_philo;
 
 typedef struct s_common_info
@@ -64,12 +65,14 @@ typedef struct s_common_info
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_lock;
-	pthread_mutex_t	dead_lock;
+	pthread_mutex_t	death_lock;
 }	t_common_info;
 
 //data initialization
-int			fill_the_structs(t_common_info *ph_data, int ac, char **av);
+int			create_forks(t_common_info *ph_data);
+int			create_philos(t_common_info *ph_data, int ac, char **av);
 int			struct_start(t_common_info *ph_data, char **av);
+void		give_forks(t_common_info *ph_data);
 
 //error handling
 int			check_args(int ac, char **av);
@@ -82,7 +85,7 @@ void		*observe(void *params);
 int			ft_atoi(char *str);
 int			ft_isdigit(int c);
 long		ft_atol(char *str);
-uint64_t	get_current_time(t_philo *philo);
+uint64_t	get_current_time(void);
 uint64_t	update_time(t_philo *philo);
 void		end_programm(t_common_info *ph_data);
 void		ft_putstr_fd(char *s, int fd);

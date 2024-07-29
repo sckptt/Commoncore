@@ -3,20 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:08:19 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/25 21:18:44 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/07/29 17:59:48 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-uint64_t	get_current_time(t_philo *philo)
+uint64_t	get_current_time(void)
 {
 	uint64_t		time;
 	struct timeval	tv;
-	(void)philo;
 
 	if (gettimeofday(&tv, NULL) != 0)
 	{
@@ -30,14 +29,16 @@ uint64_t	get_current_time(t_philo *philo)
 void	print_state(t_philo *philo, char *message)
 {
 	uint64_t	time;
+	uint64_t	millitime;
 
-	time = get_current_time(philo);
+	time = get_current_time();
 	if (time == 1)
 		return ;
 	if (*philo->if_dead == 1)
 		return ;
 	pthread_mutex_lock(&philo->print_lock);
-	printf("%lu %d %s\n", time / 1000, philo->number, message);
+	millitime = (time - philo->start) / 1000;
+	printf("%llu %d %s\n", millitime, philo->number, message);
 	pthread_mutex_unlock(&philo->print_lock);
 }
 
@@ -49,11 +50,11 @@ void	mutex_destroy(t_common_info *ph_data)
 	while (++i < ph_data->amount)
 		pthread_mutex_destroy(&ph_data->forks[i]);
 	pthread_mutex_destroy(&ph_data->print_lock);
-	pthread_mutex_destroy(&ph_data->dead_lock);
+	pthread_mutex_destroy(&ph_data->death_lock);
 	ph_data->forks = NULL;
 }
 
-void end_programm(t_common_info *ph_data)
+void	end_programm(t_common_info *ph_data)
 {
 	mutex_destroy(ph_data);
 	if (ph_data->forks)

@@ -6,15 +6,15 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:45:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/19 18:16:49 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/07/29 17:59:28 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int join_threads(t_common_info *ph_data, pthread_t observer)
+static int	join_threads(t_common_info *ph_data, pthread_t observer)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	if (pthread_join(observer, NULL) != 0)
@@ -45,14 +45,34 @@ static int	start_the_routine(t_common_info *ph_data)
 		return (1);
 	}
 	while (++i < ph_data->amount)
+	{
 		if (pthread_create(&ph_data->philos[i].id, NULL,
-			&existing, &ph_data->philos[i]) != 0)
+				&existing, &ph_data->philos[i]) != 0)
 		{
 			ft_putstr_fd(THREAD_CREATION_ERROR_MSG, 2);
 			return (1);
 		}
+	}
 	if (join_threads(ph_data, observer) == 1)
 		return (1);
+	return (0);
+}
+
+static int	fill_the_structs(t_common_info *ph_data, int ac, char **av)
+{
+	if (struct_start(ph_data, av) != 0)
+		return (1);
+	if (create_philos(ph_data, ac, av) != 0)
+		return (1);
+	if (create_forks(ph_data) != 0)
+	{
+		pthread_mutex_destroy(&ph_data->death_lock);
+		pthread_mutex_destroy(&ph_data->print_lock);
+		free(ph_data->forks);
+		free(ph_data->philos);
+		return (1);
+	}
+	give_forks(ph_data);
 	return (0);
 }
 
