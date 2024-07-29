@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:38:38 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/25 15:32:39 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:47:50 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

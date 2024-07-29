@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   observe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:24:26 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/25 21:25:41 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/07/29 16:47:41 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	check_for_death(t_philo *philos)
 	uint64_t		time;
 
 	i = 0;
-	while (i < philos[i].number)
+	while (i < philos[i].amount)
 	{
 		pthread_mutex_lock(&philos[i].dead_lock);
 		if (gettimeofday(&tv, NULL) != 0)
