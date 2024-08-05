@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:38:38 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/05 15:46:41 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/05 18:09:54 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ void		*existing(void *param);
 void		*observe(void *params);
 
 // utils for philosophers
+int			death_check(t_philo *philo);
+int			finish_eating(t_philo *philo);
 int			ft_atoi(char *str);
 int			ft_isdigit(int c);
 long		ft_atol(char *str);

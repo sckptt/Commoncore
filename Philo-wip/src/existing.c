@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:07:03 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/05 16:33:26 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/05 18:09:33 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,18 +44,6 @@ static void	eating(t_philo *philo)
 	pthread_mutex_unlock(philo->right_fork);
 }
 
-int death_check(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->death_lock);
-	if (*philo->if_dead == 1)
-	{
-		pthread_mutex_unlock(&philo->death_lock);
-		return (1);
-	}
-	pthread_mutex_unlock(&philo->death_lock);
-	return (0);
-}
-
 static void	infinite_loop(t_philo *philo)
 {
 	while (death_check(philo) != 1)
@@ -79,7 +67,7 @@ void	*existing(void *param)
 	{
 		while (death_check(philo) != 1)
 		{
-			if (philo->food_times == philo->meals_num)
+			if (finish_eating(philo) == 1)
 				return (0);
 			eating(philo);
 			sleeping(philo);
