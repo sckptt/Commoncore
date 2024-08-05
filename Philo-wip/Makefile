@@ -1,6 +1,6 @@
 #set a compiler, flags and name
 CC = cc
-CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
 NAME = philo
 
 # path to source and object files, source and object files

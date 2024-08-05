@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:24:26 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/29 17:54:04 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/05 15:20:14 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ int	check_for_death(t_philo *philos)
 	{
 		pthread_mutex_lock(&philos[i].death_lock);
 		time = get_current_time();
-		if (time - philos[i].last_meal >= philos[i].time_to_die \
-			&& philos[i].is_eating == 0)
+		if (time - philos[i].last_meal >= philos[i].time_to_die && philos[i].is_eating == 0)
 		{
 			*philos[i].if_dead = 1;
 			deathtime = (time - philos[i].start) / 1000;
@@ -38,6 +37,25 @@ int	check_for_death(t_philo *philos)
 	return (0);
 }
 
+int check_for_finish(t_philo *philos)
+{
+	int counter;
+	int i;
+
+	counter = 0;
+	i = 0;
+	while (i < philos[i].amount)
+	{
+		pthread_mutex_lock(&philos->death_lock);
+		if (philos[i].food_times == philos[i].meals_num)
+			counter++;
+		pthread_mutex_unlock(&philos->death_lock);
+	}
+	if (counter == philos[i].amount)
+		return (1);
+	return(0);
+}
+
 void	*observe(void *params)
 {
 	t_philo	*philos;
@@ -45,7 +63,7 @@ void	*observe(void *params)
 	philos = (t_philo *)params;
 	while (1)
 	{
-		if (check_for_death(philos) == 1)
+		if (check_for_death(philos) == 1 || check_for_finish(philos) == 1)
 			break ;
 	}
 	return (0);
