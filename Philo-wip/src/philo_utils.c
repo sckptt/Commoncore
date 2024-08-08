@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:08:19 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/05 18:23:50 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:06:45 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,6 @@ uint64_t	get_current_time(void)
 	}
 	time = (tv.tv_sec * 1000000) + tv.tv_usec;
 	return (time);
-}
-
-int death_check(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->death_lock);
-	if (*philo->if_dead == 1)
-	{
-		pthread_mutex_unlock(&philo->death_lock);
-		return (1);
-	}
-	pthread_mutex_unlock(&philo->death_lock);
-	return (0);
-}
-
-int finish_eating(t_philo *philo)
-{
-	pthread_mutex_lock(&philo->death_lock);
-	if (philo->food_times >= philo->meals_num)
-	{
-		pthread_mutex_unlock(&philo->death_lock);
-		return (1);
-	}
-	pthread_mutex_unlock(&philo->death_lock);
-	return (0);
 }
 
 void	print_state(t_philo *philo, char *message)
@@ -78,9 +54,9 @@ void	mutex_destroy(t_common_info *ph_data)
 		pthread_mutex_destroy(&ph_data->forks[i]);
 	pthread_mutex_destroy(&ph_data->print_lock);
 	pthread_mutex_destroy(&ph_data->death_lock);
+	pthread_mutex_destroy(&ph_data->check_lock);
 	ph_data->forks = NULL;
 }
-
 
 void	end_programm(t_common_info *ph_data)
 {

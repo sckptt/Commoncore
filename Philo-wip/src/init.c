@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:34:05 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/05 16:55:00 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:05:59 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int	struct_start(t_common_info *ph_data, char **av)
 		return (1);
 	}
 	if (pthread_mutex_init(&ph_data->death_lock, NULL) != 0)
+	{
+		ft_putstr_fd(MUTEX_INIT_ERROR_MSG, 2);
+		return (1);
+	}
+	if (pthread_mutex_init(&ph_data->check_lock, NULL) != 0)
 	{
 		ft_putstr_fd(MUTEX_INIT_ERROR_MSG, 2);
 		return (1);
@@ -52,6 +57,7 @@ static void	full_philos(t_common_info *ph_data, int ac, char **av, int i)
 	ph_data->philos[i].right_fork = NULL;
 	ph_data->philos[i].print_lock = ph_data->print_lock;
 	ph_data->philos[i].death_lock = ph_data->death_lock;
+	ph_data->philos[i].check_lock = ph_data->check_lock;
 }
 
 int	create_philos(t_common_info *ph_data, int ac, char **av)

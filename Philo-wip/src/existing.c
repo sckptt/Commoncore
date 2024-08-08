@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 20:07:03 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/05 18:09:33 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/08 16:24:02 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,15 @@ static void	eating(t_philo *philo)
 	pthread_mutex_lock(philo->right_fork);
 	print_state(philo, FORK_MSG);
 	print_state(philo, EATING_MSG);
-	pthread_mutex_lock(&philo->death_lock);
+	pthread_mutex_lock(&philo->check_lock);
 	philo->food_times++;
 	philo->is_eating = 1;
-	pthread_mutex_unlock(&philo->death_lock);
+	pthread_mutex_unlock(&philo->check_lock);
 	usleep(philo->time_to_eat);
-	pthread_mutex_lock(&philo->death_lock);
+	pthread_mutex_lock(&philo->check_lock);
 	philo->last_meal = get_current_time();
 	philo->is_eating = 0;
-	pthread_mutex_unlock(&philo->death_lock);
+	pthread_mutex_unlock(&philo->check_lock);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 }
