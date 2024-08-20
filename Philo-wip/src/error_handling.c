@@ -3,26 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   error_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/02 16:35:57 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/07/19 15:44:55 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2024/08/13 20:53:37 by vkinsfat          #+#    #+#             */
+/*   Updated: 2024/08/20 18:04:23 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	check_optional_arg(char *str)
+static int	ft_isdigit(int c)
 {
-	long	arg;
-
-	arg = ft_atol(str);
-	if (arg < 0 || arg > INT_MAX)
-	{
-		ft_putstr_fd(OUT_OF_RANGE_ERROR_MSG, 2);
+	if (c >= 48 && c <= 57)
 		return (1);
+	else
+		return (0);
+}
+
+static long	ft_atol(char *str)
+{
+	int		i;
+	long	one;
+	long	result;
+
+	i = 0;
+	one = 1;
+	result = 0;
+	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == 45 || str[i] == 43)
+	{
+		if (str[i] == 45)
+			one = -1;
+		i++;
 	}
-	return (0);
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (result * one);
 }
 
 static int	digits_only(char **av)
@@ -30,22 +50,15 @@ static int	digits_only(char **av)
 	int	i;
 	int	j;
 
-	i = 1;
-	while (av[i])
+	i = 0;
+	while (av[++i])
 	{
-		j = 0;
-		if (av[i][j] == '-' || av[i][j] == '+')
-			j++;
-		while (av[i][j])
+		j = -1;
+		while (av[i][++j])
 		{
 			if (!ft_isdigit(av[i][j]))
-			{
-				ft_putstr_fd(NON_NUMERIC_ERROR_MSG, 2);
-				return (1);
-			}
-			j++;
+				return (ft_putstr_fd(NON_NUMERIC_ERROR, 2), 1);
 		}
-		i++;
 	}
 	return (0);
 }
@@ -55,16 +68,21 @@ static int	check_limits(int ac, char **av)
 	int		i;
 	long	arg;
 
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while (++i < ac)
 	{
-		arg = ft_atol(av[i]);
-		if (arg < 1 || arg > INT_MAX)
+		if (i == 5)
 		{
-			ft_putstr_fd(OUT_OF_RANGE_ERROR_MSG, 2);
-			return (1);
+			arg = ft_atol(av[i]);
+			if (arg < 0 || arg > INT_MAX)
+				return (ft_putstr_fd(OUT_OF_RANGE_ERROR, 2), 1);
 		}
-		i++;
+		else
+		{
+			arg = ft_atol(av[i]);
+			if (arg < 1 || arg > INT_MAX)
+				return (ft_putstr_fd(OUT_OF_RANGE_ERROR, 2), 1);
+		}
 	}
 	return (0);
 }
@@ -72,18 +90,10 @@ static int	check_limits(int ac, char **av)
 int	check_args(int ac, char **av)
 {
 	if (ac != 5 && ac != 6)
-	{
-		ft_putstr_fd(WRONG_NUMBER_OF_ARGS_ERROR_MSG, 2);
-		return (1);
-	}
+		return (ft_putstr_fd(WRONG_NUMBER_OF_ARGS_ERROR, 2), 1);
 	if (digits_only(av) != 0)
 		return (1);
 	if (check_limits(ac, av) != 0)
 		return (1);
-	if (ac == 6)
-	{
-		if (check_optional_arg(av[5]) != 0)
-			return (1);
-	}
 	return (0);
 }

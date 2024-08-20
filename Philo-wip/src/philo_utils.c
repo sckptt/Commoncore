@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:08:19 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/08 16:06:45 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/20 22:22:00 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ uint64_t	get_current_time(void)
 
 	if (gettimeofday(&tv, NULL) != 0)
 	{
-		ft_putstr_fd(TIME_ERROR_MSG, 2);
+		ft_putstr_fd(TIME_ERROR, 2);
 		return (1);
 	}
 	time = (tv.tv_sec * 1000000) + tv.tv_usec;
@@ -34,18 +34,15 @@ void	print_state(t_philo *philo, char *message)
 	time = get_current_time();
 	if (time == 1)
 		return ;
-	pthread_mutex_lock(&philo->print_lock);
 	if (death_check(philo) == 1)
-	{
-		pthread_mutex_unlock(&philo->print_lock);
 		return ;
-	}
-	millitime = (time - philo->start) / 1000;
+	millitime = (time - philo->start_time) / 1000;
+	pthread_mutex_lock(philo->print_lock);
 	printf("%llu %d %s\n", millitime, philo->number, message);
-	pthread_mutex_unlock(&philo->print_lock);
+	pthread_mutex_unlock(philo->print_lock);
 }
 
-void	mutex_destroy(t_common_info *ph_data)
+void	end_programm(t_philo_data *ph_data)
 {
 	int	i;
 
@@ -54,13 +51,6 @@ void	mutex_destroy(t_common_info *ph_data)
 		pthread_mutex_destroy(&ph_data->forks[i]);
 	pthread_mutex_destroy(&ph_data->print_lock);
 	pthread_mutex_destroy(&ph_data->death_lock);
-	pthread_mutex_destroy(&ph_data->check_lock);
-	ph_data->forks = NULL;
-}
-
-void	end_programm(t_common_info *ph_data)
-{
-	mutex_destroy(ph_data);
 	if (ph_data->forks)
 	{
 		free(ph_data->forks);
@@ -71,5 +61,32 @@ void	end_programm(t_common_info *ph_data)
 		free(ph_data->philos);
 		ph_data->philos = NULL;
 	}
+	if (ph_data->forks_v)
+	{
+		free(ph_data->forks_v);
+		ph_data->forks = NULL;
+	}
 	free(ph_data);
+}
+
+int	death_check(t_philo *philo)
+{
+	pthread_mutex_lock(philo->death_lock);
+	if (*philo->if_dead == 1)
+	{
+		pthread_mutex_unlock(philo->death_lock);
+		return (1);
+	}
+	pthread_mutex_unlock(philo->death_lock);
+	return (0);
+}
+
+int	ft_usleep(uint64_t time)
+{
+	uint64_t	start;
+
+	start = get_current_time();
+	while ((get_current_time() - start) < time)
+		usleep(1000);
+	return (0);
 }

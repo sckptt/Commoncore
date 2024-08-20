@@ -3,104 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:45:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/05 17:58:14 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/20 18:08:07 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static int	join_threads(t_common_info *ph_data, pthread_t observer)
+static void	*lone_philo(void *param)
 {
-	int	i;
+	t_philo	*philo;
 
-	i = -1;
-	while (++i < ph_data->amount)
-	{
-		if (pthread_join(ph_data->philos[i].id, NULL) != 0)
-		{
-			ft_putstr_fd(THREAD_JOIN_ERROR_MSG, 2);
-			return (1);
-		}
-	}
-	if (pthread_join(observer, NULL) != 0)
-	{
-		ft_putstr_fd(THREAD_JOIN_ERROR_MSG, 2);
-		return (1);
-	}
-	return (0);
+	philo = (t_philo *)param;
+	pthread_mutex_lock(philo->left_m);
+	*philo->left_f = 1;
+	print_state(philo, FORK_MSG);
+	*philo->left_f = 0;
+	pthread_mutex_unlock(philo->left_m);
+	usleep(philo->time_to_die + 1000);
+	return (param);
 }
 
-static int	start_the_routine(t_common_info *ph_data)
+static void	start_the_routine(t_philo_data *ph_data)
 {
 	int			i;
 	pthread_t	observer;
 
 	i = -1;
-	if (pthread_create(&observer, NULL, &observe, ph_data->philos) != 0)
+	if (ph_data->amount == 1)
 	{
-		ft_putstr_fd(THREAD_CREATION_ERROR_MSG, 2);
-		return (1);
+		pthread_create(&observer, NULL, &observe, ph_data);
+		pthread_create(&ph_data->philos[0].id, NULL,
+			&lone_philo, &ph_data->philos[0]);
+		pthread_join(observer, NULL);
+		pthread_join(ph_data->philos[0].id, NULL);
+		return ;
 	}
-	while (++i < ph_data->amount)
+	else
 	{
-		if (pthread_create(&ph_data->philos[i].id, NULL,
-				&existing, &ph_data->philos[i]) != 0)
-		{
-			ft_putstr_fd(THREAD_CREATION_ERROR_MSG, 2);
-			return (1);
-		}
+		pthread_create(&observer, NULL, &observe, ph_data);
+		while (++i < ph_data->amount)
+			pthread_create(&ph_data->philos[i].id, NULL,
+				&existing, &ph_data->philos[i]);
+		i = -1;
+		pthread_join(observer, NULL);
+		while (++i < ph_data->amount)
+			pthread_join(ph_data->philos[i].id, NULL);
 	}
-	if (join_threads(ph_data, observer) == 1)
-		return (1);
-	return (0);
 }
 
-static int	fill_the_structs(t_common_info *ph_data, int ac, char **av)
+static int	fill_the_structs(t_philo_data *ph_data, int ac, char **av)
 {
 	if (struct_start(ph_data, av) != 0)
 		return (1);
-	if (create_philos(ph_data, ac, av) != 0)
-		return (1);
-	if (create_forks(ph_data) != 0)
-	{
-		pthread_mutex_destroy(&ph_data->death_lock);
-		pthread_mutex_destroy(&ph_data->print_lock);
-		free(ph_data->forks);
-		free(ph_data->philos);
-		return (1);
-	}
+	create_philos(ph_data, ac, av);
+	create_forks(ph_data);
 	give_forks(ph_data);
 	return (0);
 }
 
 int	main(int ac, char **av)
 {
-	t_common_info	*ph_data;
+	t_philo_data	*ph_data;
 
-	ph_data = malloc(sizeof(t_common_info));
+	ph_data = malloc(sizeof(t_philo_data));
 	if (!ph_data)
-	{
-		ft_putstr_fd(ALLOCATION_ERROR_MSG, 2);
-		return (1);
-	}
+		return (ft_putstr_fd(ALLOCATION_ERROR, 2), 1);
 	if (check_args(ac, av) != 0)
-	{
-		free(ph_data);
 		return (1);
-	}
 	if (fill_the_structs(ph_data, ac, av) != 0)
-	{
-		free(ph_data);
 		return (1);
-	}
-	if (start_the_routine(ph_data) != 0)
-	{
-		end_programm(ph_data);
-		return (1);
-	}
+	start_the_routine(ph_data);
 	end_programm(ph_data);
 	return (0);
 }
