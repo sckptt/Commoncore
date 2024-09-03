@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   observe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:24:26 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/20 22:03:10 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/20 18:06:08 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	death_msg(t_philo *philo, uint64_t time)
 
 	deathtime = ((time - philo->start_time) / 1000);
 	pthread_mutex_lock(philo->print_lock);
-	printf("%llu %d %s\n", deathtime, philo->number, DEATH_MSG);
+	printf("%lu %d %s\n", deathtime, philo->number, DEATH_MSG);
 	pthread_mutex_unlock(philo->print_lock);
 }
 

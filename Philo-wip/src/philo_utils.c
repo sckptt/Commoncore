@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 20:08:19 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/20 22:22:00 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2024/08/20 18:08:49 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	print_state(t_philo *philo, char *message)
 		return ;
 	millitime = (time - philo->start_time) / 1000;
 	pthread_mutex_lock(philo->print_lock);
-	printf("%llu %d %s\n", millitime, philo->number, message);
+	printf("%lu %d %s\n", millitime, philo->number, message);
 	pthread_mutex_unlock(philo->print_lock);
 }
 
@@ -81,12 +81,12 @@ int	death_check(t_philo *philo)
 	return (0);
 }
 
-int	ft_usleep(uint64_t time)
-{
-	uint64_t	start;
+// int	ft_usleep(uint64_t time)
+// {
+// 	uint64_t	start;
 
-	start = get_current_time();
-	while ((get_current_time() - start) < time)
-		usleep(1000);
-	return (0);
-}
+// 	start = get_current_time();
+// 	while ((get_current_time() - start) < time)
+// 		usleep(time / 10);
+// 	return (0);
+// }

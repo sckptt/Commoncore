@@ -6,7 +6,7 @@
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 15:45:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/08/20 18:08:07 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/08/27 18:09:18 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,15 @@ int	main(int ac, char **av)
 	if (!ph_data)
 		return (ft_putstr_fd(ALLOCATION_ERROR, 2), 1);
 	if (check_args(ac, av) != 0)
+	{
+		free(ph_data);
 		return (1);
+	}
 	if (fill_the_structs(ph_data, ac, av) != 0)
+	{
+		free(ph_data);
 		return (1);
+	}
 	start_the_routine(ph_data);
 	end_programm(ph_data);
 	return (0);
