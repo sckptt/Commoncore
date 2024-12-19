@@ -7,3 +7,4 @@ A repo with all project I've done.
 6) So_long
 7) Pipex
 8) Philo
+9) Minishell
