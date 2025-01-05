@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 19:56:11 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/27 18:22:16 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:13:23 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ void PhoneBook::AddContact(const std::string (&info)[5], int index)
 void PhoneBook::ShowContact(int index) const
 {
 	std::cout << "First name is ";
-	std::cout << MyContacts[index].GetFirstName() << "\n" << std::endl;
+	std::cout << MyContacts[index].GetFirstName() << "\n";
 	std::cout << "Last name is ";
-	std::cout << MyContacts[index].GetLastName() << "\n" << std::endl;
+	std::cout << MyContacts[index].GetLastName() << "\n";
 	std::cout << "Nickname is ";
-	std::cout << MyContacts[index].GetNickname() << "\n" << std::endl;
+	std::cout << MyContacts[index].GetNickname() << "\n";
 	std::cout << "Phone number is ";
-	std::cout << MyContacts[index].GetPhoneNumber() << "\n" << std::endl;
+	std::cout << MyContacts[index].GetPhoneNumber() << "\n";
 	std::cout << "The darkest secret is ";
-	std::cout << MyContacts[index].GetDarkestSecret() << "\n" << std::endl;
+	std::cout << MyContacts[index].GetDarkestSecret() << "\n";
 }
 
 void print_header(void)
@@ -82,6 +82,11 @@ void PhoneBook::SearchContact(void) const
 	std::string chosen_index;
 	int res_index;
 	
+	if (number_of_contacts == 0)
+	{
+		std::cout << "No contacts in the phone book!\n";
+		return ;
+	}
 	print_header();
 	while (i < number_of_contacts)
 	{
@@ -90,10 +95,9 @@ void PhoneBook::SearchContact(void) const
 	}
 	while (1)
 	{
-		if (number_of_contacts == 0)
-			break;
-		std::cout << "Choose your index: " << std::endl;
-		std::getline(std::cin, chosen_index);
+		std::cout << "Choose your index: ";
+		if (!std::getline(std::cin, chosen_index))
+			return ;
 		if (!is_valid_number(chosen_index))
 			continue ;
 		res_index = std::atoi(chosen_index.c_str());
