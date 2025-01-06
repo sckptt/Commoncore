@@ -6,33 +6,33 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 19:56:11 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/01/05 15:13:23 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/01/06 14:50:43 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void PhoneBook::AddContact(const std::string (&info)[5], int index)
+void PhoneBook::addContact(const std::string (&info)[5], int index)
 {
-	MyContacts[index].SetFirstName(info[0]);
-	MyContacts[index].SetLastName(info[1]);
-	MyContacts[index].SetNickname(info[2]);
-	MyContacts[index].SetPhoneNumber(info[3]);
-	MyContacts[index].SetDarkestSecret(info[4]);
+	myContacts[index].setFirstName(info[0]);
+	myContacts[index].setLastName(info[1]);
+	myContacts[index].setNickname(info[2]);
+	myContacts[index].setPhoneNumber(info[3]);
+	myContacts[index].setDarkestSecret(info[4]);
 }
 
-void PhoneBook::ShowContact(int index) const
+void PhoneBook::showContact(int index) const
 {
 	std::cout << "First name is ";
-	std::cout << MyContacts[index].GetFirstName() << "\n";
+	std::cout << myContacts[index].getFirstName() << "\n";
 	std::cout << "Last name is ";
-	std::cout << MyContacts[index].GetLastName() << "\n";
+	std::cout << myContacts[index].getLastName() << "\n";
 	std::cout << "Nickname is ";
-	std::cout << MyContacts[index].GetNickname() << "\n";
+	std::cout << myContacts[index].getNickname() << "\n";
 	std::cout << "Phone number is ";
-	std::cout << MyContacts[index].GetPhoneNumber() << "\n";
+	std::cout << myContacts[index].getPhoneNumber() << "\n";
 	std::cout << "The darkest secret is ";
-	std::cout << MyContacts[index].GetDarkestSecret() << "\n";
+	std::cout << myContacts[index].getDarkestSecret() << "\n";
 }
 
 void print_header(void)
@@ -42,24 +42,24 @@ void print_header(void)
 	std::cout << "+----------+----------+----------+----------+\n";
 }
 
-void print_info(int i, const Contact MyContacts[])
+void print_info(int i, const Contact myContacts[])
 {
-	std::string first_name = MyContacts[i].GetFirstName();
-	std::string last_name = MyContacts[i].GetLastName();
-	std::string nickname = MyContacts[i].GetNickname();
+	std::string firstName = myContacts[i].getFirstName();
+	std::string lastName = myContacts[i].getLastName();
+	std::string nickname = myContacts[i].getNickname();
 	
-	if (first_name.length() > 10)
-		first_name = first_name.substr(0, 9) + ".";
-	if (last_name.length() > 10)
-		last_name = last_name.substr(0, 9) + ".";
+	if (firstName.length() > 10)
+		firstName = firstName.substr(0, 9) + ".";
+	if (lastName.length() > 10)
+		lastName = lastName.substr(0, 9) + ".";
 	if (nickname.length() > 10)
 		nickname = nickname.substr(0, 9) + ".";
 	std::cout << "|";
 	std::cout << std::setw(10) << std::right << i;
 	std::cout << "|";
-	std::cout << std::setw(10) << std::right << first_name;
+	std::cout << std::setw(10) << std::right << firstName;
 	std::cout << "|";
-	std::cout << std::setw(10) << std::right << last_name;
+	std::cout << std::setw(10) << std::right << lastName;
 	std::cout << "|";
 	std::cout << std::setw(10) << std::right << nickname;
 	std::cout << "|\n";
@@ -76,35 +76,35 @@ bool is_valid_number(std::string index)
 	return true;
 }
 
-void PhoneBook::SearchContact(void) const
+void PhoneBook::searchContact(void) const
 {
 	int i = 0;
-	std::string chosen_index;
-	int res_index;
+	std::string chosenIndex;
+	int resIndex;
 	
-	if (number_of_contacts == 0)
+	if (numberOfContacts == 0)
 	{
 		std::cout << "No contacts in the phone book!\n";
 		return ;
 	}
 	print_header();
-	while (i < number_of_contacts)
+	while (i < numberOfContacts)
 	{
-		print_info(i, MyContacts);
+		print_info(i, myContacts);
 		i++;
 	}
 	while (1)
 	{
 		std::cout << "Choose your index: ";
-		if (!std::getline(std::cin, chosen_index))
+		if (!std::getline(std::cin, chosenIndex))
 			return ;
-		if (!is_valid_number(chosen_index))
+		if (!is_valid_number(chosenIndex))
 			continue ;
-		res_index = std::atoi(chosen_index.c_str());
-		if (res_index < 0 || res_index > (number_of_contacts - 1))
+		resIndex = std::atoi(chosenIndex.c_str());
+		if (resIndex < 0 || resIndex > (numberOfContacts - 1))
 			continue ;
 		else
 			break;
 	}
-	ShowContact(res_index);
+	showContact(resIndex);
 }

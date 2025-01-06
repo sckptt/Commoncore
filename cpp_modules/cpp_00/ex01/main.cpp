@@ -6,13 +6,13 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/20 19:12:58 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/01/05 15:01:18 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/01/06 14:52:18 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void add_contact(PhoneBook& my_phonebook, int index)
+void add_contact(PhoneBook& myPhonebook, int index)
 {
 	std::string info[5];
 
@@ -46,16 +46,16 @@ void add_contact(PhoneBook& my_phonebook, int index)
 		if (!std::getline(std::cin, info[4]))
 			return ;
 	}
-	my_phonebook.AddContact(info, index);
+	myPhonebook.addContact(info, index);
 }
 
 int main()
 {
 	std::string input;
-	PhoneBook my_phonebook;
+	PhoneBook myPhonebook;
 	int index = 0;
 	
-	my_phonebook.number_of_contacts = 0;
+	myPhonebook.numberOfContacts = 0;
 	while (1)
 	{
 		std::cout << ">";
@@ -66,13 +66,13 @@ int main()
 		}
 		if (input == "ADD")
 		{
-			add_contact(my_phonebook, index);
+			add_contact(myPhonebook, index);
 			index = (index + 1) % 8;
-			if (my_phonebook.number_of_contacts < 8)
-				my_phonebook.number_of_contacts++;
+			if (myPhonebook.numberOfContacts < 8)
+				myPhonebook.numberOfContacts++;
 		}
 		else if (input == "SEARCH")
-			my_phonebook.SearchContact();
+			myPhonebook.searchContact();
 		else if (input == "EXIT")
 			break ;
 		else

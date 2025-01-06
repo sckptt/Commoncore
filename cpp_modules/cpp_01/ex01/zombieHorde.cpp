@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 20:44:02 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/27 20:57:34 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:55:02 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 Zombie* Zombie::zombieHorde(int N, std::string name)
 {
-	Zombie* TheHorde;
+	Zombie* theHorde;
 
 	if (N < 1)
 		return NULL;
-	TheHorde = new Zombie[N];
+	theHorde = new Zombie[N];
 	for (int i = 0; i < N; i++)
-	{
-		TheHorde[i].SetName(name);
-	}
-	return TheHorde;
+		theHorde[i].setName(name);
+	return theHorde;
 }

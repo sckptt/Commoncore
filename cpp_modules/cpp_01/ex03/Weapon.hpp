@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Weapon.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 19:14:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/01/06 14:49:56 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2025/01/06 14:10:46 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2025/01/06 19:46:40 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONE_BOOK_HPP
-# define PHONE_BOOK_HPP
+#ifndef WEAPON_HPP
+# define WEAPON_HPP
 
-# include <iostream>
-# include <iomanip>
-# include <unistd.h>
-# include <cstdlib>
-# include <cctype>
-# include "Contact.hpp"
+# include <string> 
 
-class PhoneBook
+class Weapon
 {
+	private:
+		std::string _type;
+		
 	public:
-		Contact myContacts[8];
-		int	numberOfContacts;
-	
-	void addContact(const std::string (&info)[5], int index);
-	void searchContact() const;
-	void showContact(int index) const;
+		Weapon();
+		Weapon(const std::string& type);
+		
+		const std::string& getType(void) const;
+		void setType(const std::string& type);
 };
 
 #endif

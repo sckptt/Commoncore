@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 20:39:16 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/27 20:59:36 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:55:28 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,17 @@ Zombie::~Zombie()
     std::cout << "Oh no, " << _name << " died!\n";
 }
 
-void Zombie::Announce(void) const
+void Zombie::announce(void) const
 {
 	std::cout << _name << ": BraiiiiiiinnnzzzZ...\n";
 }
 
-const std::string& Zombie::GetName() const
+const std::string& Zombie::getName() const
 {
     return _name;
 }
 
-void Zombie::SetName(const std::string& name)
+void Zombie::setName(const std::string& name)
 {
     _name = name;
 }

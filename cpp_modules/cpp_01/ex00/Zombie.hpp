@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 18:09:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/27 20:40:30 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:53:19 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class Zombie
 		Zombie(std::string name);
 		~Zombie();
 		
-		void Announce(void) const;
+		void announce(void) const;
 		static Zombie* newZombie(std::string name);
 		static void randomChump(std::string name);
 };

@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Weapon.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/20 19:14:01 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/01/06 14:49:56 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2025/01/06 14:10:51 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2025/01/06 19:47:16 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONE_BOOK_HPP
-# define PHONE_BOOK_HPP
+#include "Weapon.hpp"
 
-# include <iostream>
-# include <iomanip>
-# include <unistd.h>
-# include <cstdlib>
-# include <cctype>
-# include "Contact.hpp"
-
-class PhoneBook
+const std::string& Weapon::getType(void) const
 {
-	public:
-		Contact myContacts[8];
-		int	numberOfContacts;
-	
-	void addContact(const std::string (&info)[5], int index);
-	void searchContact() const;
-	void showContact(int index) const;
-};
+	return _type;
+}
 
-#endif
+void Weapon::setType(const std::string& type)
+{
+	this->_type = type;
+}
+
+Weapon::Weapon(const std::string& type)
+{
+	_type = type;
+}
+
+Weapon::Weapon()
+{
+	_type = "No weapon";
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   randomChump.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 18:14:42 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/27 20:33:12 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:53:43 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void Zombie::randomChump(std::string name)
 {
-	Zombie temp_baby(name);
-	temp_baby.Announce();
+	Zombie tempBaby(name);
+	tempBaby.announce();
 }

@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 20:39:19 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/01/05 15:33:01 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/01/06 14:56:02 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ bool is_valid_number(std::string index)
 
 int main(int ac, char **av)
 {
-	Zombie* TheHorde = NULL;
+	Zombie* theHorde = NULL;
 	int N;
 	std::string name;
 
@@ -45,10 +45,8 @@ int main(int ac, char **av)
 		return (1);
 	}
 	name = av[2];
-	TheHorde = TheHorde->zombieHorde(N, name);
+	theHorde = theHorde->zombieHorde(N, name);
 	for (int i = 0; i < N; i++)
-	{
-		TheHorde[i].Announce();
-	}
-	delete[] TheHorde;
+		theHorde[i].announce();
+	delete[] theHorde;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 20:39:38 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/27 20:59:58 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/01/06 14:54:29 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ class Zombie
 		Zombie();
 		~Zombie();
 		
-		void Announce(void) const;
+		void announce(void) const;
 		Zombie* zombieHorde(int N, std::string name);
-		const std::string &GetName(void) const;
-		void SetName(const std::string& name);
+		const std::string &getName(void) const;
+		void setName(const std::string& name);
 };
 
 #endif
