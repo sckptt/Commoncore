@@ -5,19 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/06 14:02:26 by vitakinsfat       #+#    #+#              #
-#    Updated: 2025/01/07 14:27:28 by vitakinsfat      ###   ########.fr        #
+#    Created: 2025/01/07 14:27:38 by vitakinsfat       #+#    #+#              #
+#    Updated: 2025/01/07 14:28:49 by vitakinsfat      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #set variables
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = UnnecessaryViolence
-SRC = HumanA.cpp \
-HumanB.cpp \
-main.cpp \
-Weapon.cpp
+NAME = harl
+SRC = main.cpp \
+Harl.cpp
 OBJ = $(SRC:.cpp=.o)
 INCLUDE = -I.
 
