@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   SedIsForLosers.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 14:02:23 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/01/07 11:30:27 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2025/01/07 13:20:07 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2025/01/07 13:55:22 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#ifndef SEDISFORLOSERS_HPP
+# define SEDISFORLOSERS_HPP
 
-int main(void) 
+#include <iostream>
+#include <fstream>
+
+class SedIsForLosers
 {
-	{
-		Weapon  club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
-	}
-	{
-		Weapon  club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
-	}
-	return 0;
-}
+	private:
+		std::fstream _infile;
+		std::fstream _outfile;
+		std::string _search;
+		std::string _replace;
+	public:
+		SedIsForLosers(char **av);
+
+		std::string replace(const std::string& line) const;
+		void readFile();
+};
+
+#endif

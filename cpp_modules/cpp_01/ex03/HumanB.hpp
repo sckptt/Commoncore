@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/01/06 19:55:47 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/01/07 11:35:39 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class HumanB
 	public:
 		HumanB(const std::string& name);
 		
-		void setWeapon(Weapon* weapon);
+		void setWeapon(Weapon& weapon);
 		void attack();
 };
 

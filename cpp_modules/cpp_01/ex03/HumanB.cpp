@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:00 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/01/06 19:55:39 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/01/07 11:35:28 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void HumanB::attack()
 		std::cout << _nameB << " has no weapon to attack" << std::endl;
 }
 
-void HumanB::setWeapon(Weapon* weapon)
+void HumanB::setWeapon(Weapon& weapon)
 {
-	this->_weaponB = weapon;
+	this->_weaponB = &weapon;
 }
 
 HumanB::HumanB(const std::string& name)

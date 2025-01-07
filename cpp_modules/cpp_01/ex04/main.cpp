@@ -5,30 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 14:02:23 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/01/07 11:30:27 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2025/01/06 20:31:04 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2025/01/07 14:02:44 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
-#include "HumanB.hpp"
+#include "SedIsForLosers.hpp"
 
-int main(void) 
+int main(int ac, char **av)
 {
+
+	if (ac != 4)
 	{
-		Weapon  club = Weapon("crude spiked club");
-		HumanA bob("Bob", club);
-		bob.attack();
-		club.setType("some other type of club");
-		bob.attack();
+		std::cout << "This program requires 3 arguments!" << std::endl;
+		return (1);
 	}
+	try
 	{
-		Weapon  club = Weapon("crude spiked club");
-		HumanB jim("Jim");
-		jim.setWeapon(club);
-		jim.attack();
-		club.setType("some other type of club");
-		jim.attack();
+		SedIsForLosers sifl(av);
+		sifl.readFile();
 	}
-	return 0;
+	catch (const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		return (1);
+	}
+	return (0);
 }
