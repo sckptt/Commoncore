@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 20:39:19 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/01/06 14:56:02 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/02/10 13:26:45 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,18 @@ int main(int ac, char **av)
 
 	if (ac != 3)
 	{
-		std::cout << "Please enter arguments: av[1] - number of zombies, av[2] - zombie name\n";
+		std::cout << "Please enter arguments: av[1] - number of zombies, av[2] - zombie name" << std::endl;
 		return (1);
 	}
 	if (!is_valid_number(av[1]))
 	{
-		std::cout << "Non-numeric argument or negative number!\n";
+		std::cout << "Non-numeric argument or negative number!" << std::endl;
 		return (1);
 	}
 	N = atoi(av[1]);
 	if (N == 0)
 	{
-		std::cout << "The number should be more than 0!\n";
+		std::cout << "The number should be more than 0!" << std::endl;
 		return (1);
 	}
 	name = av[2];

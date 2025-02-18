@@ -3,46 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 19:56:11 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/01/06 14:50:43 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/02/04 16:12:33 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
-void PhoneBook::addContact(const std::string (&info)[5], int index)
+void	PhoneBook::addContact(const std::string (&info)[5], int index)
 {
-	myContacts[index].setFirstName(info[0]);
-	myContacts[index].setLastName(info[1]);
-	myContacts[index].setNickname(info[2]);
-	myContacts[index].setPhoneNumber(info[3]);
-	myContacts[index].setDarkestSecret(info[4]);
+	_myContacts[index].setFirstName(info[0]);
+	_myContacts[index].setLastName(info[1]);
+	_myContacts[index].setNickname(info[2]);
+	_myContacts[index].setPhoneNumber(info[3]);
+	_myContacts[index].setDarkestSecret(info[4]);
 }
 
-void PhoneBook::showContact(int index) const
+void	PhoneBook::showContact(int index) const
 {
 	std::cout << "First name is ";
-	std::cout << myContacts[index].getFirstName() << "\n";
+	std::cout << _myContacts[index].getFirstName() << std::endl;
 	std::cout << "Last name is ";
-	std::cout << myContacts[index].getLastName() << "\n";
+	std::cout << _myContacts[index].getLastName() << std::endl;
 	std::cout << "Nickname is ";
-	std::cout << myContacts[index].getNickname() << "\n";
+	std::cout << _myContacts[index].getNickname() << std::endl;
 	std::cout << "Phone number is ";
-	std::cout << myContacts[index].getPhoneNumber() << "\n";
+	std::cout << _myContacts[index].getPhoneNumber() << std::endl;
 	std::cout << "The darkest secret is ";
-	std::cout << myContacts[index].getDarkestSecret() << "\n";
+	std::cout << _myContacts[index].getDarkestSecret() << std::endl;
 }
 
-void print_header(void)
+void	print_header(void)
 {
-	std::cout << "+----------+----------+----------+----------+\n";
-	std::cout << "|     index|first name| last name|  nickname|\n";
-	std::cout << "+----------+----------+----------+----------+\n";
+	std::cout << "+----------+----------+----------+----------+" << std::endl;
+	std::cout << "|     index|first name| last name|  nickname|" << std::endl;
+	std::cout << "+----------+----------+----------+----------+" << std::endl;
 }
 
-void print_info(int i, const Contact myContacts[])
+void	print_info(int i, const Contact myContacts[])
 {
 	std::string firstName = myContacts[i].getFirstName();
 	std::string lastName = myContacts[i].getLastName();
@@ -62,11 +62,11 @@ void print_info(int i, const Contact myContacts[])
 	std::cout << std::setw(10) << std::right << lastName;
 	std::cout << "|";
 	std::cout << std::setw(10) << std::right << nickname;
-	std::cout << "|\n";
-	std::cout << "+----------+----------+----------+----------+\n";
+	std::cout << "|" << std::endl;
+	std::cout << "+----------+----------+----------+----------+" << std::endl;
 }
 
-bool is_valid_number(std::string index)
+bool	is_valid_number(std::string index)
 {
 	for (std::string::size_type i = 0; i < index.size(); i++)
 	{
@@ -76,35 +76,47 @@ bool is_valid_number(std::string index)
 	return true;
 }
 
-void PhoneBook::searchContact(void) const
+void	PhoneBook::searchContact(void) const
 {
-	int i = 0;
-	std::string chosenIndex;
-	int resIndex;
-	
-	if (numberOfContacts == 0)
+	std::string	chosenIndex;
+	int			i = 0;
+	int			resIndex;
+
+	if (_numberOfContacts == 0)
 	{
-		std::cout << "No contacts in the phone book!\n";
+		std::cout << "No contacts in the phone book!" << std::endl;
 		return ;
 	}
 	print_header();
-	while (i < numberOfContacts)
+	while (i < _numberOfContacts)
 	{
-		print_info(i, myContacts);
+		print_info(i, _myContacts);
 		i++;
 	}
 	while (1)
 	{
-		std::cout << "Choose your index: ";
+		std::cout << "Choose your index: " << std::endl;
 		if (!std::getline(std::cin, chosenIndex))
 			return ;
+		if (chosenIndex.empty())
+			continue ;
 		if (!is_valid_number(chosenIndex))
 			continue ;
 		resIndex = std::atoi(chosenIndex.c_str());
-		if (resIndex < 0 || resIndex > (numberOfContacts - 1))
+		if (resIndex < 0 || resIndex > (_numberOfContacts - 1))
 			continue ;
 		else
 			break;
 	}
 	showContact(resIndex);
+}
+
+int	PhoneBook::getNumberOfContacts(void) const
+{
+	return _numberOfContacts;
+}
+
+void	PhoneBook::setNumberOfContacts(int numberOfContacts)
+{
+	this->_numberOfContacts = numberOfContacts;
 }

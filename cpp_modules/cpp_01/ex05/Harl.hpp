@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:29:19 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/01/07 17:58:58 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/02/10 13:39:29 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HARL_HPP
 # define HARL_HPP
 
-#include <iostream>
+# include <iostream>
 
 class Harl
 {

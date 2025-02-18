@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 14:11:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/01/07 11:35:39 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/02/10 13:36:42 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "Weapon.hpp"
 # include <iostream>
+# include <cstddef>
 
 class HumanB
 {

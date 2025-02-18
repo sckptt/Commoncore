@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   SedIsForLosers.hpp                                 :+:      :+:    :+:   */
+/*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/07 13:20:07 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/02/10 13:39:24 by vkinsfat         ###   ########.fr       */
+/*   Created: 2025/02/14 15:00:05 by vkinsfat          #+#    #+#             */
+/*   Updated: 2025/02/14 15:39:42 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SEDISFORLOSERS_HPP
-# define SEDISFORLOSERS_HPP
+#ifndef CLAPTRAP_HPP
+# define CLAPTRAP_HPP
 
 # include <iostream>
-# include <fstream>
-# include <string.h>
+# include <string>
 
-class SedIsForLosers
+class ClapTrap
 {
 	private:
-		std::fstream _infile;
-		std::fstream _outfile;
-		std::string _search;
-		std::string _replace;
+		std::string	_name;
+		int			_hitPoints;
+		int			_energyPoints;
+		int			_attackDamage;
+		
 	public:
-		SedIsForLosers(char **av);
+		ClapTrap();
+		ClapTrap(const std::string& name);
+		ClapTrap(const ClapTrap& obj);
+		ClapTrap& operator=(const ClapTrap& obj);
+		~ClapTrap();
 
-		std::string replace(const std::string& line) const;
-		void readFile();
+		void attack(const std::string& target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 20:31:04 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/01/07 14:02:44 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/02/10 13:52:26 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int main(int ac, char **av)
 	}
 	try
 	{
-		SedIsForLosers sifl(av);
-		sifl.readFile();
+		SedIsForLosers SedIsForLosers(av);
+		SedIsForLosers.readFile();
 	}
 	catch (const std::exception& e)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   SedIsForLosers.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
+/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:02:03 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/01/07 14:21:09 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/02/10 14:32:12 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,21 @@ std::string SedIsForLosers::replace(const std::string& line) const
 	while (i < line.length())
 	{
 		occ = line.find(_search, i);
-		if (occ == std::string::npos)
+		if (occ == std::string::npos && i == 0)
 		{
 			result = line;
 			break ;
 		}
-		else
+		else if (occ != std::string::npos)
 		{
 			result.append(line.substr(i, occ - i));
 			result.append(_replace);
 			i = occ + _search.length();
+		}
+		else if (occ == std::string::npos && i != 0)
+		{
+			result.append(line.substr(i, line.length()));
+			break ;
 		}
 	}
 	return result;
@@ -56,12 +61,15 @@ void SedIsForLosers::readFile(void)
 
 SedIsForLosers::SedIsForLosers(char **av)
 {
+	std::string filename;
+
+	filename = std::string(av[1]) + ".replace";
 	if (strlen(av[1]) == 0)
 		throw std::runtime_error("Filename string can't have zero length!");
 	_infile.open(av[1], std::ios::in);
 	if (!_infile.is_open())
 		throw std::runtime_error("Error in opening infile!");
-	_outfile.open(std::string(av[1]) + ".replace", std::ios::out | std::ios::trunc);
+	_outfile.open(filename.c_str(), std::ios::out | std::ios::trunc);
 	if (!_outfile.is_open())
 	{
 		_infile.close();	

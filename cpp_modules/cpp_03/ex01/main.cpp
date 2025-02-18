@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/26 18:08:31 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/02/04 15:52:03 by vkinsfat         ###   ########.fr       */
+/*   Created: 2025/02/14 14:59:05 by vkinsfat          #+#    #+#             */
+/*   Updated: 2025/02/14 16:30:08 by vkinsfat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
-void uppercasify(char *str)
+int main(void)
 {
-	int i = -1;
-
-	while (str[++i])
-	{
-		str[i] = (char)std::toupper(str[i]);
-		std::cout << str[i];
-	}
+	ClapTrap trap1("clapushka");
+	ClapTrap trap2("trapushka");
+	ScavTrap trap3("skavushka");
+	
+	trap3.guardGate();
+	trap1.attack("skavushka");
+	trap3.attack("trapushka");
+	trap2.takeDamage(20);
+	trap3.attack("clapushka");
+	trap1.takeDamage(20);
 }
 
-int main(int ac, char **av)
-{
-	int i;
-
-	i = 0;
-	if (ac == 1)
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
-	else if (ac > 1)
-	{
-		while (av[++i])
-			uppercasify(av[i]);
-	}
-	std::cout << "\n";
-}
