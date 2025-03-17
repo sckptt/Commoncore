@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/03/11 12:26:24 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2025/02/18 12:30:06 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2025/02/18 12:39:34 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
-#include "minishell.h"
+# include "ClapTrap.hpp"
 
-void	sigint_handler(int signum)
+class FragTrap: public ClapTrap
 {
-	(void) signum;
-	write(STDOUT_FILENO, "\n", 1);
-	rl_replace_line("", 0);
-	rl_on_new_line();
-	rl_redisplay();
-	g_sig_received = 2;
-}
+	public:
+		FragTrap();
+		FragTrap(const std::string& name);
+		FragTrap(const FragTrap& obj);
+		FragTrap& operator=(const FragTrap& obj);
+		~FragTrap();
 
-void	func_int(int signum)
-{
-	(void)signum;
-	write(1, "\n", 1);
-}
+		void attack(const std::string& target);
+		void guardGate(void);
+};
 
-void	interrupt_heredoc_signal(int signum)
-{
-	g_sig_received = signum;
-	ioctl(0, TIOCSTI, "\n");
-}
+#endif

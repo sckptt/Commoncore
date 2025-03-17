@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+         #
+#    By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/29 15:31:13 by akulikov          #+#    #+#              #
-#    Updated: 2024/12/05 18:16:10 by vkinsfat         ###   ########.fr        #
+#    Created: Invalid date        by                   #+#    #+#              #
+#    Updated: 2025/03/11 12:24:03 by vitakinsfat      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 # set a compiler and flags
 CC = cc
@@ -55,7 +56,6 @@ utils/free_utils1.c \
 utils/free_utils2.c \
 utils/get_next_line_utils.c \
 utils/get_next_line.c \
-utils/print_utils.c \
 utils/signals.c \
 env_init.c \
 init.c \

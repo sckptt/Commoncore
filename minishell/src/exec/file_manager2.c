@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:51:15 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/05 18:03:03 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:23:49 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

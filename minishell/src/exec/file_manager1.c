@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   file_manager1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/14 18:51:46 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/05 18:04:52 by vkinsfat         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2025/03/11 12:23:42 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 
@@ -87,11 +88,7 @@ static int	run_manage_files(t_cmd *cmd)
 	if (cmd->num_of_infiles != 0)
 	{
 		if (manage_infiles(cmd) == FAILURE)
-		{
-			if (g_sig_received)
-				g_sig_received = 0;
 			return (FAILURE);
-		}
 	}
 	if (cmd->num_of_outfiles != 0)
 	{

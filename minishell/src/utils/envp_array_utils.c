@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envp_array_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 17:31:13 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/12/02 19:26:01 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:26:03 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

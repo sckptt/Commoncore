@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:15:13 by vkinsfat          #+#    #+#             */
-/*   Updated: 2024/12/05 18:16:40 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:22:15 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,8 +256,6 @@ int			is_env_symbol(int c);
 char		*append_char(char *s, char c);
 
 //printing - utils
-void		print_tokens(t_appdata *appdata);
-void		print_lists(t_appdata *appdata);
 void		print_file_error(char *argument);
 
 //init

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built-in_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 17:31:12 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2024/11/26 16:48:30 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2024/11/30 18:54:45 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
