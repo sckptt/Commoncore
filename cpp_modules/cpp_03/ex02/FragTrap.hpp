@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:30:06 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/02/18 12:39:34 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/04/07 18:07:16 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ class FragTrap: public ClapTrap
 		FragTrap& operator=(const FragTrap& obj);
 		~FragTrap();
 
-		void attack(const std::string& target);
-		void guardGate(void);
+		void highFivesGuys(void);
 };
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkinsfat <vkinsfat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:59:05 by vkinsfat          #+#    #+#             */
-/*   Updated: 2025/02/14 16:30:08 by vkinsfat         ###   ########.fr       */
+/*   Updated: 2025/04/07 17:41:04 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ int main(void)
 	trap2.takeDamage(20);
 	trap3.attack("clapushka");
 	trap1.takeDamage(20);
+	trap3.takeDamage(0);
+	trap3.beRepaired(100);
 }
 
