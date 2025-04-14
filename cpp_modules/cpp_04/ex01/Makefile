@@ -6,15 +6,16 @@
 #    By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/14 14:57:41 by vkinsfat          #+#    #+#              #
-#    Updated: 2025/04/14 22:26:45 by vitakinsfat      ###   ########.fr        #
+#    Updated: 2025/04/14 23:02:31 by vitakinsfat      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #set variables
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-NAME = polymorphism
+NAME = onfire
 SRC = Animal.cpp \
+Brain.cpp \
 Cat.cpp \
 Dog.cpp \
 main.cpp \

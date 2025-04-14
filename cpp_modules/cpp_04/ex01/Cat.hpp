@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:14:30 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/04/14 21:52:25 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/04/14 23:15:09 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 # define CAT_HPP
 
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Cat : public Animal
 {
+	private:
+		Brain* _brain; 
 	public:
 		Cat();
 		Cat(const Cat& obj);

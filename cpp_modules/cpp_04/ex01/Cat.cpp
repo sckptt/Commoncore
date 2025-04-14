@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 21:17:58 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/04/14 22:14:40 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/04/14 23:20:42 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ Cat::Cat()
 {
 	std::cout << "Cat constructor called" << std::endl;
 	this->_type = "Cat";
+	this->_brain = new Brain();
 }
 
 Cat::Cat(const Cat& obj)
 {
 	std::cout << "Cat copy constructor called" << std::endl;
 	this->_type = obj._type;
+	this->_brain = new Brain(*obj._brain);
 }
 Cat& Cat::operator=(const Cat& obj)
 {
@@ -29,6 +31,9 @@ Cat& Cat::operator=(const Cat& obj)
 	if (this != &obj)
 	{
 		this->_type = obj._type;
+		if (this->_brain)
+			delete this->_brain;
+		this->_brain = new Brain(*obj._brain);
 	}
 	return (*this);
 }
@@ -36,6 +41,7 @@ Cat& Cat::operator=(const Cat& obj)
 Cat::~Cat()
 {
 	std::cout << "Curiosity killed the cat!" << std::endl;
+	delete _brain;
 }
 
 void Cat::makeSound(void) const

@@ -6,7 +6,7 @@
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 20:53:42 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/04/14 22:26:17 by vitakinsfat      ###   ########.fr       */
+/*   Updated: 2025/04/14 23:36:11 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,24 @@
 
 int main()
 {
-	const Animal* zhvtne = new Animal();
 	const Animal* sharik = new Dog();
 	const Animal* murka = new Cat();
-	const WrongAnimal* anml = new WrongAnimal();
-	const WrongAnimal* shmurka = new WrongCat();
+	const Animal* animal_array[10];
 	
-	std::cout << sharik->getType() << " " << std::endl;
-	std::cout << murka->getType() << " " << std::endl;
-	std::cout << zhvtne->getType() << " " << std::endl;
-	std::cout << anml->getType() << " " << std::endl;
-	std::cout << shmurka->getType() << " " << std::endl;
-	murka->makeSound(); //will output the cat sound!
+	for (int i = 0; i < 10; i++)
+	{
+		if (i % 2 == 0)
+			animal_array[i] = new Cat();
+		else
+			animal_array[i] = new Dog();
+	}
+	for (int i = 0; i < 10; i++)
+		animal_array[i]->makeSound();
 	sharik->makeSound();
-	zhvtne->makeSound();
-	anml->makeSound();
-	shmurka->makeSound();
-	delete zhvtne;
-	delete sharik;
+	murka->makeSound();
+	for (int i = 0; i < 10; i++)
+		delete animal_array[i];
+	delete sharik;//should not create a leak
 	delete murka;
-	delete anml;
-	delete shmurka;
 	return (0);
 }
