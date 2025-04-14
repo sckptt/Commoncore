@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 18:12:58 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/04/14 19:57:35 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2025/04/14 22:11:25 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2025/04/14 22:17:25 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
+#ifndef WRONG_ANIMAL_HPP
+# define WRONG_ANIMAL_HPP
 
-# include "ClapTrap.hpp"
-# include "ScavTrap.hpp"
-# include "FragTrap.hpp"
+# include <string>
+# include <iostream>
 
-class DiamondTrap: public ScavTrap, public FragTrap
+class WrongAnimal
 {
-	private:
-		std::string _name;
+	protected:
+		std::string _type;
+	
 	public:
-		DiamondTrap();
-		DiamondTrap(const std::string& name);
-		DiamondTrap(const DiamondTrap& obj);
-		DiamondTrap& operator=(const DiamondTrap& obj);
-		~DiamondTrap();
-
-		using ScavTrap::attack;
-		void whoAmI(void);
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal& obj);
+		WrongAnimal& operator=(const WrongAnimal& obj);
+		virtual ~WrongAnimal();
+		
+		const std::string& getType(void) const;
+		void makeSound(void) const;
 };
 
 #endif

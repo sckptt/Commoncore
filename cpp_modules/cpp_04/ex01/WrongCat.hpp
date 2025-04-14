@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vitakinsfator <vitakinsfator@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 18:12:58 by vitakinsfat       #+#    #+#             */
-/*   Updated: 2025/04/14 19:57:35 by vitakinsfat      ###   ########.fr       */
+/*   Created: 2025/04/14 21:14:30 by vitakinsfat       #+#    #+#             */
+/*   Updated: 2025/04/14 22:20:44 by vitakinsfat      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
+#ifndef WRONG_CAT_HPP
+# define WRONG_CAT_HPP
 
-# include "ClapTrap.hpp"
-# include "ScavTrap.hpp"
-# include "FragTrap.hpp"
+# include "WrongAnimal.hpp"
 
-class DiamondTrap: public ScavTrap, public FragTrap
+class WrongCat : public WrongAnimal
 {
-	private:
-		std::string _name;
 	public:
-		DiamondTrap();
-		DiamondTrap(const std::string& name);
-		DiamondTrap(const DiamondTrap& obj);
-		DiamondTrap& operator=(const DiamondTrap& obj);
-		~DiamondTrap();
+		WrongCat();
+		WrongCat(const WrongCat& obj);
+		WrongCat& operator=(const WrongCat& obj);
+		~WrongCat();
 
-		using ScavTrap::attack;
-		void whoAmI(void);
+		void makeSound(void) const;
 };
 
 #endif
