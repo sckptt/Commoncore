@@ -8,3 +8,4 @@
 8) Philo - multi-threading program.
 9) Minishell (done with akulikov) - bash-like shell.
 10) Cpp_modules - introduction to C++.
+11) cub3D (done with yrouzaud) - 3D graphical representation of the inside of a maze from a first-person perspective using the ray-casting principles.
